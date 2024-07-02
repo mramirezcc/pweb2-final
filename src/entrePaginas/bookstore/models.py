@@ -11,16 +11,27 @@ class ShoppingCart(models.Model):
     total = models.IntegerField()
     status = models.BooleanField(default = False)
 
-class Cathegory(models.Model):
-    name = models.CharField(max_length=20)
-
 class Book(models.Model):
     name = models.CharField(max_length=50)
     year = models.IntegerField()
     author = models.CharField(max_length=100)
+    portrait = models.ImageField(upload_to='portraits/', default='', blank=True, null=True)
     #stock = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places = 2)
-    idCathegory = models.ForeignKey(Cathegory, on_delete=models.CASCADE, related_name='cathegory_book')
+    CATHEGORY_CHOICES = {
+        'N/A' : 'N/A',
+        'Suspenso' : 'Suspenso',
+        'Romance' : 'Romance',
+        'CienciaFiccion' : 'Ciencia Ficción',
+        'Aventura' : 'Aventura',
+        'Fantasía' : 'Fantasía',
+        'Acción' : 'Acción',
+    }
+    cathegory = models.CharField(
+        max_length=20,
+        choices = CATHEGORY_CHOICES,
+        default= 'N/A'
+    )
     #idEditorial = models.ForeignKey(Editorial, on_delete = models.CASCADE)
 
 class CartBook(models.Model):
