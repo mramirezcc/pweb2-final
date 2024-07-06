@@ -1,10 +1,29 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator
 
 class User(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
-    password = models.CharField(max_length=8)
-    address = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=8, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
+    address = models.CharField(max_length=100, default='No especificado', null=True, blank=True)
+
+    #Validación y verificación de datos
+    #Aunque el formulario verificará los datos, esto se hace por mayor seguridad
+    def clean(self):
+        super().clean()
+        #Name no debe ser vacío
+        if not self.name:
+            raise ValidationError({'name':'Ingrese un nombre no vacío'})
+        if not self.email:
+            raise ValidationError({'email':'Ingrese un correo no vacío'})
+        #Password no puede contener solo caracteres alfanuméricos
+        if not any(char.isdigit() for char in self.password) or not any(char.isalpha() for char in self.password):
+            raise ValidationError({'password':'Ingrese una contraseña con al menos un caracter especial'})
+    
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(**args, **kwargs)
 
 class ShoppingCart(models.Model):
     idUser = models.ForeignKey(User, on_delete = models.CASCADE, related_name='idUser_cart')
@@ -39,9 +58,9 @@ class CartBook(models.Model):
     idBook = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='idBook_cartbook')
 
 class Sale(models.Model):
-    CREDIT_CARD = "CC"
-    DEBIT_CARD = "DC"
-    CASH = "$"
+    CREDIT_CARD = "Credit"
+    DEBIT_CARD = "Debit"
+    CASH = "Cash"
     PAY_METHOD_CHOICES = {
         CREDIT_CARD: 'Credit card',
         DEBIT_CARD: 'Debit card',
@@ -55,3 +74,13 @@ class Sale(models.Model):
     idCart = models.ForeignKey(ShoppingCart, on_delete=models.CASCADE, related_name='idCart_sale')
     total = models.IntegerField()
     date = models.DateField(auto_now=True)
+
+    def clean(self):
+        super().clean()
+
+        if self.total<=0:
+            raise ValidationError({'total':'La venta no puede tener un valor negativo'})
+    
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
