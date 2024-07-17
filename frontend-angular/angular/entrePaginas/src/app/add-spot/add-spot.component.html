@@ -1,1 +1,11 @@
-<p>add-spot works!</p>
+<div class="carousel">
+    <div class="carousel-image">
+      <img [src]="images[currentIndex]" alt="Carousel Image" class="fade-enter">
+    </div>
+    <div class="carousel-indicators">
+      <span *ngFor="let image of images; let i = index"
+            [class.active]="i === currentIndex"
+            (click)="setCurrentIndex(i)"></span>
+    </div>
+  </div>
+  
