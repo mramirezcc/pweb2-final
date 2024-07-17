@@ -1,6 +1,7 @@
 .register-container {
 
     background-color: #f9f9f9;
+    opacity: 0.85;
   }
   
   .register-form {
@@ -56,13 +57,13 @@
   
   textarea {
     resize: none;
-    height: 100px;
+    height: 50x;
   }
   
   select {
     position: relative;
     width: calc(100% - 20px);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 10px;
     border-radius: 7px;
     background-color: #f4f4ff;
@@ -88,7 +89,7 @@
     padding: 10px;
     border-radius: 4px;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     cursor: pointer;
     font-size: 16px;
   }
