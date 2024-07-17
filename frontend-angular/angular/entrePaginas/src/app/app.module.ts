@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginRegisterComponent } from './loginregister/loginregister.component';
 import { AdvancedSearchComponent } from './advanced-search/advanced-search.component';
+import { AddSpotComponent } from './add-spot/add-spot.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AdvancedSearchComponent } from './advanced-search/advanced-search.compo
     LoginComponent,
     RegisterComponent,
     LoginRegisterComponent,
-    AdvancedSearchComponent
+    AdvancedSearchComponent,
+    AddSpotComponent
   ],
   imports: [
     BrowserModule,

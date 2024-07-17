@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  registered: boolean = true;
+  registered: boolean = true  ;
   username: string = 'wasds';
   
   isRegistered(): boolean {
     return this.registered;
   }
 }
+
+//                                                                                      
