@@ -35,12 +35,12 @@ class RegisterForm(forms.ModelForm):
         return user
     
 class LoginForm(AuthenticationForm):
-    name = forms.CharField(max_length=100, unique=True, blank=False, required=True)
+    name = forms.CharField(max_length=100, required=True)
     password = forms.CharField(widget=forms.PasswordInput(), required=True, max_length=16, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['name', 'password']
     
     error_messages = {
         'invalid-login': "Usuario o contraseña incorrectos"
