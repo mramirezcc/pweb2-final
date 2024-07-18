@@ -1,6 +1,7 @@
 from django import forms
 from .models import User
 from django.core.validators import MinLengthValidator
+from django.contrib.auth.forms import AuthenticationForm
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
@@ -32,3 +33,15 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+class LoginForm(AuthenticationForm):
+    name = forms.CharField(max_length=100, unique=True, blank=False, required=True)
+    password = forms.CharField(widget=forms.PasswordInput(), required=True, max_length=16, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+    
+    error_messages = {
+        'invalid-login': "Usuario o contraseña incorrectos"
+    }
