@@ -3,8 +3,8 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 
 class User(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=100, unique=True, blank=False)
+    email = models.EmailField(unique=True, blank=False)
     password = models.CharField(max_length=8, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
     address = models.CharField(max_length=100, default='No especificado', null=True, blank=True)
 
