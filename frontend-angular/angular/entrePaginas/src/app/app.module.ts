@@ -14,6 +14,7 @@ import { AdvancedSearchComponent } from './advanced-search/advanced-search.compo
 import { BookBoxv1Component } from './book-boxv1/book-boxv1.component';
 import { BookBoxv2Component } from './book-boxv2/book-boxv2.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     BookBoxv1Component,
     BookBoxv2Component,
     BookDetailsComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
