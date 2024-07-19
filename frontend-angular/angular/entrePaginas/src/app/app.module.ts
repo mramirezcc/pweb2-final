@@ -15,6 +15,8 @@ import { BookBoxv1Component } from './book-boxv1/book-boxv1.component';
 import { BookBoxv2Component } from './book-boxv2/book-boxv2.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { ComprasHistorialComponent } from './compras-historial/compras-historial.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     BookBoxv2Component,
     BookDetailsComponent,
     UserProfileComponent,
+    PersonalInfoComponent,
+    ComprasHistorialComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<div class="compras-container">
+    <h2>Compras realizadas</h2>
+    <button class="delete-button">
+        <i class="fas fa-trash-alt"></i> Eliminar historial
+    </button>
+    <div class="compra-item" *ngFor="let compra of compras">
+    <img [src]="compra.imageUrl" alt="{{ compra.title }} cover" class="compra-image">
+    <div class="compra-info">
+        <p class="compra-title">{{ compra.title }}</p>
+        <p class="compra-author">{{ compra.author }}</p>
+        <p class="compra-date">{{ compra.date }}</p>
+    </div>
+    </div>
+</div>
+  
