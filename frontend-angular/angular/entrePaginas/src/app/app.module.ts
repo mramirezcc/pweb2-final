@@ -11,6 +11,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginRegisterComponent } from './loginregister/loginregister.component';
 import { AddSpoComponent } from './add-spo/add-spo.component';
 import { AdvancedSearchComponent } from './advanced-search/advanced-search.component';
+import { BookBoxv1Component } from './book-boxv1/book-boxv1.component';
+import { BookBoxv2Component } from './book-boxv2/book-boxv2.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { AdvancedSearchComponent } from './advanced-search/advanced-search.compo
     LoginRegisterComponent,
     AddSpoComponent,
     AdvancedSearchComponent,
+    BookBoxv1Component,
+    BookBoxv2Component,
+    BookDetailsComponent,
   ],
   imports: [
     BrowserModule,

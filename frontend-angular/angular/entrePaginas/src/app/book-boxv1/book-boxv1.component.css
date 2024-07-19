@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+.book-card {
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #f5f5ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 120px;
+
+  margin: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.book-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-card:hover .book-image {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+  margin-top: 15px;
+}
+
+.book-title {
+  font-size: 20px;
+  color: #333;
+  margin: 0;
+  transition: color 0.3s;
+}
+
+.book-card:hover .book-title {
+  color: #6633ff;
+}
+
+.book-author {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.book-price {
+  font-size: 18px;
+  color: #6633ff;
+  font-weight: bold;
+  margin: 10px 0 0;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .book-card {
+    max-width: 20%;
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .book-title {
+    font-size: 18px;
+  }
+  
+  .book-author {
+    font-size: 12px;
+  }
+  
+  .book-price {
+    font-size: 16px;
+  }
+}
