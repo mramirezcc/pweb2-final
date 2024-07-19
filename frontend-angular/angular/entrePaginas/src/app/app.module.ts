@@ -8,8 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginRegisterComponent } from './loginregister/loginregister.component';
-import { AdvancedSearchComponent } from './advanced-search/advanced-search.component';
-import { AddSpotComponent } from './add-spot/add-spot.component';
+import { AddSpoComponent } from './add-spo/add-spo.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { AddSpotComponent } from './add-spot/add-spot.component';
     LoginComponent,
     RegisterComponent,
     LoginRegisterComponent,
-    AdvancedSearchComponent,
-    AddSpotComponent
+    AddSpoComponent,
   ],
   imports: [
     BrowserModule,
