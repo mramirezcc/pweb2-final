@@ -19,6 +19,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ComprasHistorialComponent } from './compras-historial/compras-historial.component';
 import { FavoriteUserComponent } from './favorite-user/favorite-user.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CarShopComponent } from './car-shop/car-shop.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ComprasHistorialComponent,
     FavoriteUserComponent,
     EditProfileComponent,
+    CarShopComponent,
   ],
   imports: [
     BrowserModule,

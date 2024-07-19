@@ -1,0 +1,42 @@
+<div class="container">
+    <button class="btn-back" (click)="regresar()">&#8592; Proceso de venta</button>
+    <div class="shopping-cart">
+        <div class="cart-items">
+            <h2>Carrito de compras</h2>
+            <p>Tienes {{libros.length}} items en tu carrito de compra</p>
+            <div class="cart-item" *ngFor="let libro of libros">
+            <img [src]="libro.imagenUrl" alt="{{libro.titulo}}" class="book-image">
+            <div class="book-details">
+                <h3>{{libro.titulo}}</h3>
+                <p>{{libro.autor}}</p>
+            </div>
+            <div class="quantity-controls">
+                <button (click)="disminuirCantidad(libro)">&#9664;</button>
+                <span>{{libro.cantidad}}</span>
+                <button (click)="incrementarCantidad(libro)">&#9654;</button>
+            </div>
+            <p class="price">${{libro.precio * libro.cantidad}}</p>
+
+            <button class="btn-delete" (click)="eliminarLibro(libro)">        
+                <i class="fas fa-trash-alt"></i> 
+            </button>
+
+            </div>
+        </div>
+        <div class="payment-method">
+            <h2>Método de pago</h2>
+            <div class="payment-options">
+                <img src="/../../card.png" alt="card">
+                <img src="/../../yape.png" alt="yape">
+                <img src="/../../efectivo.png" alt="efectivo">
+            </div>
+            <div class="order-summary">
+                <p>Subtotal: <span>${{subtotal}}</span></p>
+                <p>IGV: <span>${{ igv }}</span></p>
+                <p>Total (Tax incl.): <span>${{ subtotal+igv }}</span></p>
+            </div>
+            <button class="btn-checkout">Comprar &#8594;</button>
+        </div>
+    </div>
+</div>
+  
