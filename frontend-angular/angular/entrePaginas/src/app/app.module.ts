@@ -17,6 +17,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ComprasHistorialComponent } from './compras-historial/compras-historial.component';
+import { FavoriteUserComponent } from './favorite-user/favorite-user.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ComprasHistorialComponent } from './compras-historial/compras-historial
     UserProfileComponent,
     PersonalInfoComponent,
     ComprasHistorialComponent,
+    FavoriteUserComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
