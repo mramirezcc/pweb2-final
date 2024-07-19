@@ -20,6 +20,7 @@ import { ComprasHistorialComponent } from './compras-historial/compras-historial
 import { FavoriteUserComponent } from './favorite-user/favorite-user.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CarShopComponent } from './car-shop/car-shop.component';
+import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CarShopComponent } from './car-shop/car-shop.component';
     FavoriteUserComponent,
     EditProfileComponent,
     CarShopComponent,
+    ComprasGraficoComponent,
   ],
   imports: [
     BrowserModule,
