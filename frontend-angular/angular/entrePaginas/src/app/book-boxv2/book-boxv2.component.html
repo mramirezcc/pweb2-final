@@ -1,0 +1,13 @@
+<div class="book-card">
+    <div class="book-image-container">
+      <img [src]="imageUrl" alt="{{ title }} cover" class="book-image">
+    </div>
+    <div class="book-info">
+      <h3 class="book-title">{{ title }}</h3>
+      <p class="book-author">{{ author }}</p>
+      <p class="book-year">{{ year }}</p>
+      <p class="book-category">{{ category }}</p>
+      <p class="book-price">{{ price | currency:'USD':'symbol' }}</p>
+      <button class="buy-now-button">Buy Now</button>
+    </div>
+  </div>

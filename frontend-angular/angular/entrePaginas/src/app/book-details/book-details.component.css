@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+.book-detail {
+  font-family: 'Josefin Sans', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  margin: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+}
+
+.book-detail:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.book-image-container {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 40px;
+}
+
+.book-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 20px 40px;
+}
+
+.book-detail:hover .book-image {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+  flex: 2 1 600px;
+  padding: 20px;
+}
+
+.book-title {
+  font-size: 28px;
+  color: #333;
+  margin: 0;
+}
+
+.book-author {
+  font-size: 22px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.book-summary {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.book-year {
+  font-size: 16px;
+  color: #999;
+  margin: 10px 0;
+}
+
+.book-categories {
+  margin: 10px 0;
+}
+
+.category-badge {
+  display: inline-block;
+  background-color: #d9534f;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category-badge:hover {
+  background-color: #c9302c;
+}
+
+.book-price-container {
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+  gap: 50px;
+}
+
+.book-price {
+  font-size: 24px;
+  color: #6633ff;
+  font-weight: bold;
+}
+
+.add-to-cart {
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: #ec971f;
+}
+
+.back-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+
+  .book-detail {
+    width: 85%;
+    margin: 0px;
+
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .book-info {
+    padding: 10px;
+  }
+
+  .book-price-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .book-price {
+    margin-bottom: 10px;
+  }
+}

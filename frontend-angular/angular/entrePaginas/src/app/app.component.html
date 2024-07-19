@@ -1,6 +1,58 @@
 
 <app-navbar></app-navbar>
+<app-add-spo></app-add-spo>
+<app-book-boxv1 
+  imageUrl="/../portraitBook.jpg" 
+  title="Metafizik" 
+  author="Aristoteles" 
+  [price]="36.00">
+</app-book-boxv1>
 
+<app-book-boxv2
+  imageUrl="/../portraitBook.jpg" 
+  title="Ikigai" 
+  author="Hector Garcia" 
+  [price]="36.00"
+  [year]="2024"
+  category="Self-help">
+</app-book-boxv2>
 
-<app-add-spot></app-add-spot>
+<app-advanced-search></app-advanced-search>
 <app-footer></app-footer>
+
+
+<app-book-details
+  imageUrl="/../portraitBook.jpg" 
+  title="Dune" 
+  author="Frank Herbert" 
+  summary="Dune is set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs..."
+  [year]="1997"
+  [price]="87.75"
+  [categories]="['Terror', 'Nose', 'Waos']">
+  
+</app-book-details>
+
+<app-user-profile
+  imageUrl="/../profileImage.jpg"
+  name="'Gato sigma 666'"
+></app-user-profile>
+
+<app-personal-info
+  [name]="'Gato sigma 666'"
+  [email]="'gato@gato.com'"
+  [phone]="'666 666 666'"
+  [country]="'Peru'"
+  [city]="'Arequipa'"
+  [state]="'Arequipa'"
+  [address]="'Esta es mi direccion'"
+></app-personal-info>
+<h1>historial</h1>
+<app-compras-historial [compras]="compras"></app-compras-historial>
+
+<app-favorite-user [compras]="comprasAux"></app-favorite-user>
+
+<app-edit-profile></app-edit-profile>
+
+<app-car-shop></app-car-shop>
+
+<app-compras-grafico [compras]="comprasRealizadas"></app-compras-grafico>

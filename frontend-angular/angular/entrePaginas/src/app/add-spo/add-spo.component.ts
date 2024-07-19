@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, OnDestroy, NgZone, ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'app-add-spot',
-  templateUrl: './add-spot.component.html',
-  styleUrls: ['./add-spot.component.css'] // corregido de styleUrl a styleUrls
+  selector: 'app-add-spo',
+  templateUrl: './add-spo.component.html',
+  styleUrl: './add-spo.component.css'
 })
-export class ImageCarouselComponent implements OnInit, OnDestroy {
+export class AddSpoComponent implements OnInit, OnDestroy {
   @Input() images: string[] = ["../../add1.jpg", "../../add2.jpg", "../../add3.jpg"];
   currentIndex: number = 0;
   private intervalId: any;

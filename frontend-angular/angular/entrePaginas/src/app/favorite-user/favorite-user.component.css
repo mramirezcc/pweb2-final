@@ -1,0 +1,54 @@
+
+.frequent-details-container {
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.frequent-detail {
+  background-color: #87ceeb;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.frequent-detail h3 {
+  font-size: 18px;
+  color: #fff;
+  margin: 0;
+}
+
+.frequent-detail p {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0 0;
+}
+
+@media (max-width: 600px) {
+  .frequent-details-container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .frequent-detail h3 {
+    font-size: 16px;
+  }
+
+  .frequent-detail p {
+    font-size: 14px;
+  }
+}

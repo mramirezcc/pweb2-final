@@ -1,0 +1,55 @@
+/* Estilos generales para el carrusel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Cambia esto al tamaño deseado */
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* Estilos para la imagen dentro del carrusel */
+.carousel-image img {
+  width: 100%; /* Asegura que las imágenes tomen el 100% del ancho del contenedor */
+  height: auto; /* Mantén la proporción de aspecto */
+  transition: opacity 1s ease-in-out; /* Transición suave de opacidad */
+  display: block; /* Evita el espacio inferior de las imágenes en línea */
+}
+
+/* Estilos para los indicadores del carrusel */
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.carousel-indicators span {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-indicators .active {
+  background-color: #333;
+}
+
+/* Estilos para la animación de transición */
+.carousel-image img.fade-enter-active {
+  opacity: 0;
+}
+
+.carousel-image img.fade-enter {
+  opacity: 1;
+}
+
+/* Estilos responsivos para dispositivos móviles */
+@media (max-width: 600px) {
+  .carousel {
+    max-width: 100%;
+  }
+}

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSpotComponent } from './add-spot.component';
+import { ComprasGraficoComponent } from './compras-grafico.component';
 
-describe('AddSpotComponent', () => {
-  let component: AddSpotComponent;
-  let fixture: ComponentFixture<AddSpotComponent>;
+describe('ComprasGraficoComponent', () => {
+  let component: ComprasGraficoComponent;
+  let fixture: ComponentFixture<ComprasGraficoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddSpotComponent]
+      declarations: [ComprasGraficoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddSpotComponent);
+    fixture = TestBed.createComponent(ComprasGraficoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
