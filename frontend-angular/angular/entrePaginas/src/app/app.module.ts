@@ -23,6 +23,7 @@ import { CarShopComponent } from './car-shop/car-shop.component';
 import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.component';
 import { VendedorLoginComponent } from './vendedor-login/vendedor-login.component';
 import { VendedorNavbarComponent } from './vendedor-navbar/vendedor-navbar.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { VendedorNavbarComponent } from './vendedor-navbar/vendedor-navbar.compo
     ComprasGraficoComponent,
     VendedorLoginComponent,
     VendedorNavbarComponent,
+    SideBarComponent,
   ],
   imports: [
     BrowserModule,
