@@ -21,6 +21,7 @@ import { FavoriteUserComponent } from './favorite-user/favorite-user.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CarShopComponent } from './car-shop/car-shop.component';
 import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.component';
+import { VendedorLoginComponent } from './vendedor-login/vendedor-login.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.compo
     EditProfileComponent,
     CarShopComponent,
     ComprasGraficoComponent,
+    VendedorLoginComponent,
   ],
   imports: [
     BrowserModule,
