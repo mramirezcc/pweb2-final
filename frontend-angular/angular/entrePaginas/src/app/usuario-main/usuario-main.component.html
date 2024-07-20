@@ -1,0 +1,31 @@
+<button class="back">Atras</button>
+<div class="user">
+    <app-user-profile 
+    imageUrl="/../profileImage.jpg"
+    name="'Gato sigma 666'"
+    ></app-user-profile>
+
+
+
+    <div class="info">
+        <app-favorite-user [compras]="comprasAux"></app-favorite-user>
+
+        <div class= "sameline">
+            <app-personal-info
+            [name]="'Gato sigma 666'"
+            [email]="'gato@gato.com'"
+            [phone]="'666 666 666'"
+            [country]="'Peru'"
+            [city]="'Arequipa'"
+            [state]="'Arequipa'"
+            [address]="'Esta es mi direccion'"
+            ></app-personal-info>
+
+            <app-compras-grafico [compras]="comprasRealizadas"></app-compras-grafico>
+        </div>
+        
+        <app-compras-historial [compras]="compras"></app-compras-historial>
+
+    </div>
+
+</div>

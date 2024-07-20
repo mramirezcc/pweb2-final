@@ -29,4 +29,12 @@ export class NavbarComponent {
       alert("No esta registrado!");
     }
   }
+
+  redirectUserMain(): void{
+    if(this.registered){
+      window.location.href = '/user'; 
+    }else{
+      alert("No esta registrado!");
+    }
+  }
 }

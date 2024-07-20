@@ -29,6 +29,7 @@ import { EnviarMailsComponent } from './enviar-mails/enviar-mails.component';
 import { SubirLibroComponent } from './subir-libro/subir-libro.component';
 import { MainComponent } from './main/main.component';
 import { ShowBooksComponent } from './show-books/show-books.component';
+import { UsuarioMainComponent } from './usuario-main/usuario-main.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ShowBooksComponent } from './show-books/show-books.component';
     SubirLibroComponent,
     MainComponent,
     ShowBooksComponent,
+    UsuarioMainComponent,
   ],
   imports: [
     BrowserModule,

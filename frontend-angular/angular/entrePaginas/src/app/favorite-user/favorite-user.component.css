@@ -1,10 +1,9 @@
-
 .frequent-details-container {
   background-color: #f0f8ff;
-  padding: 20px;
+  padding: 10px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 600px;
   margin: auto;
   font-family: 'Josefin Sans', sans-serif;
   text-align: center;
@@ -16,6 +15,11 @@ h2 {
   margin-bottom: 20px;
 }
 
+.container{
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
 .frequent-detail {
   background-color: #87ceeb;
   padding: 15px;

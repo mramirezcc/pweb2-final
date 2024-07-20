@@ -3,13 +3,15 @@
     <button class="delete-button">
         <i class="fas fa-trash-alt"></i> Eliminar historial
     </button>
-    <div class="compra-item" *ngFor="let compra of compras">
-    <img [src]="compra.imageUrl" alt="{{ compra.title }} cover" class="compra-image">
-    <div class="compra-info">
-        <p class="compra-title">{{ compra.title }}</p>
-        <p class="compra-author">{{ compra.author }}</p>
-        <p class="compra-date">{{ compra.date }}</p>
+    <div class="container">
+        <div class="compra-item" *ngFor="let compra of compras">
+            <div class="compra-info">
+                <p class="compra-title">{{ compra.title }}</p>
+                <p class="compra-author">{{ compra.author }}</p>
+                <p class="compra-date">{{ compra.date }}</p>
+            </div>
+            </div>
     </div>
-    </div>
+
 </div>
   
