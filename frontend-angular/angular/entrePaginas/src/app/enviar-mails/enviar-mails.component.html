@@ -1,0 +1,29 @@
+<div class="email-container">
+    <div class="clients-menu">
+      <h3>Clientes Registrados</h3>
+      <div class="select-all">
+        <input type="checkbox" id="selectAll" [(ngModel)]="selectAll" (change)="toggleSelectAll()">
+        <label for="selectAll">Seleccionar Todos</label>
+      </div>
+      <div class="client-list">
+        <div *ngFor="let client of clients">
+          <input type="checkbox" [(ngModel)]="client.selected" [id]="client.id">
+          <label [for]="client.id">{{ client.name }}</label>
+        </div>
+      </div>
+    </div>
+  
+    <div class="email-form">
+      <h3>Enviar Correo</h3>
+      <div class="input-group">
+        <label for="subject">Asunto</label>
+        <input type="text" id="subject" [(ngModel)]="subject" required>
+      </div>
+      <div class="input-group">
+        <label for="message">Mensaje</label>
+        <textarea id="message" [(ngModel)]="message" rows="5" required></textarea>
+      </div>
+      <button (click)="onSubmit()" class="send-button">Enviar</button>
+    </div>
+  </div>
+  

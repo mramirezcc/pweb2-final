@@ -25,6 +25,7 @@ import { VendedorLoginComponent } from './vendedor-login/vendedor-login.componen
 import { VendedorNavbarComponent } from './vendedor-navbar/vendedor-navbar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { VendedorDashBoardComponent } from './vendedor-dash-board/vendedor-dash-board.component';
+import { EnviarMailsComponent } from './enviar-mails/enviar-mails.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { VendedorDashBoardComponent } from './vendedor-dash-board/vendedor-dash-
     VendedorNavbarComponent,
     SideBarComponent,
     VendedorDashBoardComponent,
+    EnviarMailsComponent,
   ],
   imports: [
     BrowserModule,
