@@ -26,6 +26,9 @@ import { VendedorNavbarComponent } from './vendedor-navbar/vendedor-navbar.compo
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { VendedorDashBoardComponent } from './vendedor-dash-board/vendedor-dash-board.component';
 import { EnviarMailsComponent } from './enviar-mails/enviar-mails.component';
+import { SubirLibroComponent } from './subir-libro/subir-libro.component';
+import { MainComponent } from './main/main.component';
+import { ShowBooksComponent } from './show-books/show-books.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { EnviarMailsComponent } from './enviar-mails/enviar-mails.component';
     SideBarComponent,
     VendedorDashBoardComponent,
     EnviarMailsComponent,
+    SubirLibroComponent,
+    MainComponent,
+    ShowBooksComponent,
   ],
   imports: [
     BrowserModule,
