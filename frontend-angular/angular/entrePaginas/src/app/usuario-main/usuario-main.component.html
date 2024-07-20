@@ -11,7 +11,7 @@
         <app-favorite-user [compras]="comprasAux"></app-favorite-user>
 
         <div class= "sameline">
-            <app-personal-info
+            <app-personal-info (toggleEdit)="toggleEdit()"
             [name]="'Gato sigma 666'"
             [email]="'gato@gato.com'"
             [phone]="'666 666 666'"
@@ -28,4 +28,10 @@
 
     </div>
 
+</div>
+
+<div *ngIf="showEdit" class="modal-background">
+    <div class="modal-content">
+        <app-edit-profile></app-edit-profile>
+    </div>
 </div>

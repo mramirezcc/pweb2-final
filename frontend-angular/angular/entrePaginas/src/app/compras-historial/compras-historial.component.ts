@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ComprasHistorialComponent {
   @Input() compras: { imageUrl: string, title: string, author: string, date: string }[] = [];
+  eliminarCompras(){
+    console.log("Funcion para eliminar las compras en la base de datos");
+    alert("borrando");
+  }
 }

@@ -9,19 +9,31 @@ export class UserProfileComponent {
   @Input() imageUrl: string = '';
   @Input() name: string = '';
 
-  onCartClick() {
+  redirectShoppingCar() {
     console.log('Ver el carrito de compras');
+    //abrir el carrito de compras con la informacion del usuario
   }
 
-  onPrintClick() {
+  openEditInfo() {
     console.log('Imprimir contenido');
+    //funcion para generar un pdf del dashboard
+    
   }
 
-  onDeleteClick() {
-    console.log('Eliminar');
-  }
+  deleteUser() {
+  
+    if (confirm("¿Estás seguro de que deseas eliminar tu usuario?")) {
+      console.log('Funcion para eliminar usuario');
 
-  onLogoutClick() {
-    console.log('Cerrar sesión');
+      window.location.href = '';
+    } else {
+      console.log("El usuario decidió no eliminar el usuario.");
+    }
+  }
+  
+  logout() {
+    console.log('Funcion para cerrar sesion');
+    window.location.href = '';
+
   }
 }

@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class UsuarioMainComponent {
 
+  showEdit: boolean = false;
+
+  toggleEdit(): void {
+      this.showEdit = !this.showEdit;
+  }
   compras = [
     { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' },
     { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' }
@@ -22,4 +27,5 @@ export class UsuarioMainComponent {
     { imageUrl: '/../portraitBook.jpg', title: 'El libro verde', author: 'Juan Carlos Bodoque', date: '2023-07-13' },
     { imageUrl: '/../portraitBook.jpg', title: 'El libro rojo', author: 'Juan Carlos Bodoque', date: '2023-07-13' },
   ];
+
 }
