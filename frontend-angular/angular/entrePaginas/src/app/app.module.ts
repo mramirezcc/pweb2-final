@@ -24,6 +24,7 @@ import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.compo
 import { VendedorLoginComponent } from './vendedor-login/vendedor-login.component';
 import { VendedorNavbarComponent } from './vendedor-navbar/vendedor-navbar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { VendedorDashBoardComponent } from './vendedor-dash-board/vendedor-dash-board.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +49,12 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     VendedorLoginComponent,
     VendedorNavbarComponent,
     SideBarComponent,
+    VendedorDashBoardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     provideClientHydration()
