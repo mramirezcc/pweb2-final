@@ -1,11 +1,10 @@
-<!-- parent.component.html -->
 <div class="container">
     <app-navbar [registered]="isRegistered" [username]="username" (toggleAdvancedSearch)="toggleAdvancedSearch()"></app-navbar>
     <app-add-spo></app-add-spo>
+
     <app-show-books></app-show-books>
     <app-footer></app-footer>
-  
-    <!-- Overlay y componente de búsqueda avanzada -->
+
     <div class="overlay" *ngIf="showAdvancedSearch" (click)="toggleAdvancedSearch()"></div>
     <app-advanced-search *ngIf="showAdvancedSearch" class="modal"></app-advanced-search>
   </div>

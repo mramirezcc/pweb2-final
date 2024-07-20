@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-  isRegistered: boolean = false;
+  isRegistered: boolean = true;
   username: string = 'default';
 
   //al ser generado recibe del backend si el usuario esta registrado y si lo esta obtener el username
@@ -17,4 +17,7 @@ export class MainComponent {
     console.log("called?");
     this.showAdvancedSearch = !this.showAdvancedSearch;
   }
+
+  
+
 }
