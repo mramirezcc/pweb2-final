@@ -22,6 +22,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CarShopComponent } from './car-shop/car-shop.component';
 import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.component';
 import { VendedorLoginComponent } from './vendedor-login/vendedor-login.component';
+import { VendedorNavbarComponent } from './vendedor-navbar/vendedor-navbar.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { VendedorLoginComponent } from './vendedor-login/vendedor-login.componen
     CarShopComponent,
     ComprasGraficoComponent,
     VendedorLoginComponent,
+    VendedorNavbarComponent,
   ],
   imports: [
     BrowserModule,

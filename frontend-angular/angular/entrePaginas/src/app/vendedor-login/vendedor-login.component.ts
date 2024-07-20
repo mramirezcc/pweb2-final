@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './vendedor-login.component.html',
   styleUrl: './vendedor-login.component.css'
 })
-export class VendedorLoginComponent {
+export class VendedorLoginComponent{
   email: string = '';
   password: string = '';
   remember: boolean = false;
