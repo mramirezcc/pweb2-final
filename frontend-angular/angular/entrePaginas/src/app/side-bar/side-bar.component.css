@@ -9,6 +9,8 @@
   
   .sidebar-header {
     margin-bottom: 20px;
+    margin-top: 20px;
+
   }
   
   .sidebar-header h2 {
@@ -54,7 +56,7 @@
     color: red;
     list-style: none;
     padding: 0;
-    margin: 60vh 0 0 0;
+    margin: 40vh 0 0 0;
   }
   
   .sidebar-footer li {

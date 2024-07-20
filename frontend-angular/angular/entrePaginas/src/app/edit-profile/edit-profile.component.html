@@ -3,7 +3,8 @@
         <h2>Editar perfil</h2>
         <div class="editImage">
             <img [src]="imageUrl" alt="User Image" class="user-image">
-            <button (click)="editImage()">Cambiar</button>
+            <input type="file" (change)="onImageChange($event)" hidden #fileInput>
+            <button (click)="fileInput.click()">Cambiar</button>
         </div>
     </div>
 
@@ -51,7 +52,7 @@
         </div>
         <div class="form-actions">
             <button type="button" (click)="onCancel()" class="btn btn-cancel">Cancelar</button>
-            <button type="submit" class="btn btn-save">Guardar</button>
+            <button type="submit" (click)="onSave()" class="btn btn-save">Guardar</button>
             <button type="button" (click)="onDelete()" class="btn btn-delete">Eliminar perfil</button>
         </div>
     </form>

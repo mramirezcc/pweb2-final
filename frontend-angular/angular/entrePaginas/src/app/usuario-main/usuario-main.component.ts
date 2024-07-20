@@ -12,6 +12,12 @@ export class UsuarioMainComponent {
   toggleEdit(): void {
       this.showEdit = !this.showEdit;
   }
+  atras(): void{
+    //no te delogea
+    window.location.href = '/'; 
+
+  }
+
   compras = [
     { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' },
     { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' }

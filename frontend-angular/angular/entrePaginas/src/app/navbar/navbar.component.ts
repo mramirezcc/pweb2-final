@@ -9,6 +9,7 @@ import { Router } from '@angular/router'; // Importa el Router
 export class NavbarComponent {
   @Input() registered: boolean = false; 
   @Input() username: string = 'default';
+
   @Output() toggleAdvancedSearch = new EventEmitter<void>();
   @Output() openCart = new EventEmitter<void>();
 
@@ -23,7 +24,7 @@ export class NavbarComponent {
   }
   redirectShoppingCar(): void{
     console.log("Validado si es usuario o no, y luego abrir la nueva pagina web")
-    if(this.registered){
+    if(this.isRegistered()){
       window.location.href = '/shoppingCart'; // Usa window.location.href para redirigir
     }else{
       alert("No esta registrado!");
@@ -31,7 +32,7 @@ export class NavbarComponent {
   }
 
   redirectUserMain(): void{
-    if(this.registered){
+    if(this.isRegistered()){
       window.location.href = '/user'; 
     }else{
       alert("No esta registrado!");

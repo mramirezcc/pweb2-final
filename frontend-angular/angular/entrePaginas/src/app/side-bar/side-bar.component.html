@@ -2,6 +2,7 @@
     <div class="sidebar-header">
       <h2>Opciones generales</h2>
     </div>
+
     <ul class="sidebar-menu">
       <li [class.active]="activeMenu === 'overview'" (click)="setActiveMenu('overview')">
         <i class="icon-overview"></i>
@@ -16,6 +17,7 @@
         <span>Subir libro</span>
       </li>
     </ul>
+    
     <div class="sidebar-footer">
       <li (click)="logout()">
         <i class="icon-logout"></i>

@@ -41,11 +41,14 @@ export class EnviarMailsComponent implements OnInit {
   }
 
   onSubmit() {
-    const selectedClients = this.clients.filter(client => client.selected);
-    console.log({
-      selectedClients,
-      subject: this.subject,
-      message: this.message
-    });
+    if(confirm("Desea enviar correo a los clientes seleccionados")){
+      const selectedClients = this.clients.filter(client => client.selected);
+      console.log({
+        selectedClients,
+        subject: this.subject,
+        message: this.message
+      });
+    }
+
   }
 }

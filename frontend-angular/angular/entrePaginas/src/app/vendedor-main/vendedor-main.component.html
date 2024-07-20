@@ -1,0 +1,18 @@
+<div class="all">
+    <app-vendedor-navbar [sellerName]="'Juan Perez'"></app-vendedor-navbar>
+
+    <div class="container">
+        <app-side-bar (menuChange)="menuChange($event)"></app-side-bar>
+        <div *ngIf="activeMenu === 'overview'">
+            <app-vendedor-dash-board></app-vendedor-dash-board>
+          </div>
+          <div *ngIf="activeMenu === 'emails'" style="width: 100%;">
+            <app-enviar-mails></app-enviar-mails>
+          </div>
+          <div *ngIf="activeMenu === 'upload'" style="width: 100%;">
+            <app-subir-libro></app-subir-libro>
+        
+    
+    </div>
+    
+</div>

@@ -1,3 +1,11 @@
+.back{
+  background-color: #ccc;
+  padding: 10px;
+  z-index: 99;
+  font-size: 30px;
+  border-radius: 10px;
+  position: absolute;
+}
 .login-container {
     display: flex;
     justify-content: center;

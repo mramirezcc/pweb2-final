@@ -30,6 +30,7 @@ import { SubirLibroComponent } from './subir-libro/subir-libro.component';
 import { MainComponent } from './main/main.component';
 import { ShowBooksComponent } from './show-books/show-books.component';
 import { UsuarioMainComponent } from './usuario-main/usuario-main.component';
+import { VendedorMainComponent } from './vendedor-main/vendedor-main.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { UsuarioMainComponent } from './usuario-main/usuario-main.component';
     MainComponent,
     ShowBooksComponent,
     UsuarioMainComponent,
+    VendedorMainComponent,
   ],
   imports: [
     BrowserModule,
