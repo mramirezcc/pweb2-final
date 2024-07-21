@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
 from rest_framework import viewsets, status, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework.exceptions import AuthenticationFailed
 from .serializers import UserSerializer, LoginSerializer, BookSerializer
 from .models import User, ShoppingCart, Sale, CartBook, Book
 
@@ -26,8 +27,17 @@ class LoginView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data
+
+        user = authenticate(
+            username=serializer.validated_data['username'],
+            password=serializer.validated_data['password']
+        )
+        
+        if not user:
+            raise AuthenticationFailed("Credenciales inválidas")
+
         login(request, user)
+
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
         }, status=status.HTTP_200_OK)
