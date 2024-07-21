@@ -6,6 +6,8 @@
   margin: auto;
   overflow: hidden;
   border-radius: 10px;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 /* Estilos para la imagen dentro del carrusel */

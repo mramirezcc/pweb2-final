@@ -8,20 +8,20 @@ body {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 700px;
+    width: 800px;
+    
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 20px;
     color: #333;
-    margin-bottom: 10px;
 }
 
 .delete-button {
     background: none;
     border: none;
     color: #333;
-    font-size: 24px;
+    font-size: 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -35,14 +35,13 @@ h2 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 20px;
     background-color: #87ceeb;
-    padding: 10px;
+    padding:5px;
     border-radius: 12px;
 }
 
 .compra-item:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .compra-image {
@@ -87,7 +86,5 @@ h2 {
       flex-direction: column;
       gap: 4px;
     }
-    
-
 
 }

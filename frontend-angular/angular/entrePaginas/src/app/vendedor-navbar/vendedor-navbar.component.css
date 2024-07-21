@@ -1,0 +1,60 @@
+.navbar {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.navbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+  
+.logo {
+    font-family: "Playwrite PE", cursive;
+    font-weight: 10;
+    display: flex;
+    gap: 20px;
+}
+
+.logo img {
+    width: 75px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+.title {
+    flex-grow: 1;
+}
+  
+.title h1 {
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+}
+  
+.seller-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+  
+@media (max-width: 768px) {
+    .title h1 {
+        font-size: 18px;
+    }
+
+    .seller-name {
+        font-size: 16px;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+}

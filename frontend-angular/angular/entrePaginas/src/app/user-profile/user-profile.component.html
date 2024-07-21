@@ -2,17 +2,18 @@
     <img [src]="imageUrl" alt="User Image" class="user-image">
     <h3>{{ name }}</h3>
     <div class="buttons">
-      <button (click)="onCartClick()">
+      <button (click)="redirectShoppingCar()">
         <i class="fas fa-shopping-cart"></i> Ver el carrito de compras
       </button>
-      <button (click)="onPrintClick()">
+      <button (click)="openEditInfo()">
         <i class="fas fa-print"></i> Imprimir contenido
       </button>
       <div class="bottom">
-        <button (click)="onDeleteClick()">
+        <button (click)="deleteUser()">
             <i class="fas fa-trash-alt"></i>
           </button>
-          <button (click)="onLogoutClick()">
+
+          <button (click)="logout()">
             <i class="fas fa-sign-out-alt"></i>
           </button>
       </div>

@@ -16,7 +16,10 @@ interface Compra {
 export class ComprasGraficoComponent implements OnInit, AfterViewInit {
   @Input() compras: Compra[] = [];
   chart: any;
-
+  eliminarCompras(){
+    console.log("Funcion para eliminar las compras en la base de datos");
+    alert("Borrando");
+  }
   ngOnInit() {
   }
 

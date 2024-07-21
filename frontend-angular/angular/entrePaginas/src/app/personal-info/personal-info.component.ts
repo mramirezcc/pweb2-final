@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-personal-info',
@@ -13,8 +13,11 @@ export class PersonalInfoComponent {
   @Input() city: string = '';
   @Input() state: string = '';
   @Input() address: string= '';
+  @Output() toggleEdit = new EventEmitter<void>();
 
-  onEditClick() {
+
+  onEditClick(): void {
     console.log('Editar información');
+    this.toggleEdit.emit();
   }
 }

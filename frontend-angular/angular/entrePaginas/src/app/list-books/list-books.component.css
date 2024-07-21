@@ -1,0 +1,10 @@
+.contain{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.contain app-book-boxv2 {
+    width: 450px;
+}

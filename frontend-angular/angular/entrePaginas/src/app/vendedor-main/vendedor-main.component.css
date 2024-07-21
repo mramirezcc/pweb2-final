@@ -1,0 +1,32 @@
+.all{
+    overflow: hidden;
+
+}
+.container{
+    display: flex;
+}
+.container app-side-bar{
+    position: sticky;
+}
+app-enviar-mails{
+    background-color: rgb(112, 112, 112);
+    width: 100%;
+}
+app-subir-libro{
+    background-color: rgb(112, 112, 112);
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .all{
+        overflow: auto;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+  
+
+  }
+  

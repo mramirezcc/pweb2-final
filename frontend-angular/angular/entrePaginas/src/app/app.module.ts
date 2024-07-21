@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';  // Asegúrate de importar esto
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,18 @@ import { FavoriteUserComponent } from './favorite-user/favorite-user.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CarShopComponent } from './car-shop/car-shop.component';
 import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.component';
+import { VendedorLoginComponent } from './vendedor-login/vendedor-login.component';
+import { VendedorNavbarComponent } from './vendedor-navbar/vendedor-navbar.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { VendedorDashBoardComponent } from './vendedor-dash-board/vendedor-dash-board.component';
+import { EnviarMailsComponent } from './enviar-mails/enviar-mails.component';
+import { SubirLibroComponent } from './subir-libro/subir-libro.component';
+import { MainComponent } from './main/main.component';
+import { ShowBooksComponent } from './show-books/show-books.component';
+import { UsuarioMainComponent } from './usuario-main/usuario-main.component';
+import { VendedorMainComponent } from './vendedor-main/vendedor-main.component';
+import { BookMainComponent } from './book-main/book-main.component';
+import { ListBooksComponent } from './list-books/list-books.component';
 
 @NgModule({
   declarations: [
@@ -42,11 +55,24 @@ import { ComprasGraficoComponent } from './compras-grafico/compras-grafico.compo
     EditProfileComponent,
     CarShopComponent,
     ComprasGraficoComponent,
+    VendedorLoginComponent,
+    VendedorNavbarComponent,
+    SideBarComponent,
+    VendedorDashBoardComponent,
+    EnviarMailsComponent,
+    SubirLibroComponent,
+    MainComponent,
+    ShowBooksComponent,
+    UsuarioMainComponent,
+    VendedorMainComponent,
+    BookMainComponent,
+    ListBooksComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule  
   ],
   providers: [
     provideClientHydration()

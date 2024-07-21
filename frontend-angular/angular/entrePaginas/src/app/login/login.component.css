@@ -1,3 +1,25 @@
+.back{
+  position: fixed;
+  top:15px;
+  right: 15px;
+  background-color: rgb(255, 210, 210);
+  z-index: 1;
+  font-size: 30px;
+  padding: 10px;
+}
+.all{
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+
+
 .login-container {
     
     background-color: #f9f9f9;

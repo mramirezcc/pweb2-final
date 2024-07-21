@@ -1,0 +1,90 @@
+.email-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .clients-menu {
+    flex: 1 1 30%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .clients-menu h3 {
+    margin-bottom: 10px;
+  }
+  
+  .select-all {
+    margin-bottom: 10px;
+  }
+  
+  .client-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .client-list div {
+    margin-bottom: 5px;
+  }
+  
+  .email-form {
+    flex: 1 1 60%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .email-form h3 {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .input-group input:focus,
+  .input-group textarea:focus {
+    border-color: #007BFF;
+  }
+  
+  .send-button {
+    background: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .send-button:hover {
+    background: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .clients-menu, .email-form {
+      flex: 1 1 100%;
+    }
+  }
+  

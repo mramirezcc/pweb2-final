@@ -1,0 +1,28 @@
+<div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Opciones generales</h2>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li [class.active]="activeMenu === 'overview'" (click)="setActiveMenu('overview')">
+        <i class="icon-overview"></i>
+        <span>Vista general</span>
+      </li>
+      <li [class.active]="activeMenu === 'emails'" (click)="setActiveMenu('emails')">
+        <i class="icon-emails"></i>
+        <span>Enviar emails</span>
+      </li>
+      <li [class.active]="activeMenu === 'upload'" (click)="setActiveMenu('upload')">
+        <i class="icon-upload"></i>
+        <span>Subir libro</span>
+      </li>
+    </ul>
+    
+    <div class="sidebar-footer">
+      <li (click)="logout()">
+        <i class="icon-logout"></i>
+        <span>Salir</span>
+      </li>
+    </div>
+  </div>
+  

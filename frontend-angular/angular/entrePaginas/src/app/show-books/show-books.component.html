@@ -1,0 +1,10 @@
+<div class="contain" style="display: flex;">
+    <app-book-boxv1 
+      *ngFor="let book of books"
+      [imageUrl]="book.imageUrl"
+      [title]="book.title"
+      [author]="book.author"
+      [price]="book.price">
+    </app-book-boxv1>
+  </div>
+  

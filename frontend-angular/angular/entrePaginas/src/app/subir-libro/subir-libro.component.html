@@ -1,0 +1,39 @@
+<div class="upload-book-container">
+    <div class="upload-book-card">
+      <h2>Subir Nuevo Libro</h2>
+      <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+        <div class="input-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" ngModel required>
+        </div>
+        <div class="input-group">
+          <label for="anio">Año</label>
+          <input type="number" id="anio" name="anio" ngModel required>
+        </div>
+        <div class="input-group">
+          <label for="autor">Autor</label>
+          <input type="text" id="autor" name="autor" ngModel required>
+        </div>
+        <div class="input-group">
+          <label for="stock">Stock</label>
+          <input type="number" id="stock" name="stock" ngModel required>
+        </div>
+        <div class="input-group">
+          <label for="precio">Precio</label>
+          <input type="number" id="precio" name="precio" ngModel required>
+        </div>
+        <div class="input-group">
+          <label for="categoria">Categoría</label>
+          <select id="categoria" name="categoria" ngModel required>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="imagen">Subir Imagen</label>
+          <input type="file" id="imagen" name="imagen" ngModel required>
+        </div>
+        <button type="submit" class="submit-button">Subir Libro</button>
+      </form>
+    </div>
+  </div>
+  

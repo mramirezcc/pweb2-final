@@ -1,0 +1,64 @@
+
+.back{
+    position: sticky;
+    top: 15px;
+    left: 15px;
+    font-size: 20px;
+    padding: 14px;
+    border-radius: 10px;
+}
+.navbar.book-filters {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar.book-filters h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .filter-item {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    flex: 1 1 200px;
+  }
+  
+  .filter-item label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .filter-item input,
+  .filter-item select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .filter-item input[type="number"] {
+    width: calc(100% - 22px); /* Adjust width to fit inside the flex item */
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .filter-item {
+      flex: 1 1 100%;
+    }
+  }
+  

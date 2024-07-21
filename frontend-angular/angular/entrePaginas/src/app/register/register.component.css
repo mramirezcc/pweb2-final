@@ -1,3 +1,17 @@
+.all{
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+
+
 .register-container {
 
     background-color: #f9f9f9;
@@ -114,3 +128,19 @@
     color: #ffffff;
   }
   
+
+  .error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+  }
+
+  .back{
+    position: fixed;
+    top:15px;
+    right: 15px;
+    background-color: rgb(255, 210, 210);
+    z-index: 1;
+    font-size: 30px;
+    padding: 10px;
+}
