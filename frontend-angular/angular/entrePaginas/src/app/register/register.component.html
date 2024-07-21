@@ -10,7 +10,7 @@
       <h2>Empiece a leer, registrándose</h2>
       <h3>Registrar cuenta</h3>
       <form class = "allForm" (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" novalidate>
-        <input type="file" id="portrait" name="portrait" ngModel required>
+        <input type="file" id="portrait" name="portrait" (change)="onFileSelected($event)" required>
 
         <div class="left">
           <label for="name">Nombre</label>

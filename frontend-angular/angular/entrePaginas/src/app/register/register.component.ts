@@ -1,40 +1,48 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router'; // Importa el Router
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { User } from '../user.model'
+import { User } from '../user.model';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  selectedFile: File | null = null;
 
+  constructor(private router: Router, private api: ApiService) { }
 
-  constructor(private router: Router, private api: ApiService) {} // Inyecta el Router
-
-
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 
   onSubmit(form: NgForm) {
-    if (form.valid) {
-      console.log('Form Data:', form.value);
+    if (form.valid && this.selectedFile) {
+      const user: User = {
+        portrait: '',
+        name: form.value.name,
+        email: form.value.email,
+        password: form.value.password,
+        number: form.value.phone,
+        address: form.value.address
+      };
 
-      //Investigar en todos los usuarios y ver que no haya repetidos en correo
-
-      this.api.addUser(form.value).subscribe(success => {
+      this.api.addUser(user, this.selectedFile).subscribe(success => {
+        
         if (success) {
           console.log('User added successfully');
         } else {
           console.log('User addition failed');
         }
       });
-
     } else {
       console.log('Form is invalid');
     }
   }
-  atras(){
-    this.router.navigate(['/']); 
 
+  atras() {
+    this.router.navigate(['/']);
   }
 }

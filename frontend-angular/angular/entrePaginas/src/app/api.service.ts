@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from './user.model'; // Asegúrate de que la ruta sea correcta
 import { catchError, map } from 'rxjs/operators';
 
@@ -22,16 +22,33 @@ export class ApiService {
     {headers: this.httpHeaders});
   }
 
-  addUser(user: User): Observable<boolean> {
-    console.log("El usuario enviado es: ", user);
-    
-      return this.http.post<{ success: boolean }>(this.baseurl + '/users/', user, 
-      { headers: this.httpHeaders }).pipe(
+  addUser(user: User, portraitFile: File): Observable<boolean> {
+    const formData: FormData = new FormData();
+    formData.append('portrait', portraitFile);
+    formData.append('name', user.name);
+    formData.append('email', user.email);
+    formData.append('password', user.password);
+    formData.append('number', user.number);
+    formData.append('address', user.address);
+
+    return this.http.post<{ success: boolean }>(this.baseurl + '/users/', formData)
+      .pipe(
         map(response => response.success),
         catchError(error => {
           console.error('Error adding user:', error);
           return [false]; // Devuelve false en caso de error
         })
       );
-    }
+  }
+
+  //genera un nuevo servicio
+  getUser(email: string, name: string): Observable<User | null> {
+    return this.http.post<User | null>(this.baseurl + '/users/verify/', { email, name }, { headers: this.httpHeaders })
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching user:', error);
+          return of(null); // Devuelve null en caso de error
+        })
+      );
+  }
 }
