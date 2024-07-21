@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component'; // Asegúrate de importar correctamente
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private navbarComponent: NavbarComponent) {}
 
   canActivate(): boolean {
     // Aquí puedes implementar tu lógica de autenticación

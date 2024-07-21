@@ -197,3 +197,14 @@ img:hover {
         width: 80px;
     }
 }
+
+
+.back{
+    position: fixed;
+    top:15px;
+    right: 15px;
+    background-color: rgb(255, 210, 210);
+    z-index: 1;
+    font-size: 30px;
+    padding: 10px;
+}

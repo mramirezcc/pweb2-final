@@ -8,6 +8,6 @@
       <p class="book-year">{{ year }}</p>
       <p class="book-category">{{ category }}</p>
       <p class="book-price">{{ price | currency:'USD':'symbol' }}</p>
-      <button class="buy-now-button">Buy Now</button>
+      <button class="buy-now-button" (click)="openDetails()">Detalles</button>
     </div>
   </div>

@@ -9,10 +9,7 @@
       <p class="book-summary"><strong>Resumen:</strong> {{ summary }}</p>
       <p class="book-year"><strong>Año:</strong> {{ year }}</p>
       <div class="book-categories">
-        <strong>Categoría:</strong>
-        <span *ngFor="let category of categories" class="category-badge" (click)="onCategoryClick(category)">
-          {{ category }}
-        </span>
+        <strong>Categoría: {{ category }}</strong>
       </div>
       <div class="book-price-container">
         <span class="book-price">{{ price | currency:'USD':'symbol' }}</span>

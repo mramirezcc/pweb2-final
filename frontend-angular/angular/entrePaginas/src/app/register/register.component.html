@@ -1,55 +1,81 @@
+
+<button class="back" (click)="atras()">Atras</button>
+
+<div class="all">
+
+
 <div class="register-container">
     <div class="register-form">
       <img src="../../logo.png" alt="Logo" class="logo" />
-      <h2>Empiece a leer, registrandose</h2>
+      <h2>Empiece a leer, registrándose</h2>
       <h3>Registrar cuenta</h3>
-      <form class = "allForm">
+      <form class = "allForm" (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" novalidate>
         <div class="left">
-            <label for="name">Nombre</label>
-            <input type="text" id="name" placeholder="John Doe" />
-            
-            <!--Comprobar con el ts!-->
-            <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="john@mail.com" />
-            
-            <!--Comprobar con el ts!-->
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="********" />
-            
-            <label for="phone">Numero de celular</label>
-            <input type="text" id="phone" placeholder="123123123123123" />
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" ngModel placeholder="John Doe" required />
+          <div *ngIf="registerForm.submitted" class="error">
+            Nombre es obligatorio.
+          </div>
+  
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" ngModel placeholder="john@mail.com" required email />
+          <div *ngIf="registerForm.submitted" class="error">
+            Ingrese un e-mail válido.
+          </div>
+  
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" ngModel placeholder="********" required minlength="6" />
+          <div *ngIf="registerForm.submitted" class="error">
+            La contraseña debe tener al menos 6 caracteres.
+          </div>
+  
+          <label for="phone">Número de celular</label>
+          <input type="text" id="phone" name="phone" ngModel placeholder="123123123123123" required pattern="^[0-9]+$" />
+          <div *ngIf="registerForm.submitted" class="error">
+            Número de celular válido requerido.
+          </div>
         </div>
         <div class="right">
-
-
-            <label for="country">Pais</label>
-            <select name="country" id="countries">
-                <option value="default">Ingrese un pais</option>
-                
-            </select>
-            
-            <label for="city">Ciudad</label>
-            <select name="city" id="cities">
-                <option value="default">Ingrese una ciudad</option>
-            </select>
-            
-            <label for="state">Estado</label>
-            <select name="state" id="states">
-                <option value="default">Ingrese un estado</option>
-            </select>
-
-            <label for="address">Ingrese su direccion</label>
-            <textarea id="address" placeholder="Arequipa"></textarea>
+          <label for="country">País</label>
+          <select name="country" id="countries" ngModel required>
+            <option value="default">Ingrese un país</option>
+            <!-- Agregar opciones dinámicas aquí -->
+          </select>
+          <div *ngIf="registerForm.submitted" class="error">
+            Seleccione un país.
+          </div>
+  
+          <label for="city">Ciudad</label>
+          <select name="city" id="cities" ngModel required>
+            <option value="default">Ingrese una ciudad</option>
+            <!-- Agregar opciones dinámicas aquí -->
+          </select>
+          <div *ngIf="registerForm.submitted " class="error">
+            Seleccione una ciudad.
+          </div>
+  
+          <label for="state">Estado</label>
+          <select name="state" id="states" ngModel required>
+            <option value="default">Ingrese un estado</option>
+            <!-- Agregar opciones dinámicas aquí -->
+          </select>
+          <div *ngIf="registerForm.submitted" class="error">
+            Seleccione un estado.
+          </div>
+  
+          <label for="address">Ingrese su dirección</label>
+          <textarea id="address" name="address" ngModel placeholder="Arequipa" required></textarea>
+          <div *ngIf="registerForm.submitted" class="error">
+            Dirección es obligatoria.
+          </div>
         </div>
-
+  
         <div class="buttons">
-            <button type="submit" class="register-btn">Registrar</button>
-            <button type="button" class="login-btn">Ya tengo una cuenta</button>
+          <button type="submit" class="register-btn">Registrar</button>
+          <button type="button" class="login-btn">Ya tengo una cuenta</button>
         </div>
       </form>
-
     </div>
-
-    
   </div>
   
+</div>

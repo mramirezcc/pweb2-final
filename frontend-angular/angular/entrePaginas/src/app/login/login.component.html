@@ -1,21 +1,28 @@
-<div class="login-container">
+<button class="back" (click)="atras()">Atras</button>
+
+<div class="all">
+  <div class="login-container">
     <div class="login-form">
       <img src="../../logo.png" alt="Logo" class="logo" />
       <h2>Bienvenido otra vez, estimado lector</h2>
       <h3>Ingrese con su cuenta</h3>
-      <form>
+      <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
         <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="john@mail.com" />
+        <input type="email" id="email" name="email" ngModel placeholder="john@mail.com" required />
+        
         <label for="password">Contraseña</label>
-        <input type="password" id="password" placeholder="********" />
+        <input type="password" id="password" name="password" ngModel placeholder="********" required />
+        
         <div class="remember-me">
-          <input type="checkbox" id="remember-me" />
+          <input type="checkbox" id="remember-me" name="rememberMe" ngModel />
           <label for="remember-me">Recordarme en esta computadora</label>
         </div>
-        <a href="#" class="forgot-password">Me olvide todo :(</a>
+        
+        <a href="#" class="forgot-password">Me olvidé todo :(</a>
+        
         <button type="submit" class="login-btn">Ingresar</button>
         <button type="button" class="register-btn">Registrarse</button>
       </form>
     </div>
   </div>
-  
+</div>

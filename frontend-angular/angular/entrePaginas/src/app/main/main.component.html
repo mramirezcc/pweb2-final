@@ -4,6 +4,7 @@
 
     <app-show-books></app-show-books>
 
+    <button class="seeAll" (click)="redirectBooks('', '', '', '', 0, 9999, 0, 9999)">Ver todo</button>
     <app-footer [registered]="isRegistered"></app-footer>
 
     <div class="overlay" *ngIf="showAdvancedSearch" (click)="toggleAdvancedSearch()"></div>

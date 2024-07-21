@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';  // Asegúrate de importar esto
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,8 @@ import { MainComponent } from './main/main.component';
 import { ShowBooksComponent } from './show-books/show-books.component';
 import { UsuarioMainComponent } from './usuario-main/usuario-main.component';
 import { VendedorMainComponent } from './vendedor-main/vendedor-main.component';
+import { BookMainComponent } from './book-main/book-main.component';
+import { ListBooksComponent } from './list-books/list-books.component';
 
 @NgModule({
   declarations: [
@@ -62,11 +65,14 @@ import { VendedorMainComponent } from './vendedor-main/vendedor-main.component';
     ShowBooksComponent,
     UsuarioMainComponent,
     VendedorMainComponent,
+    BookMainComponent,
+    ListBooksComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule  
   ],
   providers: [
     provideClientHydration()

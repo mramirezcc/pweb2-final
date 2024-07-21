@@ -15,8 +15,8 @@
     <!--Editar si el usuario esta logeado o no, si esta-->
     <!-- Si el usuario no está registrado -->
     <div *ngIf="!isRegistered()" class="unregistered">
-        <button class="reg" onclick="(waos)">Registrarse</button>
-        <button class="ing"onclick="(waos)">Ingresar</button>
+        <button class="reg" (click)="redirectLogin()">Registrarse</button>
+        <button class="ing" (click)="redirectRegister()">Ingresar</button>
     </div>
 
     <!-- Si el usuario está registrado -->

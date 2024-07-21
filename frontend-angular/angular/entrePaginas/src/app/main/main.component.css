@@ -39,3 +39,14 @@
     pointer-events: auto; /* Permitir interacción con el modal */
   }
   
+
+  .seeAll{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    font-size: 2rem;
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }

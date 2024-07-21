@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { Router } from '@angular/router'; // Importa el Router
 
 @Component({
   selector: 'app-book-details',
@@ -12,17 +13,16 @@ export class BookDetailsComponent {
   @Input() summary: string = '';
   @Input() year: number = 0;
   @Input() price: number = 0;
-  @Input() categories: string[] = [];
+  @Input() category: string = '';
+  
+  @Output() toogleBookDetail = new EventEmitter<void>();
+
 
   addToCart() {
     console.log('Añadir al carrito');
   }
-
-  onCategoryClick(category: string) {
-    console.log(`Categoría seleccionada: ${category}`);
-  }
-
   goBack() {
-    console.log('Volver a la página anterior');
+    console.log("saliendo");
+    this.toogleBookDetail.emit();
   }
 }
