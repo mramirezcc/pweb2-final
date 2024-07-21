@@ -7,6 +7,8 @@ class User(models.Model):
     email = models.EmailField(unique=True, blank=False)
     password = models.CharField(max_length=16, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
     address = models.CharField(max_length=100, default='No especificado', null=True, blank=True)
+    number = models.IntegerField(default=0)
+    portrait = models.ImageField(upload_to='portraits/', default='', blank=True, null=True)
 
     #Validación y verificación de datos
     #Aunque el formulario verificará los datos, esto se hace por mayor seguridad
@@ -23,7 +25,7 @@ class User(models.Model):
     
     def save(self, *args, **kwargs):
         self.clean()
-        super().save(**args, **kwargs)
+        super().save(*args, **kwargs)
 
 class ShoppingCart(models.Model):
     idUser = models.ForeignKey(User, on_delete = models.CASCADE, related_name='idUser_cart')

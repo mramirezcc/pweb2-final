@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from bookstore.views import RegisterView, LoginView, LogoutView, UserViewSet, BookViewSet
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -32,3 +35,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     #path('register/', userRegisterView, name='register'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

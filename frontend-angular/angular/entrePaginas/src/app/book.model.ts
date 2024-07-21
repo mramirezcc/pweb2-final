@@ -3,7 +3,7 @@ export interface Book {
     name: string;
     author: string;
     price: number;
-    category: string; // Corrige el typo de 'cathegory' a 'category'
+    category: string; 
     summary: string;
   }
   

@@ -10,6 +10,8 @@
       <h2>Empiece a leer, registrándose</h2>
       <h3>Registrar cuenta</h3>
       <form class = "allForm" (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" novalidate>
+        <input type="file" id="portrait" name="portrait" ngModel required>
+
         <div class="left">
           <label for="name">Nombre</label>
           <input type="text" id="name" name="name" ngModel placeholder="John Doe" required />
@@ -30,39 +32,12 @@
           </div>
   
           <label for="phone">Número de celular</label>
-          <input type="text" id="phone" name="phone" ngModel placeholder="123123123123123" required pattern="^[0-9]+$" />
+          <input type="text" id="phone" name="phone" ngModel placeholder="989 876 758" required pattern="^[0-9]+$" />
           <div *ngIf="registerForm.submitted" class="error">
             Número de celular válido requerido.
           </div>
         </div>
         <div class="right">
-          <label for="country">País</label>
-          <select name="country" id="countries" ngModel required>
-            <option value="default">Ingrese un país</option>
-            <!-- Agregar opciones dinámicas aquí -->
-          </select>
-          <div *ngIf="registerForm.submitted" class="error">
-            Seleccione un país.
-          </div>
-  
-          <label for="city">Ciudad</label>
-          <select name="city" id="cities" ngModel required>
-            <option value="default">Ingrese una ciudad</option>
-            <!-- Agregar opciones dinámicas aquí -->
-          </select>
-          <div *ngIf="registerForm.submitted " class="error">
-            Seleccione una ciudad.
-          </div>
-  
-          <label for="state">Estado</label>
-          <select name="state" id="states" ngModel required>
-            <option value="default">Ingrese un estado</option>
-            <!-- Agregar opciones dinámicas aquí -->
-          </select>
-          <div *ngIf="registerForm.submitted" class="error">
-            Seleccione un estado.
-          </div>
-  
           <label for="address">Ingrese su dirección</label>
           <textarea id="address" name="address" ngModel placeholder="Arequipa" required></textarea>
           <div *ngIf="registerForm.submitted" class="error">

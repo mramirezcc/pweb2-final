@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'password', 'address']
+        fields = ['name', 'email', 'password', 'address', 'number', 'portrait']
 
     def validate(self, data):
         #if data['password'] != data['password2']:
@@ -23,11 +23,13 @@ class UserSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        user = User.objects.create_user(
+        user = User.objects.create(
             name=validated_data['name'],
             email=validated_data['email'],
             password=validated_data['password'],
-            address=validated_data['address']
+            address=validated_data['address'],
+            number=validated_data['number'],
+            portrait=validated_data['portrait'],
         )
         return user
     
