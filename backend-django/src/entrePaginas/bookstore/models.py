@@ -28,7 +28,7 @@ class User(models.Model):
 class ShoppingCart(models.Model):
     idUser = models.ForeignKey(User, on_delete = models.CASCADE, related_name='idUser_cart')
     total = models.IntegerField()
-    status = models.BooleanField(default = False)
+    #status = models.BooleanField(default = False)
 
 class Book(models.Model):
     name = models.CharField(max_length=50)

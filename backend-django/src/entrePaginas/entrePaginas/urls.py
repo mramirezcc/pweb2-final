@@ -16,13 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-from api import views
+from rest_framework.routers import DefaultRouter
+from bookstore.views import RegisterView, LoginView, LogoutView, UserViewSet
 
-router = routers.DefaultRouter()
-router.register(r'user', views.UserViewSet)
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
+    path('register/', RegisterView.as_view({'post':'create'}), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     #path('register/', userRegisterView, name='register'),
 ]
