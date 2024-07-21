@@ -12,6 +12,7 @@ import { User } from '../user.model';
 export class RegisterComponent {
   selectedFile: File | null = null;
 
+
   constructor(private router: Router, private api: ApiService) { }
 
   onFileSelected(event: any) {
@@ -29,11 +30,12 @@ export class RegisterComponent {
         address: form.value.address
       };
 
-      console.log("usuario:", user)
+
       this.api.addUser(user, this.selectedFile).subscribe(success => {
 
         if (success) {
-          console.log('User added successfully');
+          console.log('User added successfully' + user);
+          this.router.navigate(['/user'], { state: { user } });  // Redirigir y pasar estado
         } else {
           console.log('User addition failed');
         }

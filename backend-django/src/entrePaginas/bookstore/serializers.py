@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'email', 'password', 'address', 'number', 'portrait']
 
-    """"    
+      
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("Este email ya está registrado.")
@@ -25,15 +25,15 @@ class UserSerializer(serializers.ModelSerializer):
         if User.objects.filter(username=value).exists():
             raise serializers.ValidationError("Este nombre ya está registrado.")
         return value
-
+    '''
     def validate_password(self, data):
         #if data['password'] != data['password2']:
             #raise serializers.ValidationError("Las contraseñas no coinciden")
         if not any(char.isdigit() for char in data['password']) or not any(char.isalpha() for char in data['password']):
             raise serializers.ValidationError("Ingrese una contraseña con al menos un número y una letra")
         return data
-
-    """
+    '''
+    
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data['username'],

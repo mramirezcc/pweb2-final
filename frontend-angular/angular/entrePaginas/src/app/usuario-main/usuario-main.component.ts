@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model'
-import { ActivatedRoute } from '@angular/router'; // Importa ActivatedRoute
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-main',
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router'; // Importa ActivatedRoute
   styleUrl: './usuario-main.component.css'
 })
 export class UsuarioMainComponent implements OnInit{
-  user: User = {
+  user: User = { //recibir ese user!
     portrait: '',
     username: '',
     email: '',
@@ -16,19 +16,19 @@ export class UsuarioMainComponent implements OnInit{
     number: '',
     address: ''
   };
+
   showEdit: boolean = false;
-  constructor(private route: ActivatedRoute) {} // Inyecta ActivatedRoute
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   toggleEdit(): void {
       this.showEdit = !this.showEdit;
   }
   atras(): void{
-    window.location.href = '/'; 
+    this.router.navigate(['/']);  // Usar el router en lugar de window.location.href
 
   }
   ngOnInit(): void {
       //necesita iniciar con un usuario!!!
-      this.user = history.state.user;
       if (this.user) {
         console.log("Usuario recibido:", this.user);
         alert("waos!");

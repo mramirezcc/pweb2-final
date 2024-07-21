@@ -3,6 +3,13 @@ from .models import User
 from django.core.validators import MinLengthValidator
 from django.contrib.auth.forms import AuthenticationForm
 
+
+class EmailForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+    recipients = forms.CharField(widget=forms.HiddenInput)
+
+
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
     password2 = forms.CharField(widget=forms.PasswordInput())
@@ -10,7 +17,7 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'name', 'email', 'password', 'address'
+            'username', 'email', 'password', 'address'
         ]
     
     def clean(self):
@@ -40,7 +47,7 @@ class LoginForm(AuthenticationForm):
 
     class Meta:
         model = User
-        fields = ['name', 'password']
+        fields = ['username', 'password']
     
     error_messages = {
         'invalid-login': "Usuario o contraseña incorrectos"

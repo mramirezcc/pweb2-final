@@ -1,26 +1,9 @@
-"""
-URL configuration for entrePaginas project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import RegisterView, LoginView, LogoutView, UserViewSet, BookViewSet
+from bookstore.views import RegisterView, LoginView, LogoutView, UserViewSet, BookViewSet, EmailViewSet
 from django.conf import settings
 from django.conf.urls.static import static
-
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -33,6 +16,9 @@ urlpatterns = [
     path('register/', RegisterView.as_view({'post':'create'}), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    
+    path('send-email/', EmailViewSet.as_view(), name='send-email'),  # Corrected
+
     #path('register/', userRegisterView, name='register'),
 ]
 

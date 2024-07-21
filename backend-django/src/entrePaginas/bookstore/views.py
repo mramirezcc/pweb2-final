@@ -1,3 +1,5 @@
+from django import template
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -9,6 +11,18 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from .serializers import UserSerializer, LoginSerializer, BookSerializer
 from .models import User, ShoppingCart, Sale, CartBook, Book
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .forms import EmailForm
+from rest_framework.views import APIView
+
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+
+from django.contrib import messages
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -66,3 +80,39 @@ class PurchaseView(View):
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+@method_decorator(csrf_exempt, name='dispatch')
+class EmailViewSet(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            selected_clients = data.get('selectedClients', [])
+            subject = data.get('subject', '')
+            message = data.get('message', '')
+
+            if not subject or not message:
+                return JsonResponse({'error': 'Subject and message are required'}, status=400)
+
+            for client in selected_clients:
+                username = client.get('username')
+                email = client.get('email')
+
+                if not username or not email:
+                    continue
+
+                email_body = f"Dear {username},\n\n{message}"
+
+                email_message = EmailMessage(
+                    subject,
+                    email_body,
+                    settings.EMAIL_HOST_USER,
+                    [email]
+                )
+
+                email_message.fail_silently = False
+                email_message.send()
+
+            return JsonResponse({'success': 'Emails sent successfully'}, status=200)
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
