@@ -12,7 +12,7 @@ from .models import User, ShoppingCart, Sale, CartBook, Book
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (AllowAny,)
+    #permission_classes = (AllowAny,)
 
 class RegisterView(viewsets.ModelViewSet):
     queryset = User.objects.all()

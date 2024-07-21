@@ -1,7 +1,7 @@
 <div class="book-card">
-    <img [src]="imageUrl" alt="{{ title }} cover" class="book-image">
+    <img [src]="portrait" alt="{{ name }} cover" class="book-image">
     <div class="book-info">
-      <h3 class="book-title">{{ title }}</h3>
+      <h3 class="book-title">{{ name }}</h3>
       <p class="book-author">{{ author }}</p>
       <p class="book-price">{{ price | currency:'USD':'symbol' }}</p>
     </div>

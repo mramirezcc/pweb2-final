@@ -34,6 +34,8 @@ class Book(models.Model):
     name = models.CharField(max_length=50)
     year = models.IntegerField()
     author = models.CharField(max_length=100)
+    summary = models.TextField(default='')
+
     portrait = models.ImageField(upload_to='portraits/', default='', blank=True, null=True)
     #stock = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places = 2)

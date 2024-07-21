@@ -1,26 +1,32 @@
 import { Component } from '@angular/core';
+import { ApiService } from './api.service';
+import { Book } from './book.model'; 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers: [ApiService]
 })
 export class AppComponent {
   title = 'entrePaginas';
+  
+  books: Book[] = [];
+  
+  
+  constructor(private api:ApiService) {
+    this.getBooks();
+  }
 
-  compras = [
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' }
-  ];
+  getBooks = () => {
+    this.api.getAllBooks().subscribe (
+      data => {
+        console.log(data);
+        this.books = data;  //data.results;
+      },
+      error => {
+        console.log(error);
+      })  
+    } 
 
-  comprasAux = [
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', genre: 'terror', date: '13/07/2021' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', genre: 'terror', date: '13/07/2021' }
-  ];
-
-  comprasRealizadas = [
-    { imageUrl: '/../portraitBook.jpg', title: 'El libro negro', author: 'Ángel David Revilla Lenoci', date: '2023-07-12' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El libro verde', author: 'Juan Carlos Bodoque', date: '2023-07-13' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El libro rojo', author: 'Juan Carlos Bodoque', date: '2023-07-13' },
-  ];
 }

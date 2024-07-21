@@ -34,6 +34,8 @@ import { UsuarioMainComponent } from './usuario-main/usuario-main.component';
 import { VendedorMainComponent } from './vendedor-main/vendedor-main.component';
 import { BookMainComponent } from './book-main/book-main.component';
 import { ListBooksComponent } from './list-books/list-books.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { ListBooksComponent } from './list-books/list-books.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule  
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

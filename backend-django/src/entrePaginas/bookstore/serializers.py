@@ -2,6 +2,11 @@ from rest_framework import serializers
 from .models import User, ShoppingCart, Book, Sale
 from django.contrib.auth import authenticate
 
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['name', 'year', 'author', 'portrait', 'price', 'cathegory', 'summary']
+
 class UserSerializer(serializers.ModelSerializer):
     #password = serializers.CharField(write_only=True, min_length=8)
     #password2 = serializers.CharField(write_only=True)
@@ -36,7 +41,3 @@ class LoginSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("Credenciales incorrectas")
     
-class BookSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Book
-        fields = ['name', 'year', 'author', 'portrait', 'price', 'cathegory']

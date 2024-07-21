@@ -1,11 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-interface Book {
-  imageUrl: string;
-  title: string;
-  author: string;
-  price: number;
-}
+import { Book } from '../book.model'; // Ajusta la ruta según sea necesario
+
 
 @Component({
   selector: 'app-show-books',
@@ -13,18 +9,11 @@ interface Book {
   styleUrl: './show-books.component.css'
 })
 export class ShowBooksComponent {
-  @Input() books: Book[] = [
-    {
-      imageUrl: '/../portraitBook.jpg',
-      title: 'Metafizik',
-      author: 'Aristoteles',
-      price: 36.00
-    }
-    
-    // Agrega más libros según sea necesario
-  ];
-  //obtener los datos de la base de datos!!!
+  @Input() books1: Book[] = [];
+  
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("Recibiendo los libros ", this.books1)
+  }
 }
