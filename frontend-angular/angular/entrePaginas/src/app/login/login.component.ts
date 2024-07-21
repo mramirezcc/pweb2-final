@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'; // Importa el Router
 import { ApiService } from '../api.service';
 import { User } from '../user.model';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -15,17 +16,14 @@ export class LoginComponent {
   onSubmit(form: NgForm) {
     if (form.valid) {
       const email = form.value.email;
-      const name = form.value.name;
-
-      this.api.getUser(email, name).subscribe(user => {
+      const password = form.value.password;
+      console.log("email: ", email, "- password: ", password)
+      this.api.loginUser(email, password).subscribe(user => {
         if (user) {
-          console.log('User found:', user);
-          alert('Usuario encontrado');
-
+          console.log('User logged in:', user);
           // Aquí puedes manejar la redirección o almacenamiento de datos del usuario
         } else {
-          console.log('User not found');
-          alert('Usuario no encontrado');
+          console.log('Login failed');
         }
       });
     } else {

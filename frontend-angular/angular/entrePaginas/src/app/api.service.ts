@@ -42,13 +42,16 @@ export class ApiService {
   }
 
   //genera un nuevo servicio
-  getUser(email: string, name: string): Observable<User | null> {
-    return this.http.post<User | null>(this.baseurl + '/users/verify/', { email, name }, { headers: this.httpHeaders })
+  loginUser(email: string, password: string): Observable<User | null> {
+    return this.http.post<{ user: User }>(`${this.baseurl}/login/`, { email, password }, { headers: this.httpHeaders })
       .pipe(
+        map(response => response.user),
         catchError(error => {
-          console.error('Error fetching user:', error);
+          console.error('Error logging in user:', error);
           return of(null); // Devuelve null en caso de error
         })
       );
   }
+  
+  
 }

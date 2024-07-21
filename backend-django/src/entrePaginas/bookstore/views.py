@@ -28,19 +28,13 @@ class LoginView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        user = authenticate(
-            username=serializer.validated_data['username'],
-            password=serializer.validated_data['password']
-        )
-        
-        if not user:
-            raise AuthenticationFailed("Credenciales inválidas")
-
+        user = serializer.validated_data['user']
         login(request, user)
 
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
         }, status=status.HTTP_200_OK)
+    
     
 class LogoutView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):

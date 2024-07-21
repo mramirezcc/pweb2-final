@@ -44,12 +44,19 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField()
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        user = authenticate(**data)
-        if user:
-            return user
-        raise serializers.ValidationError("Credenciales incorrectas")
-    
+        email = data.get('email')
+        password = data.get('password')
+
+        if email and password:
+            user = authenticate(username=email, password=password)
+            if not user:
+                raise serializers.ValidationError("Credenciales incorrectas")
+        else:
+            raise serializers.ValidationError("Debe incluir tanto el correo electrónico como la contraseña")
+
+        data['user'] = user
+        return data
