@@ -13,15 +13,16 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'password', 'address', 'number', 'portrait']
-        
+        fields = ['username', 'email', 'password', 'address', 'number', 'portrait']
+
+    """"    
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("Este email ya está registrado.")
         return value
 
-    def validate_name(self, value):
-        if User.objects.filter(name=value).exists():
+    def validate_username(self, value):
+        if User.objects.filter(username=value).exists():
             raise serializers.ValidationError("Este nombre ya está registrado.")
         return value
 
@@ -32,9 +33,10 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Ingrese una contraseña con al menos un número y una letra")
         return data
 
+    """
     def create(self, validated_data):
-        user = User.objects.create(
-            name=validated_data['name'],
+        user = User.objects.create_user(
+            username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password'],
             address=validated_data['address'],
@@ -42,21 +44,23 @@ class UserSerializer(serializers.ModelSerializer):
             portrait=validated_data['portrait'],
         )
         return user
-    
+
 class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+    username = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        email = data.get('email')
+        username = data.get('username')
         password = data.get('password')
 
-        if email and password:
-            user = authenticate(username=email, password=password)
-            if not user:
-                raise serializers.ValidationError("Credenciales incorrectas")
-        else:
-            raise serializers.ValidationError("Debe incluir tanto el correo electrónico como la contraseña")
+        print(username, password)
+        if not username or not password:
+            raise serializers.ValidationError("Debe incluir tanto el nombre de usuario como la contraseña.")
+
+        print()
+        user = authenticate(username=username, password=password)
+        if user is None:
+            raise serializers.ValidationError("Credenciales incorrectas.")
 
         data['user'] = user
         return data

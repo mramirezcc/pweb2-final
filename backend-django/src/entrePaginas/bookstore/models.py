@@ -1,18 +1,17 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
+from django.contrib.auth.models import AbstractUser
 
-class User(models.Model):
-    name = models.CharField(max_length=100, unique=True, blank=False)
-    email = models.EmailField(unique=True, blank=False)
-    password = models.CharField(max_length=16, validators=[MinLengthValidator(8, message='La contraseña debe tener al menos 8 caracteres')])
+class User(AbstractUser):
+    #username, email y password ya son proporcionados por AbstracUser
     address = models.CharField(max_length=100, default='No especificado', null=True, blank=True)
     number = models.IntegerField(default=0)
     portrait = models.ImageField(upload_to='portraits/', default='', blank=True, null=True)
 
     #Validación y verificación de datos
     #Aunque el formulario verificará los datos, esto se hace por mayor seguridad
-    def clean(self):
+    """def clean(self):
         super().clean()
         #Name no debe ser vacío
         if not self.name:
@@ -26,6 +25,7 @@ class User(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
+    """
 
 class ShoppingCart(models.Model):
     idUser = models.ForeignKey(User, on_delete = models.CASCADE, related_name='idUser_cart')

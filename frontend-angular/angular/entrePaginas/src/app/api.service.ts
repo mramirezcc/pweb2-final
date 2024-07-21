@@ -25,11 +25,12 @@ export class ApiService {
   addUser(user: User, portraitFile: File): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('portrait', portraitFile);
-    formData.append('name', user.username);
+    formData.append('username', user.username);
     formData.append('email', user.email);
     formData.append('password', user.password);
     formData.append('number', user.number);
     formData.append('address', user.address);
+    console.log('usuario recibido:', user);
 
     return this.http.post<{ success: boolean }>(this.baseurl + '/users/', formData)
       .pipe(
@@ -42,8 +43,8 @@ export class ApiService {
   }
 
   //genera un nuevo servicio
-  loginUser(email: string, password: string): Observable<User | null> {
-    return this.http.post<{ user: User }>(`${this.baseurl}/login/`, { email, password }, { headers: this.httpHeaders })
+  loginUser(username: string, password: string): Observable<User | null> {
+    return this.http.post<{ user: User }>(`${this.baseurl}/login/`, { username, password }, { headers: this.httpHeaders })
       .pipe(
         map(response => response.user),
         catchError(error => {

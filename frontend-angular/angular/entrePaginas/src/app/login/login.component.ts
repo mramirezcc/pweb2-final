@@ -15,10 +15,10 @@ export class LoginComponent {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      const email = form.value.email;
+      const username = form.value.username;
       const password = form.value.password;
-      console.log("email: ", email, "- password: ", password)
-      this.api.loginUser(email, password).subscribe(user => {
+      console.log("username: ", username, "- password: ", password)
+      this.api.loginUser(username, password).subscribe(user => {
         if (user) {
           console.log('User logged in:', user);
           // Aquí puedes manejar la redirección o almacenamiento de datos del usuario

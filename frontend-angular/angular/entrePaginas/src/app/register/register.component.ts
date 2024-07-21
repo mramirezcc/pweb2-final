@@ -29,6 +29,7 @@ export class RegisterComponent {
         address: form.value.address
       };
 
+      console.log("usuario:", user)
       this.api.addUser(user, this.selectedFile).subscribe(success => {
 
         if (success) {
