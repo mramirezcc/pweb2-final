@@ -6,7 +6,7 @@ from django.views import View
 from rest_framework import viewsets, status, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
-from .serializers import UserSerializer, LoginSerializer
+from .serializers import UserSerializer, LoginSerializer, BookSerializer
 from .models import User, ShoppingCart, Sale, CartBook, Book
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -58,3 +58,7 @@ class PurchaseView(View):
         cart.save()
 
         return render(request, 'purchase_success.html', {'sale': sale})
+    
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer

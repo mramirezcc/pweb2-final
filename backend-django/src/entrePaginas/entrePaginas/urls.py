@@ -17,14 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import RegisterView, LoginView, LogoutView, UserViewSet
+from bookstore.views import RegisterView, LoginView, LogoutView, UserViewSet, BookViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'books', BookViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
     path('register/', RegisterView.as_view({'post':'create'}), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

@@ -3,16 +3,16 @@ from .models import User, ShoppingCart, Book, Sale
 from django.contrib.auth import authenticate
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, min_length=8)
-    password2 = serializers.CharField(write_only=True)
+    #password = serializers.CharField(write_only=True, min_length=8)
+    #password2 = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'password', 'password2', 'address']
+        fields = ['name', 'email', 'password', 'address']
 
     def validate(self, data):
-        if data['password'] != data['password2']:
-            raise serializers.ValidationError("Las contraseñas no coinciden")
+        #if data['password'] != data['password2']:
+            #raise serializers.ValidationError("Las contraseñas no coinciden")
         if not any(char.isdigit() for char in data['password']) or not any(char.isalpha() for char in data['password']):
             raise serializers.ValidationError("Ingrese una contraseña con al menos un número y una letra")
         return data
@@ -35,3 +35,8 @@ class LoginSerializer(serializers.Serializer):
         if user:
             return user
         raise serializers.ValidationError("Credenciales incorrectas")
+    
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['name', 'year', 'author', 'portrait', 'price', 'cathegory']
