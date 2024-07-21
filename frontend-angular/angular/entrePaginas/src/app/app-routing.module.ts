@@ -11,13 +11,9 @@ import { RegisterComponent } from './register/register.component';
 import { CarShopComponent } from './car-shop/car-shop.component';
 const routes: Routes = [
   { path: '', component: MainComponent },
-
   { path: 'shoppingCart', component: CarShopComponent },
-
   { path: 'user', component: UsuarioMainComponent },
-
-  { path: 'vendedorLogin', component: VendedorLoginComponent },  
-
+  { path: 'vendedorLogin', component: VendedorLoginComponent }, 
   { path: 'vendedor', component: VendedorMainComponent },  
   { path: 'libros', component: BookMainComponent},  
   { path: 'registerUser', component: RegisterComponent},  

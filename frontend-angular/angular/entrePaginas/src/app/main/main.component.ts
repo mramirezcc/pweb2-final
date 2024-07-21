@@ -19,6 +19,7 @@ export class MainComponent {
     console.log("called?");
     this.showAdvancedSearch = !this.showAdvancedSearch;
   }
+
   redirectBooks(nombre: string, autor: string, categoria: string, editorial: string, minY: number, maxY: number, minPrice: number, maxPrice: number): void {
     this.router.navigate(['/libros'], { queryParams: { nombre, autor, categoria, editorial, minY, maxY, minPrice, maxPrice } });
   }

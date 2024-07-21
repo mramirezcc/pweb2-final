@@ -7,7 +7,6 @@ interface Book {
   price: number;
 }
 
-
 @Component({
   selector: 'app-show-books',
   templateUrl: './show-books.component.html',
@@ -20,7 +19,7 @@ export class ShowBooksComponent {
       title: 'Metafizik',
       author: 'Aristoteles',
       price: 36.00
-    },
+    }
     
     // Agrega más libros según sea necesario
   ];
