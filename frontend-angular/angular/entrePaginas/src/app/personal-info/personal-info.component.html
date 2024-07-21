@@ -1,28 +1,19 @@
 <div class="personal-info-card">
     <h2>Información personal</h2>
     <div class="info-item">
-        <strong>Nombre:</strong> {{ name }}
+      <strong>Nombre:</strong> {{ user.username }}
     </div>
     <div class="info-item">
-        <strong>Correo:</strong> {{ email }}
+      <strong>Correo:</strong> {{ user.email }}
     </div>
     <div class="info-item">
-        <strong>Teléfono:</strong> {{ phone }}
+      <strong>Teléfono:</strong> {{ user.number }}
     </div>
     <div class="info-item">
-        <strong>País:</strong> {{ country }}
-    </div>
-    <div class="info-item">
-        <strong>Ciudad:</strong> {{ city }}
-    </div>
-    <div class="info-item">
-        <strong>Estado:</strong> {{ state }}
-    </div>
-    <div class="info-item">
-        <strong>Dirección:</strong> {{ address }}
+      <strong>Dirección:</strong> {{ user.address }}
     </div>
     <button (click)="onEditClick()" class="edit-button">
-        <i class="fas fa-edit"></i> Editar
+      <i class="fas fa-edit"></i> Editar
     </button>
-</div>
+  </div>
   

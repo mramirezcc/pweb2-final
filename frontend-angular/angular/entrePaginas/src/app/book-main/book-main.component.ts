@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Book } from '../book.model';
 
 @Component({
   selector: 'app-book-main',
@@ -21,24 +22,9 @@ export class BookMainComponent implements OnInit {
   filterForm: FormGroup;
   showAdvancedSearch: boolean = false;
 
-  selectedBook: any; 
+  selectedBook: Book | null = null;
+  toggleBookDetails: boolean = false;
 
-  toogleBookDetail: boolean = false;
-  selectBook(book: any) {
-    this.selectedBook = book;
-    this.toogleBookDetail = true;
-    console.log("Book selected: ", book, this.toogleBookDetail);
-    //mostrar el book detail con los datos de book
-  }
-
-  returnHome() {
-    this.toogleBookDetail = false;
-    this.selectedBook = null;
-  }
-  backHome() {
-    window.location.href = "/.";
-  }
-  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -47,6 +33,7 @@ export class BookMainComponent implements OnInit {
     this.filterForm = this.fb.group({
       nombre: [''],
       autor: [''],
+      categoria: [''],
       minY: [''],
       maxY: [''],
       minPrice: [''],
@@ -67,6 +54,7 @@ export class BookMainComponent implements OnInit {
       this.filterForm.patchValue({
         nombre: this.nombre,
         autor: this.autor,
+        categoria: this.categoria,
         minY: this.minY,
         maxY: this.maxY,
         minPrice: this.minPrice,
@@ -79,24 +67,24 @@ export class BookMainComponent implements OnInit {
     const target = event.target as HTMLSelectElement;
     this.router.navigate(['/libros'], {
       queryParams: {
-        nombre: this.nombre,
-        autor: this.autor,
+        nombre: this.filterForm.value.nombre,
+        autor: this.filterForm.value.autor,
         categoria: target.value,
-        minY: this.minY,
-        maxY: this.maxY,
-        minPrice: this.minPrice,
-        maxPrice: this.maxPrice
+        minY: this.filterForm.value.minY,
+        maxY: this.filterForm.value.maxY,
+        minPrice: this.filterForm.value.minPrice,
+        maxPrice: this.filterForm.value.maxPrice
       }
     });
   }
 
   onFilterChange() {
-    const { nombre, autor, minY, maxY, minPrice, maxPrice } = this.filterForm.value;
+    const { nombre, autor, categoria, minY, maxY, minPrice, maxPrice } = this.filterForm.value;
     this.router.navigate(['/libros'], {
       queryParams: {
         nombre,
         autor,
-        categoria: this.categoria,
+        categoria,
         minY,
         maxY,
         minPrice,
@@ -105,5 +93,17 @@ export class BookMainComponent implements OnInit {
     });
   }
 
+  selectBook(book: Book) {
+    this.selectedBook = book;
+    this.toggleBookDetails = true;
+  }
 
+  returnHome() {
+    this.toggleBookDetails = false;
+    this.selectedBook = null;
+  }
+
+  backHome() {
+    window.location.href = "/";
+  }
 }

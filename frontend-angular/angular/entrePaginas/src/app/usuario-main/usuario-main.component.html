@@ -1,8 +1,9 @@
 <button class="back" (click)="atras()">Atras</button>
 <div class="user">
     <app-user-profile 
-    imageUrl="/../profileImage.jpg"
-    name="'Gato sigma 666'"
+    [imageUrl]="user.portrait"
+    [name]="user.username"
+
     ></app-user-profile>
 
 
@@ -12,13 +13,7 @@
 
         <div class= "sameline">
             <app-personal-info (toggleEdit)="toggleEdit()"
-            [name]="'Gato sigma 666'"
-            [email]="'gato@gato.com'"
-            [phone]="'666 666 666'"
-            [country]="'Peru'"
-            [city]="'Arequipa'"
-            [state]="'Arequipa'"
-            [address]="'Esta es mi direccion'"
+            [user]="user"
             ></app-personal-info>
 
             <app-compras-grafico [compras]="comprasRealizadas"></app-compras-grafico>
@@ -32,6 +27,7 @@
 
 <div *ngIf="showEdit" class="modal-background">
     <div class="modal-content">
-        <app-edit-profile></app-edit-profile>
+        <app-edit-profile [user]="user"></app-edit-profile>
     </div>
 </div>
+

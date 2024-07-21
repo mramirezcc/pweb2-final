@@ -1,5 +1,7 @@
 <div class="container">
-    <app-navbar [registered]="isRegistered" [username]="username" (toggleAdvancedSearch)="toggleAdvancedSearch()"></app-navbar>
+  <app-navbar [registered]="isRegistered" [username]="username" [user]="userDebug" (toggleAdvancedSearch)="toggleAdvancedSearch()">
+  </app-navbar>
+  
     <app-add-spo></app-add-spo>
 
     <app-show-books [books1]="books"></app-show-books>

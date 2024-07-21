@@ -8,3 +8,7 @@
 .contain app-book-boxv2 {
     width: 450px;
 }
+.book-filters{
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}

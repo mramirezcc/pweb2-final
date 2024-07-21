@@ -1,31 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
-export class EditProfileComponent {
-  imageUrl = "/../profileImage.jpg";
-  perfil = {
-    nombre: 'Gato sigma 666',
-    email: 'gato@gato.com',
-    address: 'casita',
-    contactNumber: '666 666 666',
-    pais: 'Perú',
-    ciudad: 'Arequipa',
-    estado: 'Arequipa',
-    password: 'sbdfbnd65sfdvb s'
+export class EditProfileComponent implements OnInit {
+  @Input() user: User = {
+    portrait: '',
+    username: '',
+    email: '',
+    password: '',
+    number: '',
+    address: ''
   };
 
+  editedUser: User = {
+    portrait: '',
+    username: '',
+    email: '',
+    password: '',
+    number: '',
+    address: ''
+  };
+
+  ngOnInit(): void {
+    // Crea una copia del usuario para editar
+    this.editedUser = { ...this.user };
+  }
+
   onSave() {
-    // Lógica para guardar información
-    console.log(this.perfil);
+    // Guarda los cambios y actualiza el usuario original
+    Object.assign(this.user, this.editedUser);
+    console.log(this.user);
     window.location.href = '/user';
   }
 
   onCancel() {
-    // Lógica para cancelar la edición
+    // Cancela la edición y vuelve al perfil sin guardar cambios
     window.location.href = '/user';
   }
 
@@ -34,17 +47,13 @@ export class EditProfileComponent {
     window.location.href = '/';
   }
 
-  editImage() {
-    // Lógica para editar imagen
-  }
-
   onImageChange(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.imageUrl = e.target.result;
+        this.editedUser.portrait = e.target.result;
       };
       reader.readAsDataURL(file);
     }

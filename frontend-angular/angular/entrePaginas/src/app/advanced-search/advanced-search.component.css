@@ -24,7 +24,6 @@
     font-weight: 700;
 }
 
-/* Grupo de formularios */
 .form-group {
     margin-bottom: 12px;
     display: flex;
@@ -87,8 +86,6 @@ button:active {
 
 .first {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 5%;
 }
 
 /* Estilos adicionales para transiciones y estética */

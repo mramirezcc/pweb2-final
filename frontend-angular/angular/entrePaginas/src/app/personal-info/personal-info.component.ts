@@ -1,18 +1,20 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
-
+import { User } from '../user.model';
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent {
-  @Input() name: string = '';
-  @Input() email: string = '';
-  @Input() phone: string = '';
-  @Input() country: string = '';
-  @Input() city: string = '';
-  @Input() state: string = '';
-  @Input() address: string= '';
+  @Input() user: User = {
+    portrait: '',
+    username: '',
+    email: '',
+    password: '',
+    number: '',
+    address: ''
+  }
+
   @Output() toggleEdit = new EventEmitter<void>();
 
 
@@ -20,4 +22,6 @@ export class PersonalInfoComponent {
     console.log('Editar información');
     this.toggleEdit.emit();
   }
+
+
 }

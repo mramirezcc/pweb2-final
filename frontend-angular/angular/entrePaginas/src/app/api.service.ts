@@ -25,7 +25,7 @@ export class ApiService {
   addUser(user: User, portraitFile: File): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('portrait', portraitFile);
-    formData.append('name', user.name);
+    formData.append('name', user.username);
     formData.append('email', user.email);
     formData.append('password', user.password);
     formData.append('number', user.number);

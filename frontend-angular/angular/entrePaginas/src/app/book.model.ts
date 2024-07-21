@@ -5,5 +5,6 @@ export interface Book {
     price: number;
     category: string; 
     summary: string;
+    year: number;
   }
   

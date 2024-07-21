@@ -1,67 +1,59 @@
 <button class="back" (click)="backHome()">Atras</button>
 <div class="navbar book-filters">
-    <h2>Filtros Aplicados</h2>
-    <div class="filter-group">
-      <form [formGroup]="filterForm" (ngSubmit)="onFilterChange()">
-        <div class="filter-item">
-          <label for="nombre"><strong>Nombre:</strong></label>
-          <input id="nombre" formControlName="nombre" (input)="onFilterChange()">
-        </div>
-        <div class="filter-item">
-          <label for="autor"><strong>Autor:</strong></label>
-          <input id="autor" formControlName="autor" (input)="onFilterChange()">
-        </div>
-        <div class="filter-item">
-          <label for="minY"><strong>Año Mínimo:</strong></label>
-          <input id="minY" type="number" formControlName="minY" (input)="onFilterChange()">
-        </div>
-        <div class="filter-item">
-          <label for="maxY"><strong>Año Máximo:</strong></label>
-          <input id="maxY" type="number" formControlName="maxY" (input)="onFilterChange()">
-        </div>
-        <div class="filter-item">
-          <label for="minPrice"><strong>Precio Mínimo:</strong></label>
-          <input id="minPrice" type="number" formControlName="minPrice" (input)="onFilterChange()">
-        </div>
-        <div class="filter-item">
-          <label for="maxPrice"><strong>Precio Máximo:</strong></label>
-          <input id="maxPrice" type="number" formControlName="maxPrice" (input)="onFilterChange()">
-        </div>
-        <div class="filter-item">
-          <label for="categoria"><strong>Categoría:</strong></label>
-          <select id="categoria" (change)="onCategoryChange($event)" [value]="filterForm.value.categoria">
-            <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
-          </select>
-        </div>
-      </form>
-    </div>
+  <h2>Filtros Aplicados</h2>
+  <div class="filter-group">
+    <form [formGroup]="filterForm" (ngSubmit)="onFilterChange()">
+      <div class="filter-item">
+        <label for="nombre"><strong>Nombre:</strong></label>
+        <input id="nombre" formControlName="nombre" (input)="onFilterChange()">
+      </div>
+      <div class="filter-item">
+        <label for="autor"><strong>Autor:</strong></label>
+        <input id="autor" formControlName="autor" (input)="onFilterChange()">
+      </div>
+      <div class="filter-item">
+        <label for="minY"><strong>Año Mínimo:</strong></label>
+        <input id="minY" type="number" formControlName="minY" (input)="onFilterChange()">
+      </div>
+      <div class="filter-item">
+        <label for="maxY"><strong>Año Máximo:</strong></label>
+        <input id="maxY" type="number" formControlName="maxY" (input)="onFilterChange()">
+      </div>
+      <div class="filter-item">
+        <label for="minPrice"><strong>Precio Mínimo:</strong></label>
+        <input id="minPrice" type="number" formControlName="minPrice" (input)="onFilterChange()">
+      </div>
+      <div class="filter-item">
+        <label for="maxPrice"><strong>Precio Máximo:</strong></label>
+        <input id="maxPrice" type="number" formControlName="maxPrice" (input)="onFilterChange()">
+      </div>
+      <div class="filter-item">
+        <label for="categoria"><strong>Categoría:</strong></label>
+        <select id="categoria" (change)="onCategoryChange($event)" [value]="filterForm.value.categoria">
+          <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+    </form>
   </div>
+</div>
 
-  <div *ngIf="toogleBookDetail">
-    <app-book-details
-      [imageUrl]="selectedBook.imageUrl"
-      [title]="selectedBook.title"
-      [author]="selectedBook.author"
-      [summary]="selectedBook.summary"
-      [year]="selectedBook.year"
-      [price]="selectedBook.price"
-      [category]="selectedBook.category"
-      (toogleBookDetail)="returnHome()">
+<div *ngIf="toggleBookDetails">
+  <app-book-details
+    [book]="selectedBook"
+    (toggleBookDetails)="returnHome()">
+  </app-book-details>
+</div>
 
-    </app-book-details>
-  </div>
-
-  <div *ngIf="!toogleBookDetail" class="libros">
-    <app-list-books 
-      [nombre]="nombre || ''"
-      [autor]="autor || ''"
-      [categoria]="categoria || ''"
-      [minY]="minY || 0"
-      [maxY]="maxY || 0"
-      [minPrice]="minPrice || 0"
-      [maxPrice]="maxPrice || 0"        
-      (toggleBookDetails)="selectBook($event)">
-    </app-list-books>
-  </div>
+<div *ngIf="!toggleBookDetails" class="libros">
   
-
+  <app-list-books 
+    [nombre]="filterForm.value.nombre"
+    [autor]="filterForm.value.autor"
+    [categoria]="filterForm.value.categoria"
+    [minY]="filterForm.value.minY"
+    [maxY]="filterForm.value.maxY"
+    [minPrice]="filterForm.value.minPrice"
+    [maxPrice]="filterForm.value.maxPrice"
+    (toggleBookDetails)="selectBook($event)">
+  </app-list-books>
+</div>

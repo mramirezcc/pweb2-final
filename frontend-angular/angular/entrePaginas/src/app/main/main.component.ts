@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../book.model'; // Ajusta la ruta según sea necesario
+import { User } from '../user.model'; // Ajusta la ruta según sea necesario
+
 import { ApiService } from '../api.service'
 
 @Component({
@@ -34,8 +36,15 @@ export class MainComponent {
   }
   //al ser generado recibe del backend si el usuario esta registrado y si lo esta obtener el username
 
-
-
+  userDebug: User = {
+    portrait: '/../portraitBook.jpg',
+    username: 'John asdasd',
+    email: 'john.doe@example.com',
+    password: 'password123',
+    number: '1234567890',
+    address: '1234 Main St, Anytown, USA'
+  };
+  
   showAdvancedSearch: boolean = false;
 
   toggleAdvancedSearch(): void {

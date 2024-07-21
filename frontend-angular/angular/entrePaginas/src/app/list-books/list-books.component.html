@@ -1,27 +1,18 @@
 <div class="book-filters">
-    <h2>Filtros Aplicados</h2>
-    <p><strong>Nombre:</strong> {{ nombre }}</p>
-    <p><strong>Autor:</strong> {{ autor }}</p>
-    <p><strong>Categoría:</strong> {{ categoria }}</p>
-    <p><strong>Año Mínimo:</strong> {{ minY }}</p>
-    <p><strong>Año Máximo:</strong> {{ maxY }}</p>
-    <p><strong>Precio Mínimo:</strong> {{ minPrice }}</p>
-    <p><strong>Precio Máximo:</strong> {{ maxPrice }}</p>
-  </div>
+  <h1>Filtros Aplicados</h1>
+</div>
 
 <div class="contain">
+  <app-book-boxv2 
+    *ngFor="let book of filteredBooks"
+    [imageUrl]="book.portrait"
+    [title]="book.name"
+    [author]="book.author"
+    [price]="book.price"
+    [category]="book.category"
+    [year]="book.year"
+    (bookSelected)="bookSelected($event)">
+  </app-book-boxv2>
+</div>
 
-    <app-book-boxv2 
-      *ngFor="let book of books"
-      [imageUrl]="book.imageUrl"
-      [title]="book.title"
-      [author]="book.author"
-      [price]="book.price"
-      [category]="book.category"
-      [year]="book.year"
-      (bookSelected)="bookSelected($event)">
-    </app-book-boxv2>
-  </div>
-
-  <app-footer [registered]="true"></app-footer>
-
+<app-footer [registered]="true"></app-footer>

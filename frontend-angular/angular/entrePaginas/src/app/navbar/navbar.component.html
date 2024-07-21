@@ -4,8 +4,9 @@
         <h1>EntrePaginas</h1>
     </div>
     <div class="search">
-        <input type="text" placeholder="Buscar un libro o autor">
-        <img src="../../searchIcon.png" alt="">                                                                                         
+        <input type="text" placeholder="Buscar un libro o autor" [(ngModel)]="searchText">
+        <img (click)="redirectBooks()" src="../../searchIcon.png" alt="Buscar">
+                                                                                               
     </div>
     <div class="options">
         <button (click)="openAdvanceSearch()"><img src="../../advanceIcon.png"></button>

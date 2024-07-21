@@ -22,7 +22,7 @@ export class RegisterComponent {
     if (form.valid && this.selectedFile) {
       const user: User = {
         portrait: '',
-        name: form.value.name,
+        username: form.value.name,
         email: form.value.email,
         password: form.value.password,
         number: form.value.phone,
@@ -30,7 +30,7 @@ export class RegisterComponent {
       };
 
       this.api.addUser(user, this.selectedFile).subscribe(success => {
-        
+
         if (success) {
           console.log('User added successfully');
         } else {

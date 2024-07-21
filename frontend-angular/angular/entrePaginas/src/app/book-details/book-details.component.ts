@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router'; // Importa el Router
+import { Book } from "../book.model"
 
 @Component({
   selector: 'app-book-details',
@@ -7,22 +8,16 @@ import { Router } from '@angular/router'; // Importa el Router
   styleUrl: './book-details.component.css'
 })
 export class BookDetailsComponent {
-  @Input() imageUrl: string = '';
-  @Input() title: string = '';
-  @Input() author: string = '';
-  @Input() summary: string = '';
-  @Input() year: number = 0;
-  @Input() price: number = 0;
-  @Input() category: string = '';
-  
-  @Output() toogleBookDetail = new EventEmitter<void>();
+  @Input() book: Book | null = null; 
+
 
 
   addToCart() {
     console.log('Añadir al carrito');
   }
-  goBack() {
-    console.log("saliendo");
-    this.toogleBookDetail.emit();
+  @Output() toggleBookDetails = new EventEmitter<void>();
+
+  closeDetails() {
+    this.toggleBookDetails.emit();
   }
 }

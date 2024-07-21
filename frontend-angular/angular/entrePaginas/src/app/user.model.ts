@@ -1,6 +1,6 @@
 export interface User {
     portrait: string;
-    name: string;
+    username: string;
     email: string;
     password: string;
     number: string; 

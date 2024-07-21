@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router'; // Importa el Router
-
+import { User } from '../user.model'
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -9,6 +9,9 @@ import { Router } from '@angular/router'; // Importa el Router
 export class NavbarComponent {
   @Input() registered: boolean = false; 
   @Input() username: string = 'default';
+  //si esta registrado obtener los datos del usuario 
+
+  @Input() user: User | undefined; // Añade el input para el usuario
 
   @Output() toggleAdvancedSearch = new EventEmitter<void>();
   @Output() openCart = new EventEmitter<void>();
@@ -34,8 +37,8 @@ export class NavbarComponent {
   }
 
   redirectUserMain(): void {
-    if (this.isRegistered()) {
-      this.router.navigate(['/user']); // Usa el enrutador Angular para redirigir
+    if (this.isRegistered() && this.user) {
+      this.router.navigate(['/user'], { state: { user: this.user } }); // Usa el enrutador Angular para redirigir con el objeto user
     } else {
       alert("No está registrado!");
     }
@@ -47,5 +50,10 @@ export class NavbarComponent {
 
   redirectRegister(): void {
     this.router.navigate(['/registerUser']); // Redirige a la página de registro
+  }
+  searchText: string = '';
+  redirectBooks(): void {
+    console.log("waos");
+    this.router.navigate(['/libros'], { queryParams: { nombre: this.searchText } });
   }
 }
