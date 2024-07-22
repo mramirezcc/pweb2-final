@@ -1,4 +1,41 @@
 
+
+.category-na {
+  background-color: #cccccc;
+  color: #ffffff;
+}
+
+.category-suspenso {
+  background-color: #2600fc;
+  color: #ffffff;
+}
+
+.category-romance {
+  background-color: #ff0080;
+  color: #ffffff;
+}
+
+.category-ciencia-ficcion {
+  background-color: #007a4d;
+  color: #ffffff;
+}
+
+.category-aventura {
+  background-color: #ae7400;
+  color: #ffffff;
+}
+
+.category-fantasia {
+  background-color: #8000ff;
+  color: #ffffff;
+}
+
+.category-accion {
+  background-color: #849000;
+  color: #ffffff;
+}
+
+
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
@@ -17,12 +54,13 @@ body {
   background: linear-gradient(135deg, #f5f5ff 0%, #d6e4ff 100%);
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20px;
+  padding: 25px;
   max-width: 500px;
+  height: 300px;
   margin: 20px;
   text-align: left;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -83,16 +121,16 @@ body {
 
 .book-year,
 .book-category {
-  font-size: 14px;
-  color: #aaa;
+  font-size: 25px;
+  color: #000000;
   margin: 6px 0;
 }
 
 .book-price {
-  font-size: 20px;
+  font-size: 40px;
   color: #6633ff;
   font-weight: bold;
-  margin: 12px 0 0;
+  margin: 1rem;
 }
 
 .buy-now-button {
@@ -116,6 +154,8 @@ body {
   .book-card {
     flex-direction: column;
     max-width: 100%;
+    height: auto;
+
     margin: 15px;
     padding: 20px;
   }
@@ -144,4 +184,13 @@ body {
     padding: 8px 16px;
     align-self: center;
   }
+}
+
+.book-category {
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+  font-size: 1.5rem;
+  color: beige;
 }

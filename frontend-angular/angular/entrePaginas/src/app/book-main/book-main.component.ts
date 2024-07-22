@@ -17,7 +17,7 @@ export class BookMainComponent implements OnInit {
   minPrice: number = 0;
   maxPrice: number = 0;
 
-  categorias = ['Ficción', 'No Ficción', 'Misterio', 'Fantasía', 'Romance'];
+  categorias = ['','N/A', 'Suspenso', 'Romance', 'CienciaFiccion', 'Aventura', 'Fantasía', 'Acción'];
 
   filterForm: FormGroup;
   showAdvancedSearch: boolean = false;

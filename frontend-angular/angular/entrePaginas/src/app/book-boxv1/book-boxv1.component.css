@@ -10,8 +10,8 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  max-width: 120px;
-
+  max-width: 200px;
+  height: 450px;
   margin: 20px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -23,8 +23,8 @@
 }
 
 .book-image {
-  width: 100%;
-  height: auto;
+  width: 175px;
+  height: 300px;
   border-radius: 8px;
   transition: transform 0.3s, box-shadow 0.3s;
 }

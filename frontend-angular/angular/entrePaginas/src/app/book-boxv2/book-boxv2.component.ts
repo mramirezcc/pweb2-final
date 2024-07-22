@@ -1,31 +1,44 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Book } from '../book.model';
 
 @Component({
   selector: 'app-book-boxv2',
   templateUrl: './book-boxv2.component.html',
-  styleUrl: './book-boxv2.component.css'
+  styleUrls: ['./book-boxv2.component.css']
 })
 export class BookBoxv2Component {
-  @Input() imageUrl: string = '';
-  @Input() title: string = '';
-  @Input() author: string = '';
-  @Input() category: string = '';
-  @Input() summary: string = '';
-  @Input() price: number = 0;
-  @Input() year: number = 0;
-  @Output() bookSelected = new EventEmitter<any>();
+  @Input() book: Book = {
+    portrait: '',
+    name: '',
+    author: '',
+    cathegory: '',
+    summary: '',
+    price: 0,
+    year: 0,
+  };
 
-  openDetails(){
-    console.log("waos");
-    this.bookSelected.emit({
-      imageUrl: this.imageUrl,
-      title: this.title,
-      author: this.author,
-      summary: this.summary,
-      price: this.price,
-      year: this.year,
-      category: this.category
-    });
+  @Output() bookSelected = new EventEmitter<Book>();
+
+  openDetails() {
+    this.bookSelected.emit(this.book);
+  }
+
+  getCategoryClass(category: string): string {
+    switch (category.toLowerCase()) {
+      case 'suspenso':
+        return 'category-suspenso';
+      case 'romance':
+        return 'category-romance';
+      case 'cienciaficcion':
+        return 'category-ciencia-ficcion';
+      case 'aventura':
+        return 'category-aventura';
+      case 'fantasía':
+        return 'category-fantasia';
+      case 'acción':
+        return 'category-accion';
+      default:
+        return 'category-na';
+    }
   }
 }

@@ -1,24 +1,31 @@
-/* Estilos generales para el carrusel */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+PE:wght@100..400&display=swap');
+
+.carousel-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  max-width: 90%;
+}
+
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 600px; /* Cambia esto al tamaño deseado */
-  margin: auto;
+  max-width: 800px;
   overflow: hidden;
   border-radius: 10px;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
 }
 
-/* Estilos para la imagen dentro del carrusel */
 .carousel-image img {
-  width: 100%; /* Asegura que las imágenes tomen el 100% del ancho del contenedor */
-  height: auto; /* Mantén la proporción de aspecto */
-  transition: opacity 1s ease-in-out; /* Transición suave de opacidad */
-  display: block; /* Evita el espacio inferior de las imágenes en línea */
+  width: 100%;
+  height: auto;
+  transition: opacity 1s ease-in-out;
+  display: block;
 }
 
-/* Estilos para los indicadores del carrusel */
 .carousel-indicators {
   position: absolute;
   bottom: 10px;
@@ -40,7 +47,6 @@
   background-color: #333;
 }
 
-/* Estilos para la animación de transición */
 .carousel-image img.fade-enter-active {
   opacity: 0;
 }
@@ -49,9 +55,38 @@
   opacity: 1;
 }
 
-/* Estilos responsivos para dispositivos móviles */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2rem;
+}
+
+.logo {
+  font-family: "Playwrite PE", cursive;
+  font-weight: 10;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+@media (max-width: 900px) {
+  .carousel-container {
+    flex-direction: column;
+  }
+
+  .logo-container {
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+}
+
 @media (max-width: 600px) {
   .carousel {
     max-width: 100%;
+  }
+
+  .logo {
+    font-size: 2rem;
   }
 }

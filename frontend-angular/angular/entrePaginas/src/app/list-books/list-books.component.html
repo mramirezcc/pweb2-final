@@ -5,12 +5,7 @@
 <div class="contain">
   <app-book-boxv2 
     *ngFor="let book of filteredBooks"
-    [imageUrl]="book.portrait"
-    [title]="book.name"
-    [author]="book.author"
-    [price]="book.price"
-    [category]="book.category"
-    [year]="book.year"
+    [book]="book"
     (bookSelected)="bookSelected($event)">
   </app-book-boxv2>
 </div>

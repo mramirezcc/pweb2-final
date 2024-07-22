@@ -28,7 +28,6 @@ export class ListBooksComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // Revisar si hubo cambios
     if (changes['nombre'] || changes['autor'] || changes['categoria'] || changes['minY'] || changes['maxY'] || changes['minPrice'] || changes['maxPrice']) {
       this.applyFilters();
     }
@@ -52,7 +51,7 @@ export class ListBooksComponent implements OnChanges {
       return (
         (this.nombre ? book.name.toLowerCase().includes(this.nombre.toLowerCase()) : true) &&
         (this.autor ? book.author.toLowerCase().includes(this.autor.toLowerCase()) : true) &&
-        (this.categoria ? book.category.toLowerCase().includes(this.categoria.toLowerCase()) : true) &&
+        (this.categoria ? book.cathegory.toLowerCase().includes(this.categoria.toLowerCase()) : true) &&
         (this.minY ? book.year >= this.minY : true) &&
         (this.maxY ? book.year <= this.maxY : true) &&
         (this.minPrice ? book.price >= this.minPrice : true) &&
