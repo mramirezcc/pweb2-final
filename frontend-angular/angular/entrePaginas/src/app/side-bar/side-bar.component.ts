@@ -18,7 +18,6 @@ export class SideBarComponent {
 
   logout() {
     console.log('Cerrar sesión');
-    // Lógica de cierre de sesión aquí
 
     window.location.href = '/'; 
 

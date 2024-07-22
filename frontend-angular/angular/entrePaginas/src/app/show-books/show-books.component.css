@@ -1,32 +1,30 @@
-/* show-books.component.css */
-.contain {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
-    align-items: start;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: auto;
+.books-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los libros se ajusten a lo ancho */
+  gap: 20px;
+  padding: 20px;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: auto;
 }
-  
-.contain::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  .contain::-webkit-scrollbar-track {
-    background: #f8f9fa;
-    border-radius: 10px;
-  }
-  
-  .contain::-webkit-scrollbar-thumb {
-    background-color: #007bff;
-    border-radius: 10px;
-    border: 3px solid #f8f9fa;
-  }
-  
-  .contain::-webkit-scrollbar-thumb:hover {
-    background-color: #0056b3;
-  }
+
+.books-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.books-container::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.books-container::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 10px;
+  border: 3px solid #f8f9fa;
+}
+
+.books-container::-webkit-scrollbar-thumb:hover {
+  background-color: #0056b3;
+}

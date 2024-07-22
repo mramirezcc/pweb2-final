@@ -24,80 +24,21 @@ export class ListBooksComponent implements OnChanges {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.books1 = [
-      {
-        portrait: 'https://example.com/book1.jpg',
-        name: 'Book One',
-        author: 'Author One',
-        price: 15.99,
-        category: 'Romance',
-        summary: 'Summary of Book One',
-        year: 2020
-      },
-      {
-        portrait: 'https://example.com/book2.jpg',
-        name: 'Book Two',
-        author: 'Author Two',
-        price: 20.00,
-        category: 'Misterio',
-        summary: 'Summary of Book Two',
-        year: 2018
-      },
-      {
-        portrait: 'https://example.com/book3.jpg',
-        name: 'Book Three',
-        author: 'Author Three',
-        price: 10.50,
-        category: 'Fantasía',
-        summary: 'Summary of Book Three',
-        year: 2021
-      }
-      ,
-      {
-        portrait: 'https://example.com/book3.jpg',
-        name: 'Book Four',
-        author: 'Author Three',
-        price: 10.50,
-        category: 'Fantasía',
-        summary: 'Summary of Book Three',
-        year: 2021
-      }
-      ,
-      {
-        portrait: 'https://example.com/book3.jpg',
-        name: 'Book Five',
-        author: 'Author Three',
-        price: 10.50,
-        category: 'Fantasía',
-        summary: 'Summary of Book Three',
-        year: 2021
-      }
-      ,
-      {
-        portrait: 'https://example.com/book3.jpg',
-        name: 'Book Six',
-        author: 'Author One',
-        price: 10.50,
-        category: 'Fantasía',
-        summary: 'Summary of Book Three',
-        year: 2021
-      }
-    ];
-
-    this.applyFilters();
+    this.getBooks(); // Llamar a getBooks() en lugar de asignar directamente this.books1
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    //revisar si hubo cambios
+    // Revisar si hubo cambios
     if (changes['nombre'] || changes['autor'] || changes['categoria'] || changes['minY'] || changes['maxY'] || changes['minPrice'] || changes['maxPrice']) {
       this.applyFilters();
     }
   }
+
   getBooks(): void {
     this.api.getAllBooks().subscribe(
-      data => {
-        this.books1 = data;
-        this.applyFilters();
+      (data: any) => {
+        this.books1 = data; // Asignar los datos recibidos a this.books1
+        this.applyFilters(); // Aplicar los filtros después de obtener los datos
         console.log("Los datos recibidos son: ", data);
       },
       error => {
