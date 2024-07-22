@@ -1,12 +1,13 @@
-import { Component,  Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-favorite-user',
   templateUrl: './favorite-user.component.html',
-  styleUrl: './favorite-user.component.css'
+  styleUrls: ['./favorite-user.component.css']
 })
-export class FavoriteUserComponent {
-  @Input() compras: { imageUrl: string, title: string, author: string, genre: string, date: string }[] = [];
+export class FavoriteUserComponent implements OnInit {
+  @Input() compras: { title: string, author: string, genre: string, date: string }[] = [];
+  
   mostFrequentAuthor: string = '';
   mostFrequentGenre: string = '';
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user.model';
 import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-usuario-main',
   templateUrl: './usuario-main.component.html',
@@ -19,7 +20,13 @@ export class UsuarioMainComponent implements OnInit {
 
   showEdit: boolean = false;
   allSales: any[] = [];
-  constructor(private router: Router, private api: ApiService) {}
+  constructor(private router: Router, private api: ApiService, private authService: AuthService) {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    } else {
+      this.user = this.authService.getUser() as User;
+    }
+  }
 
   ngOnInit(): void {
     const user = sessionStorage.getItem('user');  // Obtener de sessionStorage
@@ -69,23 +76,10 @@ export class UsuarioMainComponent implements OnInit {
   //}
 
   //extraer todas las compras del usuario this.user y luego generar los siguientes arreglos con las solicitudes http
-  
-  //para compras y comprasRealizadas encontrar el libro y sacarle el titulo, autor, la fecha de allSales
-  //Para comprasAux encontrar el libro y sacarle el titulo, autor, genre la fecha de allSales
-  //crea un metodo de getBookById
-  compras = [
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', date: '13/07/2021' }
+    
+  compra = [
+    { title: 'El extranjero', author: 'Albert Camus', genre: 'terror' ,date: '13/07/2021' },
+    { title: 'El extranjero', author: 'Albert Camus', genre: 'terror', date: '13/07/2021' }
   ];
 
-  comprasAux = [
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', genre: 'terror', date: '13/07/2021' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El extranjero', author: 'Albert Camus', genre: 'terror', date: '13/07/2021' }
-  ];
-
-  comprasRealizadas = [
-    { imageUrl: '/../portraitBook.jpg', title: 'El libro negro', author: 'Ángel David Revilla Lenoci', date: '2023-07-12' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El libro verde', author: 'Juan Carlos Bodoque', date: '2023-07-13' },
-    { imageUrl: '/../portraitBook.jpg', title: 'El libro rojo', author: 'Juan Carlos Bodoque', date: '2023-07-13' },
-  ];
 }

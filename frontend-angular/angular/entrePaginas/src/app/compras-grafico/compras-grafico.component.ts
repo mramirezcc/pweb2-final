@@ -2,9 +2,9 @@ import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { Chart, ChartItem } from 'chart.js/auto';
 
 interface Compra {
-  imageUrl: string;
   title: string;
   author: string;
+  genre: string;
   date: string;
 }
 

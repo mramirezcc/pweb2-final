@@ -9,17 +9,17 @@
 
 
     <div class="info">
-        <app-favorite-user [compras]="comprasAux"></app-favorite-user>
+        <app-favorite-user [compras]="compra"></app-favorite-user>
 
         <div class= "sameline">
             <app-personal-info (toggleEdit)="toggleEdit()"
             [user]="user"
             ></app-personal-info>
 
-            <app-compras-grafico [compras]="comprasRealizadas"></app-compras-grafico>
+            <app-compras-grafico [compras]="compra"></app-compras-grafico>
         </div>
         
-        <app-compras-historial [compras]="compras"></app-compras-historial>
+        <app-compras-historial [compras]="compra"></app-compras-historial>
 
     </div>
 

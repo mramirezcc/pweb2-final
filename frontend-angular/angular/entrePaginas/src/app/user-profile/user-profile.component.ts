@@ -1,11 +1,14 @@
 import { Component, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
+  constructor(private router: Router, private authService: AuthService) {}
+
   @Input() imageUrl: string = '';
   @Input() name: string = '';
 
@@ -33,8 +36,9 @@ export class UserProfileComponent {
   }
   
   logout() {
-    console.log('Funcion para cerrar sesion');
-    window.location.href = '';
-
+    console.log('Función para cerrar sesión');
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
+  
 }
