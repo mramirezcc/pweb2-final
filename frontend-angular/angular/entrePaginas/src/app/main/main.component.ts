@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Book } from '../book.model'; // Ajusta la ruta según sea necesario
-import { User } from '../user.model'; // Ajusta la ruta según sea necesario
+import { Book } from '../book.model';
+import { User } from '../user.model'; 
 import { ApiService } from '../api.service';
 
 @Component({

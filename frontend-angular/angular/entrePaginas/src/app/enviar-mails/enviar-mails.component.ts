@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
-import { ApiService } from '../api.service'; // Asegúrate de la ruta correcta
+import { ApiService } from '../api.service';
 interface SelectableUser extends User {
   selected?: boolean;
 }
@@ -32,7 +32,6 @@ export class EnviarMailsComponent implements OnInit {
       },
       error => {
         console.error('Error fetching users:', error);
-        // Aquí podrías manejar el error según tus necesidades
       }
     );
   }

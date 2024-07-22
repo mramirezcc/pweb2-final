@@ -19,11 +19,9 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('user-books/', UserBooksView.as_view(), name='user-books'),
     
-    path('send-email/', EmailViewSet.as_view(), name='send-email'),  # Corrected
+    path('send-email/', EmailViewSet.as_view(), name='send-email'),
     path('get_user_id/', UserIdView.as_view(), name='get_user_id'),
 
-
-    #path('register/', userRegisterView, name='register'),
 ]
 
 if settings.DEBUG:

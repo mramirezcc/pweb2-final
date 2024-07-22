@@ -94,7 +94,6 @@ class SaleViewSet(viewsets.ModelViewSet):
 
 class UserBooksView(generics.ListAPIView):
     serializer_class = BookSerializer
-    #permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user_id = self.request.query_params.get('userId')

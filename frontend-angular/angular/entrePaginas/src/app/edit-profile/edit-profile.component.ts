@@ -26,24 +26,20 @@ export class EditProfileComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // Crea una copia del usuario para editar
     this.editedUser = { ...this.user };
   }
 
   onSave() {
-    // Guarda los cambios y actualiza el usuario original
     Object.assign(this.user, this.editedUser);
     console.log(this.user);
     window.location.href = '/user';
   }
 
   onCancel() {
-    // Cancela la edición y vuelve al perfil sin guardar cambios
     window.location.href = '/user';
   }
 
   onDelete() {
-    // Lógica para eliminar el perfil
     window.location.href = '/';
   }
 

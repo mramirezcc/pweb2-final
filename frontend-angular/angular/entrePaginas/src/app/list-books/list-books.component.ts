@@ -85,12 +85,10 @@ export class ListBooksComponent implements OnChanges {
     ];
 
     this.applyFilters();
-    // Uncomment to fetch books from an API
-    // this.getBooks();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // Check if any of the input properties have changed
+    //revisar si hubo cambios
     if (changes['nombre'] || changes['autor'] || changes['categoria'] || changes['minY'] || changes['maxY'] || changes['minPrice'] || changes['maxPrice']) {
       this.applyFilters();
     }

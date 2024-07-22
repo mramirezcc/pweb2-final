@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { User } from './user.model'; // Asegúrate de que la ruta sea correcta
+import { User } from './user.model';
 import { catchError, map } from 'rxjs/operators';
 
 
@@ -48,7 +48,7 @@ export class ApiService {
         map(response => response.user),
         catchError(error => {
           console.error('Error logging in user:', error);
-          return of(null); // Devuelve null en caso de error
+          return of(null);
         })
       );
   }
@@ -57,7 +57,7 @@ export class ApiService {
       .pipe(
         catchError(error => {
           console.error('Error fetching users:', error);
-          return of([]); // Devuelve un array vacío en caso de error
+          return of([]);
         })
       );
   }
@@ -73,7 +73,7 @@ export class ApiService {
         map(response => response.user_id),
         catchError(error => {
           console.error('Error fetching user ID:', error);
-          return of(null); // Devuelve null en caso de error
+          return of(null);
         })
       );
   }
@@ -82,7 +82,7 @@ export class ApiService {
       .pipe(
         catchError(error => {
           console.error('Error fetching books by user ID:', error);
-          return of([]); // Devuelve un array vacío en caso de error
+          return of([]);
         })
       );
   }
@@ -91,7 +91,7 @@ export class ApiService {
       .pipe(
         catchError(error => {
           console.error('Error fetching book by ID:', error);
-          return of(null); // Devuelve null en caso de error
+          return of(null);
         })
       );
   }
