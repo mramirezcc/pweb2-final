@@ -65,6 +65,35 @@ export class ApiService {
     const body = { selectedClients, subject, message };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.baseurl}/send-email/`, body, { headers: this.httpHeaders }); // Actualizado
-  }
+  } 
 
+  getUserId(email: string): Observable<number | null> {
+    return this.http.get<{ user_id: number }>(`${this.baseurl}/get_user_id/?email=${email}`, { headers: this.httpHeaders })
+      .pipe(
+        map(response => response.user_id),
+        catchError(error => {
+          console.error('Error fetching user ID:', error);
+          return of(null); // Devuelve null en caso de error
+        })
+      );
+  }
+  getBooksByUserId(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseurl}/sales/?idUser=${userId}`, { headers: this.httpHeaders })
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching books by user ID:', error);
+          return of([]); // Devuelve un array vacío en caso de error
+        })
+      );
+  }
+  getBookById(bookId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseurl}/books/${bookId}/`, { headers: this.httpHeaders })
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching book by ID:', error);
+          return of(null); // Devuelve null en caso de error
+        })
+      );
+  }
+  //aqui!!!
 }

@@ -46,6 +46,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class LoginSerializer(serializers.Serializer):
+
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
@@ -64,3 +65,13 @@ class LoginSerializer(serializers.Serializer):
 
         data['user'] = user
         return data
+    
+class SaleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sale
+        fields = ['id', 'payMethod', 'idUser', 'idBook', 'total', 'date']
+
+    def validate_total(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("La venta no puede tener un valor negativo")
+        return value

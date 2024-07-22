@@ -9,7 +9,6 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginRegisterComponent } from './loginregister/loginregister.component';
 import { AddSpoComponent } from './add-spo/add-spo.component';
 import { AdvancedSearchComponent } from './advanced-search/advanced-search.component';
 import { BookBoxv1Component } from './book-boxv1/book-boxv1.component';
@@ -44,7 +43,6 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    LoginRegisterComponent,
     AddSpoComponent,
     AdvancedSearchComponent,
     BookBoxv1Component,

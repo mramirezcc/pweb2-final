@@ -72,19 +72,20 @@ class Sale(models.Model):
     }
     payMethod = models.CharField(
         max_length=20,
-        choices =  PAY_METHOD_CHOICES,
-        default = CREDIT_CARD,
+        choices=PAY_METHOD_CHOICES.items(),
+        default=CREDIT_CARD,
     )
-    idCart = models.ForeignKey(ShoppingCart, on_delete=models.CASCADE, related_name='idCart_sale')
+    idUser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='idUser_sale', null=False, blank=False)
+    idBook = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='idBook_sale', null=False, blank=False)
     total = models.IntegerField()
     date = models.DateField(auto_now=True)
 
     def clean(self):
         super().clean()
 
-        if self.total<=0:
-            raise ValidationError({'total':'La venta no puede tener un valor negativo'})
-    
+        if self.total <= 0:
+            raise ValidationError({'total': 'La venta no puede tener un valor negativo'})
+
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)

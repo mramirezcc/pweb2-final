@@ -9,7 +9,7 @@ from rest_framework import viewsets, status, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from .serializers import UserSerializer, LoginSerializer, BookSerializer
+from .serializers import SaleSerializer, UserSerializer, LoginSerializer, BookSerializer
 from .models import User, ShoppingCart, Sale, CartBook, Book
 from django.core.mail import send_mail
 from django.http import JsonResponse
@@ -81,6 +81,20 @@ class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+class SaleViewSet(viewsets.ModelViewSet):
+    queryset = Sale.objects.all()
+    serializer_class = SaleSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user_id = self.request.query_params.get('idUser')
+        if user_id:
+            queryset = queryset.filter(idUser=user_id)
+        return queryset
+
+
+
+
 @method_decorator(csrf_exempt, name='dispatch')
 class EmailViewSet(View):
     def post(self, request):
@@ -116,3 +130,12 @@ class EmailViewSet(View):
 
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
+
+class UserIdView(View):
+    def get(self, request):
+        email = request.GET.get('email')
+        try:
+            user = User.objects.get(email=email)
+            return JsonResponse({'user_id': user.id})
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User does not exist'}, status=404)
