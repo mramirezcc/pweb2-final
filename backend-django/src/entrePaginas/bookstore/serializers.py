@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['name', 'year', 'author', 'portrait', 'price', 'cathegory', 'summary']
+        fields = ['id', 'name', 'year', 'author', 'portrait', 'price', 'cathegory', 'summary']
 
 class UserSerializer(serializers.ModelSerializer):
     #password = serializers.CharField(write_only=True, min_length=8)
@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'email', 'password', 'address', 'number', 'portrait']
 
-      
+    """"    
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("Este email ya está registrado.")
@@ -25,15 +25,15 @@ class UserSerializer(serializers.ModelSerializer):
         if User.objects.filter(username=value).exists():
             raise serializers.ValidationError("Este nombre ya está registrado.")
         return value
-    '''
+
     def validate_password(self, data):
         #if data['password'] != data['password2']:
             #raise serializers.ValidationError("Las contraseñas no coinciden")
         if not any(char.isdigit() for char in data['password']) or not any(char.isalpha() for char in data['password']):
             raise serializers.ValidationError("Ingrese una contraseña con al menos un número y una letra")
         return data
-    '''
-    
+
+    """
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data['username'],
@@ -46,7 +46,6 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class LoginSerializer(serializers.Serializer):
-
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
@@ -65,13 +64,9 @@ class LoginSerializer(serializers.Serializer):
 
         data['user'] = user
         return data
-    
+
+
 class SaleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
         fields = ['id', 'payMethod', 'idUser', 'idBook', 'total', 'date']
-
-    def validate_total(self, value):
-        if value <= 0:
-            raise serializers.ValidationError("La venta no puede tener un valor negativo")
-        return value

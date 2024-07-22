@@ -33,7 +33,6 @@ export class UsuarioMainComponent implements OnInit {
     if (user) {
       this.user = JSON.parse(user) as User;
       console.log("Usuario recibido:", this.user);
-      alert("Usuario recibido exitosamente!");
 
 
       this.api.getUserId(this.user.email).subscribe(idUser => {

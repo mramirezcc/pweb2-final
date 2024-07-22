@@ -78,7 +78,7 @@ export class ApiService {
       );
   }
   getBooksByUserId(userId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseurl}/sales/?idUser=${userId}`, { headers: this.httpHeaders })
+    return this.http.get<any[]>(`${this.baseurl}/user-books/?userId=${userId}`, { headers: this.httpHeaders })
       .pipe(
         catchError(error => {
           console.error('Error fetching books by user ID:', error);

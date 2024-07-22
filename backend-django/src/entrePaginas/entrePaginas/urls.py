@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet
+from bookstore.views import UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -17,9 +17,11 @@ urlpatterns = [
     path('register/', RegisterView.as_view({'post':'create'}), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('user-books/', UserBooksView.as_view(), name='user-books'),
     
     path('send-email/', EmailViewSet.as_view(), name='send-email'),  # Corrected
     path('get_user_id/', UserIdView.as_view(), name='get_user_id'),
+
 
     #path('register/', userRegisterView, name='register'),
 ]

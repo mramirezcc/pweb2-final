@@ -92,7 +92,19 @@ class SaleViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(idUser=user_id)
         return queryset
 
+class UserBooksView(generics.ListAPIView):
+    serializer_class = BookSerializer
+    #permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        user_id = self.request.query_params.get('userId')
+        print("Id del usuario:", user_id)
+        if user_id:
+            # Obtener los ids de los libros de las ventas del usuario
+            sale_books = Sale.objects.filter(idUser=user_id).values_list('idBook', flat=True)
+            # Obtener los libros correspondientes
+            return Book.objects.filter(id__in=sale_books)
+        return Book.objects.none()
 
 
 @method_decorator(csrf_exempt, name='dispatch')
