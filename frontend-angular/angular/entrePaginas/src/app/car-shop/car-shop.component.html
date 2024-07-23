@@ -4,24 +4,27 @@
         <div class="cart-items">
             <h2>Carrito de compras</h2>
             <p>Tienes {{libros.length}} items en tu carrito de compra</p>
-            <div class="cart-item" *ngFor="let libro of libros">
-            <img [src]="libro.imagenUrl" alt="{{libro.titulo}}" class="book-image">
-            <div class="book-details">
-                <h3>{{libro.titulo}}</h3>
-                <p>{{libro.autor}}</p>
+            <div class="book-container">
+                <div class="cart-item" *ngFor="let libro of libros">
+                    <img [src]="libro.imagenUrl" alt="{{libro.titulo}}" class="book-image">
+                    <div class="book-details">
+                        <h3>{{libro.titulo}}</h3>
+                        <p>{{libro.autor}}</p>
+                    </div>
+                    <div class="quantity-controls">
+                        <button (click)="disminuirCantidad(libro)">&#9664;</button>
+                        <span>{{libro.cantidad}}</span>
+                        <button (click)="incrementarCantidad(libro)">&#9654;</button>
+                    </div>
+                    <p class="price">${{libro.precio * libro.cantidad}}</p>
+    
+                    <button class="btn-delete" (click)="eliminarLibro(libro)">        
+                        <i class="fas fa-trash-alt"></i> 
+                    </button>
+    
+                </div>
             </div>
-            <div class="quantity-controls">
-                <button (click)="disminuirCantidad(libro)">&#9664;</button>
-                <span>{{libro.cantidad}}</span>
-                <button (click)="incrementarCantidad(libro)">&#9654;</button>
-            </div>
-            <p class="price">${{libro.precio * libro.cantidad}}</p>
-
-            <button class="btn-delete" (click)="eliminarLibro(libro)">        
-                <i class="fas fa-trash-alt"></i> 
-            </button>
-
-            </div>
+            
         </div>
         <div class="payment-method">
             <h2>Método de pago</h2>

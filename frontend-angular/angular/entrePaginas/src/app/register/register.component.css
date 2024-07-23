@@ -25,9 +25,10 @@ body {
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-.login-container {
+.register-container {
   background-color: #f9f9f9;
   opacity: 0.85;
   border-radius: 8px;
@@ -35,6 +36,7 @@ body {
   max-width: 400px;
   width: 100%;
   margin: 0 20px;
+  padding: 20px;
 }
 
 .login-form {

@@ -13,10 +13,23 @@ interface Libro {
   styleUrl: './car-shop.component.css'
 })
 export class CarShopComponent {
+  //obtener el usuario de session storage y los libros del carrito....
   libros: Libro[] = [
     { titulo: 'El libro negro', autor: 'Ángel David Revilla Lenoci', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg' },
     { titulo: 'El libro verde', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
     { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+    { titulo: 'El libro rojo', autor: 'Juan Carlos Bodoque', precio: 681, cantidad: 1, imagenUrl: '/../../portraitBook.jpg'  },
+
   ];
   get subtotal(): number {
     return this.libros.reduce((acc, libro) => acc + libro.precio * libro.cantidad, 0);
@@ -43,6 +56,6 @@ export class CarShopComponent {
   }
 
   regresar() {
-    // return
+    // return con el usuario
   }
 }
