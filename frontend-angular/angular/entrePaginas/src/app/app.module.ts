@@ -34,6 +34,8 @@ import { VendedorMainComponent } from './vendedor-main/vendedor-main.component';
 import { BookMainComponent } from './book-main/book-main.component';
 import { ListBooksComponent } from './list-books/list-books.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MeesageSenderComponent } from './meesage-sender/meesage-sender.component';
+import { ShowMessagesComponent } from './show-messages/show-messages.component';
 
 
 @NgModule({
@@ -67,6 +69,8 @@ import { HttpClientModule } from '@angular/common/http';
     VendedorMainComponent,
     BookMainComponent,
     ListBooksComponent,
+    MeesageSenderComponent,
+    ShowMessagesComponent,
   ],
   imports: [
     BrowserModule,

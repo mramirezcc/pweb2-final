@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Book } from '../book.model';
-
+import { User } from '../user.model';
 @Component({
   selector: 'app-book-main',
   templateUrl: './book-main.component.html',
@@ -41,7 +41,22 @@ export class BookMainComponent implements OnInit {
     });
   }
 
+  
+
+  checkUserSession(): void {
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      const userData = JSON.parse(user) as User;
+      console.log("Usuario enviado?: " + userData);
+      alert(userData.username);
+    }else{
+      alert("No hay usuario!");
+    }
+  }
+
   ngOnInit(): void {
+    this.checkUserSession();
+
     this.route.queryParamMap.subscribe(params => {
       this.nombre = params.get('nombre') || '';
       this.autor = params.get('autor') || '';

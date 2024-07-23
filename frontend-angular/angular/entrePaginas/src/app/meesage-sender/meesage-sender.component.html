@@ -1,0 +1,21 @@
+<div class="message-window">
+  <div *ngIf="isUserLoggedIn; else notLoggedIn">
+    <div class="message-header">
+      <h3>No encuentras lo que buscas?</h3>
+      <p>Envíale un mensaje al vendedor</p>
+    </div>
+    <form class="message-form" (ngSubmit)="sendMessage()">
+      <textarea placeholder="Escribe tu mensaje..." rows="7" [(ngModel)]="messageContent" name="messageContent"></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </div>
+  <ng-template #notLoggedIn>
+    <div class="message-header">
+      <h3>No encuentras lo que buscas?</h3>
+      <p>Envíale un mensaje al vendedor</p>
+      <a href="/registerUser">Regístrate</a>
+        <br>
+      <a href="/loginUser">Inicia sesión</a>
+    </div>
+  </ng-template>
+</div>

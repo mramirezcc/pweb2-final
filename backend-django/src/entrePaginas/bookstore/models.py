@@ -89,3 +89,10 @@ class Sale(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='message')
+    #El receptor sera el vendedor, los mensajes son solo de user -> vendedor
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)

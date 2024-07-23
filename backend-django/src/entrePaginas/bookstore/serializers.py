@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, ShoppingCart, Book, Sale
+from .models import User, ShoppingCart, Book, Sale, Message
 from django.contrib.auth import authenticate
 
 class BookSerializer(serializers.ModelSerializer):
@@ -70,3 +70,9 @@ class SaleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
         fields = ['id', 'payMethod', 'idUser', 'idBook', 'total', 'date']
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['sender', 'message', 'date']
+        read_only_fields = ['date']

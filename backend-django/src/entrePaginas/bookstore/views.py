@@ -9,8 +9,8 @@ from rest_framework import viewsets, status, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from .serializers import SaleSerializer, UserSerializer, LoginSerializer, BookSerializer
-from .models import User, ShoppingCart, Sale, CartBook, Book
+from .serializers import SaleSerializer, UserSerializer, LoginSerializer, BookSerializer, MessageSerializer
+from .models import User, ShoppingCart, Sale, CartBook, Book, Message
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -22,6 +22,8 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
 from django.contrib import messages
+
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -150,3 +152,28 @@ class UserIdView(View):
             return JsonResponse({'user_id': user.id})
         except User.DoesNotExist:
             return JsonResponse({'error': 'User does not exist'}, status=404)
+        
+
+
+class SendMessageView(APIView):
+    def post(self, request):
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ShowMessagesView(APIView):
+    def get(self, request, usuario_id):
+        try:
+            usuario = User.objects.get(id=usuario_id)
+        except User.DoesNotExist:
+            return Response({"error": "Usuario no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+        
+        mensajes_recibidos = Message.objects.filter(destinatario=usuario)
+        serializer_recibidos = MessageSerializer(mensajes_recibidos, many=True)
+        
+        return Response({
+            "mensajes_recibidos": serializer_recibidos.data
+        }, status=status.HTTP_200_OK)
