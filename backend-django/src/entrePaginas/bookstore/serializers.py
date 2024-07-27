@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'address', 'number', 'portrait']
+        fields = ['id', 'username', 'email', 'password', 'address', 'number', 'portrait']
 
     """"    
     def validate_email(self, value):
@@ -76,3 +76,12 @@ class MessageSerializer(serializers.ModelSerializer):
         model = Message
         fields = ['sender', 'message', 'date']
         read_only_fields = ['date']
+
+
+
+class BookWithSaleDateSerializer(serializers.ModelSerializer):
+    date = serializers.DateField()
+
+    class Meta:
+        model = Book
+        fields = ['id', 'name', 'year', 'author', 'portrait', 'price', 'cathegory', 'summary', 'date']

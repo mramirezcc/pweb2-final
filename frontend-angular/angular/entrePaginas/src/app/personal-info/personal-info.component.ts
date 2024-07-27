@@ -7,6 +7,7 @@ import { User } from '../user.model';
 })
 export class PersonalInfoComponent {
   @Input() user: User = {
+    id: 0,
     portrait: '',
     username: '',
     email: '',

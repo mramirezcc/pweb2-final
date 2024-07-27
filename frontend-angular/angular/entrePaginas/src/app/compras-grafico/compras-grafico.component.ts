@@ -1,30 +1,26 @@
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart, ChartItem } from 'chart.js/auto';
-
-interface Compra {
-  title: string;
-  author: string;
-  genre: string;
-  date: string;
-}
+import { Compra } from '../compra.model';
 
 @Component({
   selector: 'app-compras-grafico',
   templateUrl: './compras-grafico.component.html',
   styleUrls: ['./compras-grafico.component.css']
 })
-export class ComprasGraficoComponent implements OnInit, AfterViewInit {
+export class ComprasGraficoComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() compras: Compra[] = [];
   chart: any;
-  eliminarCompras(){
-    console.log("Funcion para eliminar las compras en la base de datos");
-    alert("Borrando");
-  }
-  ngOnInit() {
-  }
+
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.generarGrafico();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['compras'] && !changes['compras'].isFirstChange()) {
+      this.actualizarGrafico();
+    }
   }
 
   generarGrafico() {
@@ -58,6 +54,15 @@ export class ComprasGraficoComponent implements OnInit, AfterViewInit {
             title: {
               display: true,
               text: 'Número de Compras'
+            },
+            ticks: {
+              stepSize: 1, // Mostrar solo enteros
+              callback: function(value: number | string) {
+                if (Number.isInteger(value)) {
+                  return value;
+                }
+                return null; // Return null to skip non-integer values
+              }
             }
           }
         },
@@ -68,6 +73,15 @@ export class ComprasGraficoComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+  actualizarGrafico() {
+    if (this.chart) {
+      const data = this.procesarDatos(this.compras);
+      this.chart.data.labels = data.fechas;
+      this.chart.data.datasets[0].data = data.valores;
+      this.chart.update();
+    }
   }
 
   procesarDatos(compras: Compra[]) {
@@ -86,5 +100,10 @@ export class ComprasGraficoComponent implements OnInit, AfterViewInit {
       fechas: Object.keys(conteoCompras),
       valores: Object.values(conteoCompras)
     };
+  }
+
+  eliminarCompras() {
+    console.log("Funcion para eliminar las compras en la base de datos");
+    alert("Borrando");
   }
 }

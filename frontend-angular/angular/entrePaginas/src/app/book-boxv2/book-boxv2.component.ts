@@ -8,6 +8,7 @@ import { Book } from '../book.model';
 })
 export class BookBoxv2Component {
   @Input() book: Book = {
+    id: -1,
     portrait: '',
     name: '',
     author: '',

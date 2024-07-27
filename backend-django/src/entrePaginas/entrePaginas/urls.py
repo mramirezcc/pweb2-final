@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet
+from bookstore.views import UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -21,6 +21,7 @@ urlpatterns = [
     
     path('send-email/', EmailViewSet.as_view(), name='send-email'),
     path('get_user_id/', UserIdView.as_view(), name='get_user_id'),
+    path('users/<int:idUser>/books/', UserBooksAPIView.as_view(), name='user_books_api'),
 
 ]
 

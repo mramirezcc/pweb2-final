@@ -23,6 +23,7 @@ export class LoginComponent {
   
 
   user: User = {
+    id: 0,
     portrait: '',
     username: '',
     email: '',

@@ -1,6 +1,6 @@
 from django import template
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -9,7 +9,7 @@ from rest_framework import viewsets, status, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from .serializers import SaleSerializer, UserSerializer, LoginSerializer, BookSerializer, MessageSerializer
+from .serializers import BookWithSaleDateSerializer, SaleSerializer, UserSerializer, LoginSerializer, BookSerializer, MessageSerializer
 from .models import User, ShoppingCart, Sale, CartBook, Book, Message
 from django.core.mail import send_mail
 from django.http import JsonResponse
@@ -177,3 +177,26 @@ class ShowMessagesView(APIView):
         return Response({
             "mensajes_recibidos": serializer_recibidos.data
         }, status=status.HTTP_200_OK)
+    
+class UserBooksAPIView(APIView):
+    def get(self, request, idUser):
+        sales = Sale.objects.filter(idUser=idUser).select_related('idBook')
+        books_with_date = []
+        
+        for sale in sales:
+            book = sale.idBook
+            book_data = {
+                'id': book.id,
+                'name': book.name,
+                'year': book.year,
+                'author': book.author,
+                'portrait': book.portrait,
+                'price': book.price,
+                'cathegory': book.cathegory,
+                'summary': book.summary,
+                'date': sale.date
+            }
+            books_with_date.append(book_data)
+        
+        serializer = BookWithSaleDateSerializer(books_with_date, many=True)
+        return Response(serializer.data)

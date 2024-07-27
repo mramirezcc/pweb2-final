@@ -21,7 +21,9 @@ export class RegisterComponent {
 
   onSubmit(form: NgForm) {
     if (form.valid && this.selectedFile) {
+      
       const user: User = {
+        id:-1,
         portrait: '',
         username: form.value.name,
         email: form.value.email,

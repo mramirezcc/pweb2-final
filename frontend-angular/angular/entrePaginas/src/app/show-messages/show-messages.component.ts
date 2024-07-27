@@ -20,6 +20,7 @@ export class ShowMessagesComponent {
 
   loadTestData(): void {
     const user1: User = {
+      id: 999,
       portrait: 'https://via.placeholder.com/80',
       username: 'john_doe',
       email: 'john.doe@example.com',
@@ -29,6 +30,7 @@ export class ShowMessagesComponent {
     };
 
     const user2: User = {
+      id: 1000,
       portrait: 'https://via.placeholder.com/80',
       username: 'jane_smith',
       email: 'jane.smith@example.com',

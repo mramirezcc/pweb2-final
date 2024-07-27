@@ -8,6 +8,7 @@ import { User } from '../user.model';
 })
 export class EditProfileComponent implements OnInit {
   @Input() user: User = {
+    id: -1,
     portrait: '',
     username: '',
     email: '',
@@ -17,6 +18,7 @@ export class EditProfileComponent implements OnInit {
   };
 
   editedUser: User = {
+    id: -1,
     portrait: '',
     username: '',
     email: '',

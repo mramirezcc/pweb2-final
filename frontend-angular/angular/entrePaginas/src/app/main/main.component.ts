@@ -44,6 +44,7 @@ export class MainComponent implements OnInit {
 
   // al ser generado recibe del backend si el usuario está registrado y si lo está obtener el username
   userDebug: User = {
+    id: 123,  
     portrait: '/../portraitBook.jpg',
     username: 'John asdasd',
     email: 'john.doe@example.com',

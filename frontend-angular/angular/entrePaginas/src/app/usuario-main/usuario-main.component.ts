@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user.model';
+import { Book } from '../book.model';
 import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
+import { Compra } from '../compra.model';
+
 @Component({
   selector: 'app-usuario-main',
   templateUrl: './usuario-main.component.html',
@@ -10,6 +13,7 @@ import { AuthService } from '../auth.service';
 })
 export class UsuarioMainComponent implements OnInit {
   user: User = {
+    id: -1,
     portrait: '',
     username: '',
     email: '',
@@ -17,6 +21,8 @@ export class UsuarioMainComponent implements OnInit {
     number: '',
     address: ''
   };
+  
+  books: Book[] = [];
 
   showEdit: boolean = false;
   allSales: any[] = [];
@@ -27,35 +33,34 @@ export class UsuarioMainComponent implements OnInit {
       this.user = this.authService.getUser() as User;
     }
   }
+  compra: Compra[] = [];
 
   ngOnInit(): void {
-    const user = sessionStorage.getItem('user');  // Obtener de sessionStorage
+    const user = sessionStorage.getItem('user');
     if (user) {
       this.user = JSON.parse(user) as User;
-      console.log("Usuario recibido:", this.user);
-
-
-      this.api.getUserId(this.user.email).subscribe(idUser => {
-        if (idUser !== null) {
-          console.log("El id de este usuario es " + idUser);
-
-          // Llama al método para obtener los libros comprados por el usuario
-          this.api.getBooksByUserId(idUser).subscribe(books => {
-            console.log("Libros comprados por el usuario:", books);
-            this.allSales = books; // Actualiza el arreglo de libros comprados
-          });
-        } else {
-          console.error("No se pudo obtener el ID del usuario");
-          // Manejar el caso en que idUser es null, si es necesario
-        }
-      });
+      console.log("Usuario recibido:", this.user.id);
       
-
-
+      this.api.getBooksByUser(this.user.id).subscribe(
+        (books: any[]) => {
+          this.books = books;
+          this.compra = books.map(book => ({
+            name: book.name,
+            author: book.author,
+            cathegory: book.cathegory,
+            date: book.date,
+          }));
+          console.log("waos", this.compra);  // Asegúrate de que `compra` tiene los datos correctos
+        },
+        error => {
+          console.error("Error al obtener los libros:", error);
+        }
+      );
     } else {
       console.log("No se recibió ningún usuario");
     }
   }
+  
 
   toggleEdit(): void {
     this.showEdit = !this.showEdit;
@@ -76,9 +81,6 @@ export class UsuarioMainComponent implements OnInit {
 
   //extraer todas las compras del usuario this.user y luego generar los siguientes arreglos con las solicitudes http
     
-  compra = [
-    { title: 'El extranjero', author: 'Albert Camus', genre: 'terror' ,date: '13/07/2021' },
-    { title: 'El extranjero', author: 'Albert Camus', genre: 'terror', date: '13/07/2021' }
-  ];
+
 
 }

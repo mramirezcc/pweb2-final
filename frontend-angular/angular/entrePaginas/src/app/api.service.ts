@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from './user.model';
 import { catchError, map } from 'rxjs/operators';
-
+import { Book } from './book.model';
 
 
 @Injectable({
@@ -96,6 +96,8 @@ export class ApiService {
       );
   }
 
-
+  getBooksByUser(userId: number): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.baseurl}/users/${userId}/books/`);
+  }
   //aqui!!!
 }

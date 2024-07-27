@@ -89,6 +89,9 @@ class Sale(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
+    def __str__(self):
+        return f"{self.user.username} - {self.book.name}"
+
 
 
 class Message(models.Model):
