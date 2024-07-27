@@ -50,7 +50,7 @@ export class UsuarioMainComponent implements OnInit {
             cathegory: book.cathegory,
             date: book.date,
           }));
-          console.log("waos", this.compra);  // Asegúrate de que `compra` tiene los datos correctos
+          console.log("waos", this.compra); 
         },
         error => {
           console.error("Error al obtener los libros:", error);

@@ -9,8 +9,8 @@ from rest_framework import viewsets, status, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from .serializers import BookWithSaleDateSerializer, SaleSerializer, UserSerializer, LoginSerializer, BookSerializer, MessageSerializer
-from .models import User, ShoppingCart, Sale, CartBook, Book, Message
+from .serializers import BookWithSaleDateSerializer, SaleSerializer, UserSerializer, LoginSerializer, BookSerializer, MessageSerializer, ShoppingCartSerializer
+from .models import User, ShoppingCart, Sale, Book, Message
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -30,6 +30,19 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     #permission_classes = (AllowAny,)
+    #para crear un carrito de compras!
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+
+        # Create a shopping cart for the new user
+        ShoppingCart.objects.create(idUser=user)
+        print("Creando carrito!")
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
 
 class RegisterView(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -200,3 +213,31 @@ class UserBooksAPIView(APIView):
         
         serializer = BookWithSaleDateSerializer(books_with_date, many=True)
         return Response(serializer.data)
+    
+
+class ShoppingCartViewSet(viewsets.ViewSet):
+    def retrieve(self, request, pk=None):
+        cart = get_object_or_404(ShoppingCart, idUser=pk)
+        books = cart.idBooks.all()  
+        serializer = BookSerializer(books, many=True)
+        return Response(serializer.data)
+
+    def create(self, request):
+        user_id = request.data.get('user')
+        user = User.objects.get(id=user_id)
+        cart = ShoppingCart.objects.create(idUser=user)
+        return Response({'id': cart.id}, status=status.HTTP_201_CREATED)
+
+    def add_book(self, request, pk=None):
+        cart = get_object_or_404(ShoppingCart, idUser=pk)
+        book_id = request.data.get('book_id')
+        book = get_object_or_404(Book, id=book_id)
+        cart.add_book(book)
+        return Response({'status': 'Book added'}, status=status.HTTP_200_OK)
+
+    def remove_book(self, request, pk=None):
+        cart = get_object_or_404(ShoppingCart, idUser=pk)
+        book_id = request.data.get('book_id')
+        book = get_object_or_404(Book, id=book_id)
+        cart.remove_book(book)
+        return Response({'status': 'Book removed'}, status=status.HTTP_200_OK)

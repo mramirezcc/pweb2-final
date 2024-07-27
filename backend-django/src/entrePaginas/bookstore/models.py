@@ -1,3 +1,4 @@
+from datetime import timezone
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
@@ -27,10 +28,7 @@ class User(AbstractUser):
         super().save(*args, **kwargs)
     """
 
-class ShoppingCart(models.Model):
-    idUser = models.ForeignKey(User, on_delete = models.CASCADE, related_name='idUser_cart')
-    total = models.IntegerField()
-    #status = models.BooleanField(default = False)
+
 
 class Book(models.Model):
     name = models.CharField(max_length=50)
@@ -57,9 +55,8 @@ class Book(models.Model):
     )
     #idEditorial = models.ForeignKey(Editorial, on_delete = models.CASCADE)
 
-class CartBook(models.Model):
-    idCart = models.ForeignKey(ShoppingCart, on_delete = models.CASCADE, related_name='idCart_cartbook')
-    idBook = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='idBook_cartbook')
+
+
 
 class Sale(models.Model):
     CREDIT_CARD = "Credit"
@@ -90,7 +87,7 @@ class Sale(models.Model):
         self.clean()
         super().save(*args, **kwargs)
     def __str__(self):
-        return f"{self.user.username} - {self.book.name}"
+        return f"{self.idUser.username} - {self.idBook.name}"
 
 
 
@@ -99,3 +96,21 @@ class Message(models.Model):
     #El receptor sera el vendedor, los mensajes son solo de user -> vendedor
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
+
+
+
+class ShoppingCart(models.Model):
+    idUser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shopping_cart')
+    idBooks = models.ManyToManyField(Book)
+    date = models.DateField(auto_now=True)
+
+    def add_book(self, book):
+        self.idBooks.add(book)
+        self.save()
+
+    def remove_book(self, book):
+        self.idBooks.remove(book)
+        self.save()
+
+    def __str__(self):
+        return f"Carrito de {self.idUser.username} con {self.idBooks.count()} libros"

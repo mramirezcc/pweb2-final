@@ -85,3 +85,11 @@ class BookWithSaleDateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ['id', 'name', 'year', 'author', 'portrait', 'price', 'cathegory', 'summary', 'date']
+
+
+class ShoppingCartSerializer(serializers.ModelSerializer):
+    books = BookSerializer(many=True)
+
+    class Meta:
+        model = ShoppingCart
+        fields = ['id', 'user', 'books', 'date']

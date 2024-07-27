@@ -99,5 +99,16 @@ export class ApiService {
   getBooksByUser(userId: number): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.baseurl}/users/${userId}/books/`);
   }
-  //aqui!!!
+
+
+  addBookToCart(userId: number, bookId: number): Observable<any> {
+    const url = `${this.baseurl}/shopping-carts/${userId}/add-book/`;
+    const body = { book_id: bookId };
+    return this.http.post(url, body);
+  }
+  
+  getBooksInCart(userId: number): Observable<any> {
+    const url = `${this.baseurl}/shopping-carts/${userId}/`;
+    return this.http.get<any>(url, { headers: this.httpHeaders });
+  }
 }
