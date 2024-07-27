@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Message } from '../message.model';
 import { User } from '../user.model';
+
 @Component({
   selector: 'app-show-messages',
   templateUrl: './show-messages.component.html',
-  styleUrl: './show-messages.component.css'
+  styleUrls: ['./show-messages.component.css']
 })
 export class ShowMessagesComponent {
   messages: Message[] = [];
@@ -13,16 +14,10 @@ export class ShowMessagesComponent {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    console.log("Mensajes");
+    // Simulación de carga de mensajes (en tu caso podría ser la llamada al API)
     this.loadTestData();
-
-
-
-    //llamada para obtener los mensajes!
-    //this.apiService.getMessages().subscribe((data: Message[]) => {
-    //  this.messages = data;
-    //});
   }
+
   loadTestData(): void {
     const user1: User = {
       portrait: 'https://via.placeholder.com/80',
@@ -59,5 +54,17 @@ export class ShowMessagesComponent {
         date: new Date('2024-07-21T10:15:00')
       }
     ];
+  }
+
+  deleteMessage(message: Message): void {
+    // Aquí deberías implementar la lógica para eliminar el mensaje
+    // Por ejemplo, puedes filtrar los mensajes para remover el mensaje específico
+    this.messages = this.messages.filter(m => m !== message);
+  }
+
+  showDetails(message: Message): void {
+    // Implementar la lógica para mostrar detalles del mensaje
+    console.log('Detalles del mensaje:', message);
+    // Puedes abrir un modal, mostrar en otro componente, etc.
   }
 }

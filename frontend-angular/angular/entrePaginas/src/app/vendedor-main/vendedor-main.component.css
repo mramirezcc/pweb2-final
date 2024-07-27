@@ -16,7 +16,59 @@ app-subir-libro{
     background-color: rgb(112, 112, 112);
     width: 100%;
 }
-
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .message-card {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-portrait {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .message-info {
+    flex: 1;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .delete-button, .details-button {
+    padding: 5px 10px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-button:hover, .details-button:hover {
+    background-color: #d9482e;
+  }
+  
+  .details-button {
+    background-color: #4caf50;
+  }
+  
+  .details-button:hover {
+    background-color: #388e3c;
+  }
 @media (max-width: 768px) {
     .all{
         overflow: auto;

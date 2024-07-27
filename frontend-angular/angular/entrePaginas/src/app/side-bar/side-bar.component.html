@@ -16,6 +16,10 @@
         <i class="icon-upload"></i>
         <span>Subir libro</span>
       </li>
+      <li [class.active]="activeMenu === 'messages'" (click)="setActiveMenu('messages')">
+        <i class="icon-messages"></i>
+        <span>Ver mensajes recibidos</span>
+      </li>
     </ul>
     
     <div class="sidebar-footer">

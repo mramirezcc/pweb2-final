@@ -1,12 +1,21 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <div class="message-list">
-    <div *ngFor="let message of messages" class="message-card">
-      <img [src]="message.sender.portrait" alt="{{message.sender.username}}" class="user-portrait">
-      <div class="message-info">
-        <h3>{{message.sender.username}}</h3>
-        <p class="email">{{message.sender.email}}</p>
-        <p class="message-content">{{message.message}}</p>
-        <p class="date">{{message.date | date: 'short'}}</p>
-      </div>
+  <div *ngFor="let message of messages" class="message-card">
+    <div class="button-container">
+      <button class="delete-button" (click)="deleteMessage(message)">
+        <i class="fas fa-times"></i>
+      </button>
+      <button class="details-button" (click)="showDetails(message)">
+        <i class="fas fa-info-circle"></i>
+      </button>
+    </div>
+    <img [src]="message.sender.portrait" alt="{{message.sender.username}}" class="user-portrait">
+    <div class="message-info">
+      <h3>{{message.sender.username}}</h3>
+      <p class="email">{{message.sender.email}}</p>
+      <p class="message-content">{{message.message}}</p>
+      <p class="date">{{message.date | date: 'short'}}</p>
     </div>
   </div>
-  
+</div>
