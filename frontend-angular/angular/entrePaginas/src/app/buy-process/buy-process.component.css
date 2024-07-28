@@ -1,0 +1,61 @@
+.compra-en-proceso {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 400px;
+  text-align: center;
+  margin: 0 auto; /* Center the modal */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.pdf-section,
+.qr-section {
+  width: 45%;
+}
+
+.pdf-section button,
+.check-button button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pdf-section button:hover,
+.check-button button:hover {
+  background-color: #0056b3;
+}
+
+.qr-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.amount-to-pay p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.code-input input {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.info p {
+  margin-top: 20px;
+  color: #ff0000;
+  font-weight: bold;
+}

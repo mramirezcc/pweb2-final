@@ -1,0 +1,28 @@
+<div class="compra-en-proceso">
+    <h2>Compra en Proceso</h2>
+    <div class="content">
+      <div class="qr-section">
+        <img src="ruta-al-qr.png" alt="Código QR">
+      </div>
+    </div>
+    <div class="amount-to-pay">
+      <p>Monto a pagar: ${{toPay}}</p>
+    </div>
+    <div class="code-input">
+      <input type="text" maxlength="1" [(ngModel)]="code[0]">
+      <input type="text" maxlength="1" [(ngModel)]="code[1]">
+      <input type="text" maxlength="1" [(ngModel)]="code[2]">
+      <input type="text" maxlength="1" [(ngModel)]="code[3]">
+      <input type="text" maxlength="1" [(ngModel)]="code[4]">
+      <input type="text" maxlength="1" [(ngModel)]="code[5]">
+    </div>
+    <div class="check-button">
+      <button (click)="checkCode()">Comprobar</button>
+    </div>
+    <div class="info">
+      <p>
+        Una vez pagado se te enviará un código por tu correo, en alrededor de 15 minutos, ¡No cierres esta ventana!
+      </p>
+    </div>
+  </div>
+  

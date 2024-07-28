@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { COMPILER_OPTIONS, Component, OnInit } from '@angular/core';
 import { Book } from '../book.model';
 import { Router } from '@angular/router'; // Importa el Router
 import { ApiService } from '../api.service';
 import { User } from '../user.model';
 
 interface BookToBuy {
-  id: number;
+  id: number; //es el id del libro!
   portrait: string;
   name: string;
   author: string;
@@ -24,11 +24,10 @@ interface BookToBuy {
   styleUrl: './car-shop.component.css'
 })
 export class CarShopComponent implements OnInit {
-  //obtener el usuario de session storage y los libros del carrito...
-  //Ahora creo mi nuevo arreglo.....
   libros: Book[] = [];
   librosParaComprar: BookToBuy[] = [];
-
+  showCart: boolean = true; // Nueva propiedad
+  
   constructor(private router: Router, private api: ApiService) { }
   userData: User | null = null;
   isUserLoggedIn: boolean = false;
@@ -96,7 +95,12 @@ export class CarShopComponent implements OnInit {
   }
   
   incrementarCantidad(libro: BookToBuy) {
-    libro.amount++;
+    if(libro.amount < libro.stock){
+      libro.amount++;
+    }else{
+      alert("Excediendo el stock");
+    }
+    
   }
 
   disminuirCantidad(libro: BookToBuy) {
@@ -106,14 +110,106 @@ export class CarShopComponent implements OnInit {
   }
 
   eliminarLibro(libro: BookToBuy) {
-    this.libros = this.libros.filter(l => l !== libro);
-    //llamada api para elimnar un libro y tal!
+    if (this.isUserLoggedIn && this.userData && libro) {
+      console.log("Se elimina el libro ", libro.name, " del carrito de ", this.userData.username);
+      this.api.removeBookFromCart(this.userData.id, libro.id).subscribe(
+        response => {
+          console.log("Libro eliminado del carrito:", response);
+          this.librosParaComprar = this.librosParaComprar.filter(b => b.id !== libro.id);
+        },
+        error => {
+          console.error("Error al eliminar el libro del carrito", error);
+        }
+      );
+    } else {
+      alert("No está registrado!");
+    }
   }
+
+  private generatePurchaseCode(): string {
+    return Math.random().toString(36).substring(2, 8).toUpperCase(); // Genera un código aleatorio de 6 caracteres
+  }
+  purchaseCode: string | undefined;
   buy(){
-    //Por cada librosParaComprar, crea el objeto libro y recorre librosParaComprar.amount veces agregando todos los libros hacia sale.
-    //sale se agrega con user y book
+    //Generar un codigo aleatorio de 6 cifras para verificar el pago
+    const total = this.subtotal;
+    this.purchaseCode = this.generatePurchaseCode();
+    const mensaje = `🛒 *Solicitud de compra*: 
+    El monto a pagar es de $${total}. 
+    Mi código de compra es: ${this.purchaseCode}`;
+    if (this.userData) {
+      this.api.sendMessage(this.userData, mensaje).subscribe(
+        (response: any) => {
+          console.log("Mensaje enviado:", response);
+          this.showCart = false;
+
+        },
+        (error: any) => {
+          alert("Error al enviar el mensaje.");
+          console.error(error);
+        }
+      );
+    } else {
+      alert("No está registrado!");
+    }
+
   } 
+
+  handlePurchaseConfirmed() {
+    alert("Empezando el proceso de generacion del recibo, actualizando stock y poniendo todo en el modelo sale")
+    this.showCart = true;
+    //Primero agregar todas las compras a sales
+    
+    //GENERAR EL PDF, enviar el user y librosParaComprar al un servicio api, luego generar el pdf con la info!
+    if (this.userData) {
+      this.api.generatePdf(this.userData.id, this.librosParaComprar).subscribe(
+        (response: Blob) => {
+          
+          const blob = new Blob([response], { type: 'application/pdf' });
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'boleta_venta.pdf';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          a.remove();
+          alert("PDF generado y descargado.");
+        },
+        error => {
+          alert("Error al generar el PDF.");
+          console.error(error);
+        }
+      );
+    } else {
+      alert("No está registrado!");
+    }
+  }
+
   regresar() {
     this.router.navigate(['/user']);
   }
 }
+
+
+
+
+    /*
+    if (this.isUserLoggedIn && this.userData) {
+      for (let libro of this.librosParaComprar) {
+        if (libro.amount <= libro.stock) {
+          const saleData = {
+            userId: this.userData.id,
+            bookId: libro.id,
+            amount: libro.amount
+          };
+          console.log(libro);
+          // Aquí puedes llamar a tu API para confirmar la compra
+        } else {
+          alert(`La cantidad solicitada para el libro ${libro.name} excede el stock disponible.`);
+        }
+      }
+    } else {
+      alert("No está registrado!");
+    }
+      */

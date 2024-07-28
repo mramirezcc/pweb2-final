@@ -36,6 +36,7 @@ import { ListBooksComponent } from './list-books/list-books.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MeesageSenderComponent } from './meesage-sender/meesage-sender.component';
 import { ShowMessagesComponent } from './show-messages/show-messages.component';
+import { BuyProcessComponent } from './buy-process/buy-process.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { ShowMessagesComponent } from './show-messages/show-messages.component';
     ListBooksComponent,
     MeesageSenderComponent,
     ShowMessagesComponent,
+    BuyProcessComponent,
   ],
   imports: [
     BrowserModule,

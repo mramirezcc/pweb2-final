@@ -1,3 +1,4 @@
+from datetime import datetime
 from django import template
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render, redirect
@@ -12,7 +13,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from .serializers import BookWithSaleDateSerializer, SaleSerializer, UserSerializer, LoginSerializer, BookSerializer, MessageSerializer, ShoppingCartSerializer
 from .models import User, ShoppingCart, Sale, Book, Message
 from django.core.mail import send_mail
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from .forms import EmailForm
@@ -24,7 +25,11 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 
 
-
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -70,27 +75,7 @@ class LogoutView(generics.GenericAPIView):
         logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-@method_decorator(login_required, name='dispatch')
-class PurchaseView(View):
-    def post(self, request):
-        user = request.user
-        cart = ShoppingCart.objects.filter(idUser=user, status=False).first()
-        if not cart:
-            return render(request, 'error.html', {'message': 'No hay carritos de compra'})
 
-        total = sum(item.idBook.price for item in CartBook.objects.filter(idCart=cart))
-
-        sale = Sale.objects.create(
-            payMethod=request.POST.get('payMethod', Sale.CREDIT_CARD),
-            idCart=cart,
-            total=total
-        )
-
-        cart.status = True
-        cart.total = total
-        cart.save()
-
-        return render(request, 'purchase_success.html', {'sale': sale})
     
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
@@ -263,5 +248,76 @@ class ShoppingCartViewSet(viewsets.ViewSet):
         cart = get_object_or_404(ShoppingCart, idUser=pk)
         book_id = request.data.get('book_id')
         book = get_object_or_404(Book, id=book_id)
-        cart.remove_book(book)
+        cart.idBooks.remove(book)
         return Response({'status': 'Book removed'}, status=status.HTTP_200_OK)
+    
+@csrf_exempt
+def generate_pdf(request, user_id):
+    try:
+        user = get_object_or_404(User, id=user_id)
+        data = json.loads(request.body)
+        librosParaComprar = data.get('books', [])
+        
+        if not librosParaComprar:
+            return JsonResponse({'error': 'No books provided'}, status=400)
+
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="boleta_venta.pdf"'
+
+        doc = SimpleDocTemplate(response, pagesize=letter)
+        elements = []
+
+        styles = getSampleStyleSheet()
+        title_style = styles['Heading1']
+        normal_style = styles['Normal']
+        date_style = ParagraphStyle('date', fontSize=10, spaceAfter=10)
+        bold_style = ParagraphStyle('bold', fontSize=12, textColor=colors.black, spaceAfter=12)
+        thanks_style = ParagraphStyle('thanks', fontSize=18, textColor=colors.green, spaceAfter=20)
+
+        elements.append(Paragraph("Boleta de Venta - EntrePáginas", title_style))
+        elements.append(Spacer(1, 12))
+
+        elements.append(Paragraph(f"Usuario: {user.username}", bold_style))
+        elements.append(Paragraph(f"Fecha: {datetime.now().strftime('%d/%m/%Y')}", date_style))
+        elements.append(Paragraph(f"Dirección: {user.address}", normal_style))
+        elements.append(Paragraph(f"Correo: {user.email}", normal_style))
+        elements.append(Spacer(1, 12))
+
+        data = [["Cantidad", "Descripción", "Total"]]
+        for libro in librosParaComprar:
+            price = float(libro['price'])
+            amount = float(libro['amount'])
+            total = price * amount
+            descripcion = f"{libro['name']} por {libro['author']}"
+            data.append([amount, descripcion, f"{total:.2f}"])
+
+        table = Table(data, colWidths=[50, 300, 100])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ('BOX', (0, 0), (-1, -1), 2, colors.black),
+        ]))
+        elements.append(table)
+
+        subtotal = sum(float(libro['price']) * float(libro['amount']) for libro in librosParaComprar)
+        igv = subtotal * 0.18
+        total = subtotal + igv
+
+        elements.append(Spacer(1, 12))
+        elements.append(Paragraph(f"Subtotal: {subtotal:.2f}", normal_style))
+        elements.append(Paragraph(f"IGV (18%): {igv:.2f}", normal_style))
+        elements.append(Paragraph(f"Total: {total:.2f}", normal_style))
+        elements.append(Spacer(1, 12))
+
+        elements.append(Paragraph("Gracias por su compra", thanks_style))
+
+        doc.build(elements)
+        return response
+
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

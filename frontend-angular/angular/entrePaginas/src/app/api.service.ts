@@ -4,7 +4,18 @@ import { Observable, of } from 'rxjs';
 import { User } from './user.model';
 import { catchError, map } from 'rxjs/operators';
 import { Book } from './book.model';
-
+interface BookToBuy {
+  id: number; //es el id del libro!
+  portrait: string;
+  name: string;
+  author: string;
+  price: number;
+  cathegory: string; 
+  summary: string;
+  year: number;
+  amount: number;
+  stock: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -117,13 +128,19 @@ export class ApiService {
     return this.http.get<any>(url, { headers: this.httpHeaders });
  }
 
+  removeBookFromCart(userId: number, bookId: number): Observable<any> {
+    const url = `${this.baseurl}/shopping-carts/${userId}/remove-book/`;
+    const body = { book_id: bookId };
+    return this.http.post(url, body, { headers: this.httpHeaders });
+  }
+
+
   sendMessage(sender: User, message: string): Observable<any> {
     const url = `${this.baseurl}/send-message/`;  // Ensure this matches your Django endpoint
     const body = {
       sender_id: sender.id,
       message: message
     };
-    alert(body.sender_id);
     return this.http.post<any>(url, body, { headers: this.httpHeaders });
   }
 
@@ -140,8 +157,14 @@ export class ApiService {
     const url = `${this.baseurl}/messages/delete/${messageId}/`;
     return this.http.delete(url, { headers: this.httpHeaders });
   }
-  
+
   createBook(bookData: FormData): Observable<any> {
     return this.http.post<any>(`${this.baseurl}/create-book/`, bookData);
   }
+
+  generatePdf(userId: number, books: BookToBuy[]): Observable<Blob> {
+    return this.http.post(`${this.baseurl}/generate-pdf/${userId}/`, { books }, { responseType: 'blob' });
+  }
+
+
 }
