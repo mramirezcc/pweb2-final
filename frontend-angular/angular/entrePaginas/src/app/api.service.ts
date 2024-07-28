@@ -21,6 +21,11 @@ export class ApiService {
     {headers: this.httpHeaders});
   }
 
+  getAllSales():Observable<any>{
+    return this.http.get(this.baseurl+'/sales/', 
+    {headers: this.httpHeaders});
+  }
+
   addUser(user: User, portraitFile: File): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('portrait', portraitFile);
