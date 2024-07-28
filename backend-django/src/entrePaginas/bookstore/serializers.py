@@ -69,7 +69,7 @@ class LoginSerializer(serializers.Serializer):
 class SaleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
-        fields = ['id', 'payMethod', 'idUser', 'idBook', 'total', 'date']
+        fields = ['id', 'payMethod', 'idUser', 'idBook', 'date']
 
 
 class MessageSerializer(serializers.ModelSerializer):

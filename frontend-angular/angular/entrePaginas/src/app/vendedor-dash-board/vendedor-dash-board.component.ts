@@ -32,7 +32,7 @@ export class VendedorDashBoardComponent implements OnInit {
         "payMethod": "Debit",
         "idUser": 16,
         "idBook": 1,
-        "total": 123,
+        "total": 1, //nunca se utiliza total
         "date": "2024-07-21"
     },
   }

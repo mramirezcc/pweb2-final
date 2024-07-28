@@ -91,6 +91,7 @@ class SaleViewSet(viewsets.ModelViewSet):
         if user_id:
             queryset = queryset.filter(idUser=user_id)
         return queryset
+    
 
 class UserBooksView(generics.ListAPIView):
     serializer_class = BookSerializer
@@ -223,7 +224,47 @@ class UserBooksAPIView(APIView):
         serializer = BookWithSaleDateSerializer(books_with_date, many=True)
         return Response(serializer.data)
     
-
+class AddBookToUserAPIView(APIView):
+    def post(self, request, idUser):
+        book_id = request.data.get('bookId')
+        
+        if not book_id:
+            return Response({'error': 'Book ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            book = Book.objects.get(id=book_id)
+        except Book.DoesNotExist:
+            return Response({'error': 'Book not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            user = User.objects.get(id=idUser)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        sale = Sale(idUser=user, idBook=book)
+        sale.save()
+        
+        return Response({'message': 'Book added to user successfully'}, status=status.HTTP_201_CREATED)
+    
+class DecrementBookStockAPIView(APIView):
+    def post(self, request, bookId):
+        quantity = request.data.get('quantity')
+        
+        if quantity is None or quantity <= 0:
+            return Response({'error': 'A valid quantity is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            book = Book.objects.get(id=bookId)
+        except Book.DoesNotExist:
+            return Response({'error': 'Book not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        if book.stock >= quantity:
+            book.stock -= quantity
+            book.save()
+            return Response({'message': 'Book stock decremented successfully'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Not enough stock available'}, status=status.HTTP_400_BAD_REQUEST)
+        
 class ShoppingCartViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         cart = get_object_or_404(ShoppingCart, idUser=pk)

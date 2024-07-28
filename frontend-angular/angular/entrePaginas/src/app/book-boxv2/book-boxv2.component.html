@@ -2,7 +2,11 @@
   <div class="book-image-container">
     <img [src]="book.portrait" alt="{{ book.name }} cover" class="book-image">
   </div>
+
   <div class="book-info">
+    <!--{{ book.stock }}-->
+    <div class="book-stock">Stock: {{ book.stock }} u.</div>
+
     <h3 class="book-title">{{ book.name }}</h3>
     <p class="book-author">{{ book.author }}</p>
     <p class="book-year">{{ book.year }}</p>

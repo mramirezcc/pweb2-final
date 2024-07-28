@@ -166,5 +166,10 @@ export class ApiService {
     return this.http.post(`${this.baseurl}/generate-pdf/${userId}/`, { books }, { responseType: 'blob' });
   }
 
-
+  addBookToUser(userId: number, bookId: number): Observable<any> {
+    return this.http.post<any>(`${this.baseurl}/users/${userId}/books/add/`, { bookId });
+  }
+  decrementBookStock(bookId: number, quantity: number): Observable<any> {
+    return this.http.post<any>(`${this.baseurl}/books/${bookId}/decrement-stock/`, { quantity });
+  }
 }

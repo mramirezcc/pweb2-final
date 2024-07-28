@@ -38,6 +38,11 @@ export class BookDetailsComponent {
 
   addToCart() {
     if(this.isUserLoggedIn && this.userData && this.book){
+      if(this.book.stock <= 0){
+        alert("No hay stock de ese libro!");
+        return;
+
+      }
       console.log("Se añade el libro ", this.book?.name, " al carrito de ", this.userData?.username);
       this.api.addBookToCart(this.userData.id, this.book.id).subscribe(
         response => {

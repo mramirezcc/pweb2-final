@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import CreateBookView, DeleteMessageView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView, generate_pdf
+from bookstore.views import AddBookToUserAPIView, CreateBookView, DecrementBookStockAPIView, DeleteMessageView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView, generate_pdf
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,6 +24,7 @@ urlpatterns = [
     path('send-email/', EmailViewSet.as_view(), name='send-email'),
     path('get_user_id/', UserIdView.as_view(), name='get_user_id'),
     path('users/<int:idUser>/books/', UserBooksAPIView.as_view(), name='user_books_api'),
+    path('users/<int:idUser>/books/add/', AddBookToUserAPIView.as_view(), name='add_book_to_user_api'),
 
     # Rutas para agregar y eliminar libros del carrito de compras
     path('shopping-carts/<int:pk>/add-book/', ShoppingCartViewSet.as_view({'post': 'add_book'}), name='add-book'),
@@ -38,6 +39,7 @@ urlpatterns = [
     path('create-book/', CreateBookView.as_view(), name='create-book'),
 
     path('generate-pdf/<int:user_id>/', generate_pdf, name='generate_pdf'),
+    path('books/<int:bookId>/decrement-stock/', DecrementBookStockAPIView.as_view(), name='decrement_book_stock_api'),
 
 
 ]

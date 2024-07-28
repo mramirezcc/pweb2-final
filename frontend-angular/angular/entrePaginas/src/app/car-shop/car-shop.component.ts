@@ -3,6 +3,8 @@ import { Book } from '../book.model';
 import { Router } from '@angular/router'; // Importa el Router
 import { ApiService } from '../api.service';
 import { User } from '../user.model';
+import { forkJoin, Observable } from 'rxjs';
+import { CONNREFUSED } from 'dns';
 
 interface BookToBuy {
   id: number; //es el id del libro!
@@ -158,26 +160,56 @@ export class CarShopComponent implements OnInit {
   handlePurchaseConfirmed() {
     alert("Empezando el proceso de generacion del recibo, actualizando stock y poniendo todo en el modelo sale")
     this.showCart = true;
-    //Primero agregar todas las compras a sales
-    
-    //GENERAR EL PDF, enviar el user y librosParaComprar al un servicio api, luego generar el pdf con la info!
+
+
     if (this.userData) {
-      this.api.generatePdf(this.userData.id, this.librosParaComprar).subscribe(
-        (response: Blob) => {
-          
-          const blob = new Blob([response], { type: 'application/pdf' });
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'boleta_venta.pdf';
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(url);
-          a.remove();
-          alert("PDF generado y descargado.");
+      console.log("Agregando los libros al user ", this.userData);
+      console.log("Los libros a agregar son ", this.librosParaComprar);
+  
+      const addBooksObservables: Observable<any>[] = [];
+      const decrementStockObservables: Observable<any>[] = [];
+  
+      this.librosParaComprar.forEach(libro => {
+        for (let i = 0; i < libro.amount; i++) {
+          addBooksObservables.push(this.api.addBookToUser(this.userData!.id, libro.id));
+        }
+        decrementStockObservables.push(this.api.decrementBookStock(libro.id, libro.amount));
+        console.log("Añadiendo el libro " + libro.name);
+      });
+  
+      // Usar forkJoin para esperar hasta que todas las peticiones sean completadas
+      forkJoin(addBooksObservables).subscribe(
+        () => {
+          forkJoin(decrementStockObservables).subscribe(
+            () => {
+              // Después de agregar los libros y restar el stock, generar el PDF
+              this.api.generatePdf(this.userData!.id, this.librosParaComprar).subscribe(
+                (response: Blob) => {
+                  const blob = new Blob([response], { type: 'application/pdf' });
+                  const url = window.URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = 'boleta_venta.pdf';
+                  document.body.appendChild(a);
+                  a.click();
+                  window.URL.revokeObjectURL(url);
+                  a.remove();
+                  alert("PDF generado y descargado.");
+                },
+                error => {
+                  alert("Error al generar el PDF.");
+                  console.error(error);
+                }
+              );
+            },
+            error => {
+              alert("Error al decrementar el stock del libro.");
+              console.error(error);
+            }
+          );
         },
         error => {
-          alert("Error al generar el PDF.");
+          alert("Error al agregar los libros al usuario.");
           console.error(error);
         }
       );
