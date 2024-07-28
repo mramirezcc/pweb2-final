@@ -6,14 +6,11 @@
       <button class="delete-button" (click)="deleteMessage(message)">
         <i class="fas fa-times"></i>
       </button>
-      <button class="details-button" (click)="showDetails(message)">
-        <i class="fas fa-info-circle"></i>
-      </button>
     </div>
-    <img [src]="message.sender.portrait" alt="{{message.sender.username}}" class="user-portrait">
+    <img [src]="message.portrait" alt="{{message.username}}" class="user-portrait">
     <div class="message-info">
-      <h3>{{message.sender.username}}</h3>
-      <p class="email">{{message.sender.email}}</p>
+      <h3>{{message.username}}</h3>
+      <p class="email">{{message.email}}</p>
       <p class="message-content">{{message.message}}</p>
       <p class="date">{{message.date | date: 'short'}}</p>
     </div>

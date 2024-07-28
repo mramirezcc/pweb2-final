@@ -71,10 +71,11 @@ class SaleSerializer(serializers.ModelSerializer):
         model = Sale
         fields = ['id', 'payMethod', 'idUser', 'idBook', 'total', 'date']
 
+
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
-        fields = ['sender', 'message', 'date']
+        fields = ['id','sender', 'message', 'date']
         read_only_fields = ['date']
 
 
@@ -93,3 +94,4 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShoppingCart
         fields = ['id', 'user', 'books', 'date']
+

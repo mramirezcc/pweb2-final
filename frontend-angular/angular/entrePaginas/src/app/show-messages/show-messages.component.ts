@@ -3,13 +3,26 @@ import { ApiService } from '../api.service';
 import { Message } from '../message.model';
 import { User } from '../user.model';
 
+interface MessageToDisplay{
+  //tiene que tener un id del mensaje, para luego ser borrado!
+  id:number;
+  portrait: string;
+  username: string;
+  email: string;
+  password: string;
+  number: string; 
+  address: string;
+  message: String;
+  date: Date;
+}
+
 @Component({
   selector: 'app-show-messages',
   templateUrl: './show-messages.component.html',
   styleUrls: ['./show-messages.component.css']
 })
 export class ShowMessagesComponent {
-  messages: Message[] = [];
+  messages: MessageToDisplay[] = [];
 
   constructor(private apiService: ApiService) {}
 
@@ -19,54 +32,49 @@ export class ShowMessagesComponent {
   }
 
   loadTestData(): void {
-    const user1: User = {
-      id: 999,
-      portrait: 'https://via.placeholder.com/80',
-      username: 'john_doe',
-      email: 'john.doe@example.com',
-      password: 'password123',
-      number: '1234567890',
-      address: '123 Main St'
-    };
+    this.apiService.showMessages().subscribe(
+      (messagesApi: any) => {
+        console.log(messagesApi);
 
-    const user2: User = {
-      id: 1000,
-      portrait: 'https://via.placeholder.com/80',
-      username: 'jane_smith',
-      email: 'jane.smith@example.com',
-      password: 'password456',
-      number: '0987654321',
-      address: '456 Oak Ave'
-    };
+        messagesApi.forEach((message: { message: any; sender: number; date: any; id: any; }) => {
+          console.log(`Mensaje: ${message.message}`);
+          console.log(`Remitente: ${message.sender}`);
+          console.log(`Fecha: ${message.date}`);
 
-    this.messages = [
-      {
-        message: 'Hola, ¿cómo estás?',
-        sender: user1,
-        date: new Date('2024-07-20T14:48:00')
+          // Obtener el usuario por el id del remitente
+          this.apiService.getUserById(message.sender).subscribe(
+            (user: User) => {
+              // Construir el objeto MessageToDisplay
+              const messageToDisplay: MessageToDisplay = {
+                id: message.id,
+                portrait: user.portrait,
+                username: user.username,
+                email: user.email,
+                password: user.password,
+                number: user.number,
+                address: user.address,
+                message: message.message,
+                date: message.date
+              };
+
+              // Añadir el mensaje al array de mensajes
+              this.messages.push(messageToDisplay);
+            },
+            error => console.error('Error fetching user', error)
+          );
+        });
       },
-      {
-        message: 'Estoy bien, gracias. ¿Y tú?',
-        sender: user2,
-        date: new Date('2024-07-20T14:50:00')
-      },
-      {
-        message: 'Todo bien por aquí. ¿Alguna novedad?',
-        sender: user1,
-        date: new Date('2024-07-21T10:15:00')
-      }
-    ];
+      error => console.error('Error loading messages', error)
+    );
   }
 
-  deleteMessage(message: Message): void {
-    // Aquí deberías implementar la lógica para eliminar el mensaje
-    // Por ejemplo, puedes filtrar los mensajes para remover el mensaje específico
-    this.messages = this.messages.filter(m => m !== message);
-  }
-
-  showDetails(message: Message): void {
-    // Implementar la lógica para mostrar detalles del mensaje
-    console.log('Detalles del mensaje:', message);
-    // Puedes abrir un modal, mostrar en otro componente, etc.
+  deleteMessage(message: MessageToDisplay): void {
+    this.apiService.deleteMessage(message.id).subscribe(
+      response => {
+        console.log('Message deleted', response);
+        this.messages = this.messages.filter(m => m.id !== message.id);
+      },
+      error => console.error('Error deleting message', error)
+    );
   }
 }

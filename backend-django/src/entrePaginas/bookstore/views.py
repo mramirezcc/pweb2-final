@@ -166,30 +166,42 @@ class UserIdView(View):
         except User.DoesNotExist:
             return JsonResponse({'error': 'User does not exist'}, status=404)
         
+class DeleteMessageView(APIView):
+    def delete(self, request, message_id):
+        try:
+            message = Message.objects.get(id=message_id)
+        except Message.DoesNotExist:
+            return Response({"error": "Message not found"}, status=status.HTTP_404_NOT_FOUND)
 
+        message.delete()
+        return Response({"status": "Message deleted"}, status=status.HTTP_200_OK)
 
 class SendMessageView(APIView):
     def post(self, request):
-        serializer = MessageSerializer(data=request.data)
+        sender_id = request.data.get('sender_id')
+        
+        if not sender_id:
+            return Response({"error": "sender_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            sender = User.objects.get(id=sender_id)
+        except User.DoesNotExist:
+            return Response({"error": "Sender not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        data = request.data.copy()
+        data['sender'] = sender.id
+        
+        serializer = MessageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class ShowMessagesView(APIView):
-    def get(self, request, usuario_id):
-        try:
-            usuario = User.objects.get(id=usuario_id)
-        except User.DoesNotExist:
-            return Response({"error": "Usuario no encontrado"}, status=status.HTTP_404_NOT_FOUND)
-        
-        mensajes_recibidos = Message.objects.filter(destinatario=usuario)
-        serializer_recibidos = MessageSerializer(mensajes_recibidos, many=True)
-        
-        return Response({
-            "mensajes_recibidos": serializer_recibidos.data
-        }, status=status.HTTP_200_OK)
+    def get(self, request):
+        mensajes = Message.objects.all()
+        serializer = MessageSerializer(mensajes, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
 class UserBooksAPIView(APIView):
     def get(self, request, idUser):

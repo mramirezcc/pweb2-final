@@ -93,10 +93,10 @@ class Sale(models.Model):
 
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='message')
-    #El receptor sera el vendedor, los mensajes son solo de user -> vendedor
+    #El receptor sera el vendedor, los mensajes son solo de user -> vendedor (El vendedor solo puede enviar correos a manera de respuesta!)
     message = models.TextField()
+   
     date = models.DateTimeField(auto_now_add=True)
-
 
 
 class ShoppingCart(models.Model):

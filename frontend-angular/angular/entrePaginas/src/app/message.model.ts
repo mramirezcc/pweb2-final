@@ -1,7 +1,6 @@
-import { User } from "./user.model";
 export interface Message {
     message: String;
-    sender: User;
+    sender: number;
     date: Date;
 }
   

@@ -38,7 +38,7 @@
                 <p>IGV: <span>${{ igv }}</span></p>
                 <p>Total (Tax incl.): <span>${{ subtotal+igv }}</span></p>
             </div>
-            <button class="btn-checkout">Comprar &#8594;</button>
+            <button (click)="buy()" class="btn-checkout">Comprar &#8594;</button>
         </div>
     </div>
 </div>

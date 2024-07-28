@@ -110,5 +110,29 @@ export class ApiService {
   getBooksInCart(userId: number): Observable<any> {
     const url = `${this.baseurl}/shopping-carts/${userId}/`;
     return this.http.get<any>(url, { headers: this.httpHeaders });
+ }
+
+  sendMessage(sender: User, message: string): Observable<any> {
+    const url = `${this.baseurl}/send-message/`;  // Ensure this matches your Django endpoint
+    const body = {
+      sender_id: sender.id,
+      message: message
+    };
+    alert(body.sender_id);
+    return this.http.post<any>(url, body, { headers: this.httpHeaders });
+  }
+
+  showMessages(): Observable<any> {
+    const url = `${this.baseurl}/messages/`; 
+    return this.http.get<any>(url, { headers: this.httpHeaders });
+  }
+
+  getUserById(userId: number): Observable<any>{
+    const url = `${this.baseurl}/users/${userId}/`;
+    return this.http.get<any>(url, { headers: this.httpHeaders });
+  }
+  deleteMessage(messageId: number): Observable<any> {
+    const url = `${this.baseurl}/messages/delete/${messageId}/`;
+    return this.http.delete(url, { headers: this.httpHeaders });
   }
 }

@@ -105,8 +105,12 @@ export class CarShopComponent implements OnInit {
 
   eliminarLibro(libro: BookToBuy) {
     this.libros = this.libros.filter(l => l !== libro);
+    //llamada api para elimnar un libro y tal!
   }
-  
+  buy(){
+    //Por cada librosParaComprar, crea el objeto libro y recorre librosParaComprar.amount veces agregando todos los libros hacia sale.
+    //sale se agrega con user y book
+  } 
   regresar() {
     this.router.navigate(['/user']);
   }

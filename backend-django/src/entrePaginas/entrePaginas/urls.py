@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView
+from bookstore.views import DeleteMessageView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,6 +10,7 @@ router.register(r'users', UserViewSet)
 router.register(r'books', BookViewSet)
 router.register(r'sales', SaleViewSet)
 router.register(r'shopping-carts', ShoppingCartViewSet, basename='shopping-cart')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,13 @@ urlpatterns = [
     path('shopping-carts/<int:pk>/add-book/', ShoppingCartViewSet.as_view({'post': 'add_book'}), name='add-book'),
     path('shopping-carts/<int:pk>/remove-book/', ShoppingCartViewSet.as_view({'post': 'remove_book'}), name='remove-book'),
     path('shopping-carts/<int:pk>/', ShoppingCartViewSet.as_view({'get': 'retrieve'}), name='shopping-cart-detail'),
+
+
+    path('messages/', ShowMessagesView.as_view(), name='messages-api'),
+    path('send-message/', SendMessageView.as_view(), name='send-message'),
+    path('messages/delete/<int:message_id>/', DeleteMessageView.as_view(), name='delete-message'),
+
+
 
 ]
 

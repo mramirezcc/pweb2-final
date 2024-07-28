@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../user.model";
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-meesage-sender',
@@ -9,6 +10,9 @@ import { User } from "../user.model";
 export class MeesageSenderComponent implements OnInit {
   isUserLoggedIn: boolean = false;
   messageContent: string = '';
+  userData: User | undefined;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.checkUserSession();
@@ -18,9 +22,9 @@ export class MeesageSenderComponent implements OnInit {
     const user = sessionStorage.getItem('user');
     
     if (user) {
-      const userData = JSON.parse(user) as User;
+      this.userData = JSON.parse(user) as User;
       this.isUserLoggedIn = true;
-      console.log("Usuario enviado?: " + userData.username);
+      console.log("Usuario enviado?: " + this.userData.username);
     } else {
       this.isUserLoggedIn = false;
       console.log("No hay usuario!");
@@ -28,10 +32,15 @@ export class MeesageSenderComponent implements OnInit {
   }
 
   sendMessage(): void {
-    if (this.messageContent.trim() !== '') {
-      // Aquí puedes agregar la lógica para enviar el mensaje
-      alert("Mensaje enviado: " + this.messageContent);
-      this.messageContent = ''; // Limpiar el contenido del mensaje después de enviarlo
+    if (this.messageContent.trim() !== '' && this.userData) {
+      this.apiService.sendMessage(this.userData, this.messageContent)
+        .subscribe(response => {
+          alert("Mensaje enviado: " + this.messageContent);
+          this.messageContent = '';
+        }, error => {
+          alert("Error al enviar el mensaje.");
+          console.error(error);
+        });
     } else {
       alert("Por favor, escribe un mensaje antes de enviar.");
     }
