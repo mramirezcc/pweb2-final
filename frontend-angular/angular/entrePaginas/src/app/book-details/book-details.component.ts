@@ -41,7 +41,6 @@ export class BookDetailsComponent {
       if(this.book.stock <= 0){
         alert("No hay stock de ese libro!");
         return;
-
       }
       console.log("Se añade el libro ", this.book?.name, " al carrito de ", this.userData?.username);
       this.api.addBookToCart(this.userData.id, this.book.id).subscribe(
@@ -55,10 +54,8 @@ export class BookDetailsComponent {
         }
       );
     }else{
-      alert("No esta registrado!");
+      console.log("No estas registrado");
     }
-
-
   }
   @Output() toggleBookDetails = new EventEmitter<void>();
 

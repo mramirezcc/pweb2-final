@@ -56,7 +56,6 @@ export class MainComponent implements OnInit {
   showAdvancedSearch: boolean = false;
 
   toggleAdvancedSearch(): void {
-    console.log("called?");
     this.showAdvancedSearch = !this.showAdvancedSearch;
   }
 

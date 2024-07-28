@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Book } from '../book.model'; // Asegúrate de tener el modelo Book definido
+import { Book } from '../book.model';
 
 @Component({
   selector: 'app-add-stock',
@@ -23,7 +23,7 @@ export class AddStockComponent implements OnInit {
         this.books = response;
       },
       error => {
-        console.error('Error fetching books:', error);
+        console.error('Error al obtener los libros:', error);
       }
     );
   }
@@ -33,19 +33,18 @@ export class AddStockComponent implements OnInit {
     if (quantity > 0) {
       this.apiService.incrementBookStock(bookId, quantity).subscribe(
         response => {
-          console.log('Stock incremented successfully:', response);
-          // Actualiza el stock del libro en la lista
+          console.log('Stock incrementado con exito:', response);
           const book = this.books.find(b => b.id === bookId);
           if (book) {
             book.stock += quantity;
           }
         },
         error => {
-          console.error('Error incrementing stock:', error);
+          console.error('Error incrementando el stock:', error);
         }
       );
     } else {
-      alert('Please enter a valid quantity');
+      alert('Ingrese una cantidad positiva');
     }
   }
 }

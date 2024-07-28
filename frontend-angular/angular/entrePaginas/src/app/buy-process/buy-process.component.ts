@@ -21,7 +21,6 @@ export class BuyProcessComponent {
       this.purchaseConfirmed.emit();  // Emitir el evento para continuar con la compra!
       
     } else {
-      console.log('Código incorrecto:', enteredCode);
       alert('Código incorrecto. Inténtalo de nuevo.');
     }
   }

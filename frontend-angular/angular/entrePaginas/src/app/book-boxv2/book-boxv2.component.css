@@ -34,10 +34,9 @@
   background-color: #849000;
   color: #ffffff;
 }
-
-
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 
 body {
   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);

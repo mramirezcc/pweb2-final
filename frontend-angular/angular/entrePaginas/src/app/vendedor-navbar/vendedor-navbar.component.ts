@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './vendedor-navbar.component.css'
 })
 export class VendedorNavbarComponent {
-  @Input() sellerName: string = 'Nombre del Vendedor';
+  @Input() sellerName: string = 'Juan Perez';
 }

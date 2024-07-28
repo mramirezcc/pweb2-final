@@ -17,7 +17,7 @@ export class AdvancedSearchComponent {
     priceMin: null,
     priceMax: null
   };
-  categories = ['Ficción', 'No Ficción', 'Misterio', 'Fantasía', 'Romance'];
+  categories = ['','N/A', 'Suspenso', 'Romance', 'CienciaFiccion', 'Aventura', 'Fantasía', 'Acción'];
 
   constructor(private router: Router) {}
 

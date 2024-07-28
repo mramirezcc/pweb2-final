@@ -48,9 +48,9 @@ export class BookMainComponent implements OnInit {
     if (user) {
       const userData = JSON.parse(user) as User;
       console.log("Usuario enviado?: " + userData);
-      alert(userData.username);
+      console.log(userData.username);
     }else{
-      alert("No hay usuario!");
+      console.log("No hay usuario!");
     }
   }
 

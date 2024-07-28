@@ -18,6 +18,7 @@ export class RegisterComponent {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
+  userCreate: User | undefined
 
   onSubmit(form: NgForm) {
     if (form.valid && this.selectedFile) {
@@ -37,7 +38,10 @@ export class RegisterComponent {
 
         if (success) {
           console.log('User added successfully' + user);
-          this.router.navigate(['/user'], { state: { user } });  // Redirigir y pasar estado
+          this.userCreate = user;
+          alert("Usuario creado correctamente, inicie sesion con sus credenciales");
+          this.router.navigate(['/']);
+
         } else {
           console.log('User addition failed');
         }

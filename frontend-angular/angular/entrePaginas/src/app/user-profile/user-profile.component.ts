@@ -14,14 +14,11 @@ export class UserProfileComponent {
 
   redirectShoppingCar() {
     console.log('Ver el carrito de compras');
-    //abrir el carrito de compras con la informacion del usuario
     window.location.href = '/shoppingCart'; 
   }
 
   openEditInfo() {
     console.log('Imprimir contenido');
-    //funcion para generar un pdf del dashboard
-
   }
 
   deleteUser() {

@@ -14,7 +14,7 @@
       <strong>Categoría: {{ book.cathegory }}</strong>
     </div>
     <div class="book-price-container">
-      <span class="book-price">{{ book.price | currency:'USD':'symbol' }}</span>
+      <span class="book-price">{{ book.price | currency:'S/.':'symbol' }}</span>
       <button class="add-to-cart" (click)="addToCart()">Añadir al carrito</button>
     </div>
   </div>

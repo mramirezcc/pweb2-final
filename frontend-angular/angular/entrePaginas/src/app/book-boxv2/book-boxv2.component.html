@@ -11,7 +11,7 @@
     <p class="book-author">{{ book.author }}</p>
     <p class="book-year">{{ book.year }}</p>
     <p class="book-category" [ngClass]="getCategoryClass(book.cathegory)">{{ book.cathegory }}</p>
-    <p class="book-price">{{ book.price | currency:'USD':'symbol' }}</p>
+    <p class="book-price">{{ book.price | currency:'S/.':'symbol' }}</p>
     <button class="buy-now-button" (click)="openDetails()">Detalles</button>
   </div>
 </div>
