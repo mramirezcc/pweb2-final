@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import DeleteMessageView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView
+from bookstore.views import CreateBookView, DeleteMessageView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('send-message/', SendMessageView.as_view(), name='send-message'),
     path('messages/delete/<int:message_id>/', DeleteMessageView.as_view(), name='delete-message'),
 
+    path('create-book/', CreateBookView.as_view(), name='create-book'),
 
 
 ]

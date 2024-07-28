@@ -14,6 +14,7 @@ interface BookToBuy {
   summary: string;
   year: number;
   amount: number;
+  stock: number;
 }
 
 
@@ -75,7 +76,8 @@ export class CarShopComponent implements OnInit {
       cathegory: libro.cathegory,
       summary: libro.summary,
       year: libro.year,
-      amount: 1
+      amount: 1, //siempre el monto inicial es 1
+      stock: libro.stock,
     }));
     console.log("Libros para comprar:", this.librosParaComprar);
   }

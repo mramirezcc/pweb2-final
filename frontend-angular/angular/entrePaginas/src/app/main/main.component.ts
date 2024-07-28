@@ -34,7 +34,7 @@ export class MainComponent implements OnInit {
     this.api.getAllBooks().subscribe(
       data => {
         this.books = data; // data.results;
-        console.log("Los datos recibidos son: ", data);
+        console.log("Los datos recibidos son: ", this.books);
       },
       error => {
         console.log(error);

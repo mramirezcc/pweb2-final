@@ -7,5 +7,6 @@ export interface Book {
     cathegory: string; 
     summary: string;
     year: number;
+    stock: number;
   }
   

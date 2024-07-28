@@ -37,7 +37,7 @@ class Book(models.Model):
     summary = models.TextField(default='')
 
     portrait = models.ImageField(upload_to='portraits/', default='', blank=True, null=True)
-    #stock = models.IntegerField()
+    stock = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places = 2)
     CATHEGORY_CHOICES = {
         'N/A' : 'N/A',
@@ -53,7 +53,6 @@ class Book(models.Model):
         choices = CATHEGORY_CHOICES,
         default= 'N/A'
     )
-    #idEditorial = models.ForeignKey(Editorial, on_delete = models.CASCADE)
 
 
 

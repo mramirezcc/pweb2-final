@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['id', 'name', 'year', 'author', 'portrait', 'price', 'cathegory', 'summary']
+        fields = ['id', 'name', 'year', 'author', 'portrait', 'price', 'cathegory', 'summary', 'stock']
 
 class UserSerializer(serializers.ModelSerializer):
     #password = serializers.CharField(write_only=True, min_length=8)

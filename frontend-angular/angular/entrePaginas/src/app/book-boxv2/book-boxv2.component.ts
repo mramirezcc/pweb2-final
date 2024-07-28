@@ -16,6 +16,7 @@ export class BookBoxv2Component {
     summary: '',
     price: 0,
     year: 0,
+    stock: 0,
   };
 
   @Output() bookSelected = new EventEmitter<Book>();

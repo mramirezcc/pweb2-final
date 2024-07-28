@@ -119,6 +119,18 @@ class UserBooksView(generics.ListAPIView):
             # Obtener los libros correspondientes
             return Book.objects.filter(id__in=sale_books)
         return Book.objects.none()
+    
+
+class CreateBookView(generics.CreateAPIView):
+    serializer_class = BookSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @method_decorator(csrf_exempt, name='dispatch')

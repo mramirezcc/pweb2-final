@@ -140,4 +140,8 @@ export class ApiService {
     const url = `${this.baseurl}/messages/delete/${messageId}/`;
     return this.http.delete(url, { headers: this.httpHeaders });
   }
+  
+  createBook(bookData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.baseurl}/create-book/`, bookData);
+  }
 }
