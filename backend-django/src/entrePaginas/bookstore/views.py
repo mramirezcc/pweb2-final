@@ -196,7 +196,7 @@ class SendMessageView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ShowMessagesView(APIView):
-    def get(self, request):
+    def get(self, request): 
         mensajes = Message.objects.all()
         serializer = MessageSerializer(mensajes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -264,7 +264,23 @@ class DecrementBookStockAPIView(APIView):
             return Response({'message': 'Book stock decremented successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Not enough stock available'}, status=status.HTTP_400_BAD_REQUEST)
+
+class IncrementBookStockAPIView(APIView):
+    def post(self, request, bookId):
+        quantity = request.data.get('quantity')
         
+        if quantity is None or quantity <= 0:
+            return Response({'error': 'A valid quantity is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            book = Book.objects.get(id=bookId)
+        except Book.DoesNotExist:
+            return Response({'error': 'Book not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        book.stock += quantity
+        book.save()
+        return Response({'message': 'Book stock incremented successfully'}, status=status.HTTP_200_OK)
+
 class ShoppingCartViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         cart = get_object_or_404(ShoppingCart, idUser=pk)

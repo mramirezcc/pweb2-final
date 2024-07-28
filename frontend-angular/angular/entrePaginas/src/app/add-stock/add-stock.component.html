@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Manage Book Stock</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Category</th>
+          <th>Current Stock</th>
+          <th>New Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.name }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.cathegory }}</td>
+          <td>{{ book.stock }}</td>
+          <td>
+            <input type="number" [(ngModel)]="newStock[book.id]" class="form-control" placeholder="Enter quantity">
+          </td>
+          <td>
+            <button (click)="addStock(book.id)" class="btn btn-primary">Add Stock</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -172,4 +172,8 @@ export class ApiService {
   decrementBookStock(bookId: number, quantity: number): Observable<any> {
     return this.http.post<any>(`${this.baseurl}/books/${bookId}/decrement-stock/`, { quantity });
   }
+  incrementBookStock(bookId: number, quantity: number): Observable<any> {
+    return this.http.post(`${this.baseurl}/books/${bookId}/increment-stock/`, { quantity });
+  }
+
 }

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import AddBookToUserAPIView, CreateBookView, DecrementBookStockAPIView, DeleteMessageView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView, generate_pdf
+from bookstore.views import AddBookToUserAPIView, CreateBookView, DecrementBookStockAPIView, DeleteMessageView, IncrementBookStockAPIView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView, generate_pdf
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -40,6 +40,8 @@ urlpatterns = [
 
     path('generate-pdf/<int:user_id>/', generate_pdf, name='generate_pdf'),
     path('books/<int:bookId>/decrement-stock/', DecrementBookStockAPIView.as_view(), name='decrement_book_stock_api'),
+    path('books/<int:bookId>/increment-stock/', IncrementBookStockAPIView.as_view(), name='increment_book_stock_api'),
+
 
 
 ]

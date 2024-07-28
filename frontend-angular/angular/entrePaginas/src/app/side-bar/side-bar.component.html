@@ -20,6 +20,10 @@
         <i class="icon-messages"></i>
         <span>Ver mensajes recibidos</span>
       </li>
+      <li [class.active]="activeMenu === 'addStock'" (click)="setActiveMenu('addStock')">
+        <i class="icon-messages"></i>
+        <span>Agregar más stock</span>
+      </li>
     </ul>
     
     <div class="sidebar-footer">

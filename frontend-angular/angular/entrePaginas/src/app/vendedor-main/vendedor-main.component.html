@@ -12,6 +12,11 @@
           <div *ngIf="activeMenu === 'upload'" style="width: 100%;">
             <app-subir-libro></app-subir-libro>
           </div>
+
+          <div *ngIf="activeMenu === 'addStock'" style="width: 100%;">
+            <app-add-stock></app-add-stock>
+          </div>
+
           <div *ngIf="activeMenu === 'messages'" style="width: 100%;">
               <app-show-messages></app-show-messages>
           </div>

@@ -37,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MeesageSenderComponent } from './meesage-sender/meesage-sender.component';
 import { ShowMessagesComponent } from './show-messages/show-messages.component';
 import { BuyProcessComponent } from './buy-process/buy-process.component';
+import { AddStockComponent } from './add-stock/add-stock.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { BuyProcessComponent } from './buy-process/buy-process.component';
     MeesageSenderComponent,
     ShowMessagesComponent,
     BuyProcessComponent,
+    AddStockComponent,
   ],
   imports: [
     BrowserModule,
