@@ -158,7 +158,6 @@ export class CarShopComponent implements OnInit {
   } 
 
   handlePurchaseConfirmed() {
-    alert("Empezando el proceso de generacion del recibo, actualizando stock y poniendo todo en el modelo sale")
     this.showCart = true;
 
 
@@ -182,7 +181,6 @@ export class CarShopComponent implements OnInit {
         () => {
           forkJoin(decrementStockObservables).subscribe(
             () => {
-              // Después de agregar los libros y restar el stock, generar el PDF
               this.api.generatePdf(this.userData!.id, this.librosParaComprar).subscribe(
                 (response: Blob) => {
                   const blob = new Blob([response], { type: 'application/pdf' });
@@ -195,6 +193,9 @@ export class CarShopComponent implements OnInit {
                   window.URL.revokeObjectURL(url);
                   a.remove();
                   alert("PDF generado y descargado.");
+                  //Vaciar el carrito de compras
+                  this.emptyCart();
+
                 },
                 error => {
                   alert("Error al generar el PDF.");
@@ -217,31 +218,25 @@ export class CarShopComponent implements OnInit {
       alert("No está registrado!");
     }
   }
-
+  emptyCart() {
+    if (this.isUserLoggedIn && this.userData) {
+      this.api.emptyCart(this.userData.id).subscribe(
+        response => {
+          console.log("Carrito vaciado:", response);
+          this.librosParaComprar = [];
+        },
+        error => {
+          console.error("Error al vaciar el carrito:", error);
+        }
+      );
+    } else {
+      alert("No está registrado!");
+    }
+  }
+  
   regresar() {
     this.router.navigate(['/user']);
   }
 }
 
 
-
-
-    /*
-    if (this.isUserLoggedIn && this.userData) {
-      for (let libro of this.librosParaComprar) {
-        if (libro.amount <= libro.stock) {
-          const saleData = {
-            userId: this.userData.id,
-            bookId: libro.id,
-            amount: libro.amount
-          };
-          console.log(libro);
-          // Aquí puedes llamar a tu API para confirmar la compra
-        } else {
-          alert(`La cantidad solicitada para el libro ${libro.name} excede el stock disponible.`);
-        }
-      }
-    } else {
-      alert("No está registrado!");
-    }
-      */

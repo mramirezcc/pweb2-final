@@ -18,9 +18,8 @@ export class SideBarComponent {
 
   logout() {
     console.log('Cerrar sesión');
-
-    window.location.href = '/'; 
-
+    sessionStorage.removeItem('vendedorToken');
+    window.location.href = '/';
   }
 }
 

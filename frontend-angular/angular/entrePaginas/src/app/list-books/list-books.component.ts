@@ -24,7 +24,7 @@ export class ListBooksComponent implements OnChanges {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.getBooks(); // Llamar a getBooks() en lugar de asignar directamente this.books1
+    this.getBooks(); 
   }
 
   ngOnChanges(changes: SimpleChanges): void {

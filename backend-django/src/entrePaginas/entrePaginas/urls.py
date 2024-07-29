@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from bookstore.views import AddBookToUserAPIView, CreateBookView, DecrementBookStockAPIView, DeleteMessageView, IncrementBookStockAPIView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView, generate_pdf
+from bookstore.views import AddBookToUserAPIView, CreateBookView, DecrementBookStockAPIView, DeleteMessageView, IncrementBookStockAPIView, ShoppingCartViewSet, UserBooksView, RegisterView, LoginView, LogoutView, SaleViewSet, UserIdView, UserViewSet, BookViewSet, EmailViewSet, UserBooksAPIView, ShowMessagesView, SendMessageView, empty_cart, generate_pdf
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -30,6 +30,7 @@ urlpatterns = [
     path('shopping-carts/<int:pk>/add-book/', ShoppingCartViewSet.as_view({'post': 'add_book'}), name='add-book'),
     path('shopping-carts/<int:pk>/remove-book/', ShoppingCartViewSet.as_view({'post': 'remove_book'}), name='remove-book'),
     path('shopping-carts/<int:pk>/', ShoppingCartViewSet.as_view({'get': 'retrieve'}), name='shopping-cart-detail'),
+    path('shopping-carts/<int:user_id>/empty/', empty_cart, name='empty_cart'),
 
 
     path('messages/', ShowMessagesView.as_view(), name='messages-api'),

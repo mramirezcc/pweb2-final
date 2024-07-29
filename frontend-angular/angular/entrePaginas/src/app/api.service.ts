@@ -175,5 +175,7 @@ export class ApiService {
   incrementBookStock(bookId: number, quantity: number): Observable<any> {
     return this.http.post(`${this.baseurl}/books/${bookId}/increment-stock/`, { quantity });
   }
-
+  emptyCart(userId: number): Observable<any> {
+    return this.http.delete(`${this.baseurl}/shopping-carts/${userId}/empty/`);
+  }
 }

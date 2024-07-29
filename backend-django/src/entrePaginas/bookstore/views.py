@@ -378,3 +378,11 @@ def generate_pdf(request, user_id):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
+def empty_cart(request, user_id):
+    try:
+        cart_items = ShoppingCart.objects.filter(user_id=user_id)
+        cart_items.delete()
+        return JsonResponse({"message": "Carrito vaciado con éxito."}, status=200)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)

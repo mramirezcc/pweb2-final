@@ -3,29 +3,32 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-vendedor-login',
   templateUrl: './vendedor-login.component.html',
-  styleUrl: './vendedor-login.component.css'
+  styleUrls: ['./vendedor-login.component.css']
 })
-export class VendedorLoginComponent{
+export class VendedorLoginComponent {
   email: string = '';
   password: string = '';
   remember: boolean = false;
 
-  emailVendedor = "waos"
+  emailVendedor = "waos";
   passwordVendedor = "123";
+
   onSubmit() {
     console.log('Email:', this.email);
     console.log('Password:', this.password);
     console.log('Remember me:', this.remember);
-    //funcion para verificar
-    if(this.emailVendedor == this.email && this.passwordVendedor == this.password){
+    
+    if (this.emailVendedor === this.email && this.passwordVendedor === this.password) {
+      const token = 'vendedorToken'; 
+      sessionStorage.setItem('vendedorToken', token);
       alert("Ingresando");
-      window.location.href  = "/vendedor";
-    }else{
+      window.location.href = "/vendedor";
+    } else {
       alert("Incorrecto!");
     }
-
   }
-  back(){
-    window.location.href = '/'; 
+
+  back() {
+    window.location.href = '/';
   }
 }
