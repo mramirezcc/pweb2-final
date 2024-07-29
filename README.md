@@ -84,7 +84,7 @@ Este proyecto tiene como objetivo principal crear una plataforma dinámica e int
 | **Funciones**     | **clean:** Valida y limpia los datos antes de guardarlos en la base de datos.<br> **save:** Sobrescribe para llamar a clean antes de guardar el objeto en la base de datos. Garantiza que los datos sean válidos y limpios antes de su almacenamiento. | - **clean:** Verifica que el total de la venta no sea negativo (en el modelo Sale)<br>- **save:** Asegura que se llame a clean antes de guardar el objeto en la base de datos                                                                                                                                                         |
 
 ---
-## 5. views.py
+### views.py
 
 ### [UserViewSet](#userviewset)
 - **Función:** Proporciona las operaciones CRUD para el modelo User.
@@ -178,7 +178,7 @@ Este proyecto tiene como objetivo principal crear una plataforma dinámica e int
 - **Método:** Elimina todos los ítems del carrito del usuario identificado por user_id.
 
 ---
-## 7. Rutas y Funcionalidades
+### Rutas y Funcionalidades
 
 ### Administración
 
@@ -278,7 +278,7 @@ Este proyecto tiene como objetivo principal crear una plataforma dinámica e int
 
 
 ---
-## 8. FrondEnd Angular
+## 5. FrondEnd Angular
 # Descripción de Componentes de la Aplicación
 
 A continuación se presenta una descripción de los componentes de la aplicación junto con sus respectivas imágenes.
